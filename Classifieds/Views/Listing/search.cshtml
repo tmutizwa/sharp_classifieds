@@ -1,0 +1,101 @@
+﻿@model PagedList.IPagedList<Classifieds.Models.Listing>
+@using PagedList.Mvc;
+@using Classifieds.Models.SearchViewModels
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/Layouts/_SearchResults.cshtml";
+    
+    ListingSearchViewModel smodel = (ListingSearchViewModel)ViewBag.searchViewModel;
+}
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function myfunction() {
+            $("[rel='tooltip']").tooltip();
+        });
+    </script>
+
+}
+<h2><i class="glyphicon glyphicon-search"></i> Search Results</h2>
+<table class="table searchresults">
+    @using (Html.BeginForm("search", "listing", new {cat=smodel.cat,text=smodel.text,order=smodel.order,location=smodel.location,from=smodel.from,to=smodel.to }, FormMethod.Get, new { }))
+    {
+    <input type="hidden" name="cat" value="@smodel.cat" />
+    <input type="hidden" name="text" value="@smodel.text" />
+    <input type="hidden" name="location" value="@smodel.location" />
+    <input type="hidden" name="from" value="@smodel.from" />
+    <input type="hidden" name="to" value="@smodel.to" />
+    <tr>
+        <th width="150"></th>
+        <th>
+           Title
+        </th>
+        <th width="130">
+            <button rel="tooltip" title="Order by location" type="submit" class="btn-link" name="order" value="@ViewBag.townOrder">
+                <span>Location</span>
+                @if (ViewBag.townOrder == "town")
+                {
+                    <i class="glyphicon glyphicon-sort-by-attributes-alt"></i>
+                }
+                else
+                {
+                    <i class="glyphicon glyphicon-sort-by-attributes"></i>
+                }
+            </button>
+
+        </th>
+        <th width="130">
+            <button rel="tooltip" title="Order by price" type="submit" class="btn-link" name="order" value="@ViewBag.priceOrder">
+                <span>Price</span>
+                @if (ViewBag.priceOrder == "price")
+                {
+                    <i class="glyphicon glyphicon-sort-by-attributes-alt"></i>
+                }
+                else
+                {
+                    <i class="glyphicon glyphicon-sort-by-attributes"></i>
+                }
+            </button>
+        </th>
+    </tr>
+    }
+    @foreach (var item in Model)
+    {
+        string controller = item.Category.Controller;
+        string src = "";
+        if(item.images.Count() > 0){
+            
+            src = Url.Content("~/Images/Listings/small/"+item.images.OrderByDescending(c=>c.Created).First().Name);
+        }
+        
+        <tr>
+            <td>
+                @if (src != "")
+                {
+                    <img class="img-thumbnail" src="@src" />
+                }
+                
+            </td>
+            <td>
+                <strong>
+                    @Html.ActionLink(item.Title, "details", controller, new { id = item.ListingId }, null)
+                </strong>
+            <br />
+            @Html.DisplayFor(mod => item.Description) 
+            </td>
+            <td>
+                @Html.DisplayFor(mod =>item.Town)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+        </tr>
+    }
+</table>
+
+@if (Model.PageCount > 1)
+{
+    <div class="pagination">
+        @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+        @Html.PagedListPager(Model, page => Url.Action("search","listing", new { page, sortOrder = ViewBag.sortOrder, text = smodel.text ,cat=smodel.cat,to=smodel.to,from=smodel.from,town=smodel.location}))
+    </div>
+}

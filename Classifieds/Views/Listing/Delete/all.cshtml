@@ -1,0 +1,48 @@
+﻿@model Classifieds.Models.ViewModels.AListingViewModel
+
+@{
+    ViewBag.Title = "Delete Listing";
+    Layout = "~/Views/Shared/Layouts/_MyAccount.cshtml";
+}
+
+<h2><i class="glyphicon glyphicon-remove-circle" ></i> Delete listing #@Model.Title ?</h2>
+<p> &nbsp;</p>
+<h4>Are you sure you want to delete this listing?</h4>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+           ID
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.ListingId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.Title)
+        </dd>
+        <dt>@Html.DisplayNameFor(model => Model.Category)</dt>
+        <dd>@Html.DisplayFor(model => Model.Category.Title)</dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.Price)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+            @Html.ActionLink("Cancel", "index", "listing", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
+

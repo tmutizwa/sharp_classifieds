@@ -1,0 +1,120 @@
+﻿@model Classifieds.Models.CreateViewModels.CreateAutosViewModel
+
+@{
+    ViewBag.Title = "Create Listing";
+    Layout = "~/Views/Shared/Layouts/_MyAccount.cshtml";
+}
+
+<h2> <i class="glyphicon glyphicon-plus"></i> Create new listing in #@Model.Category.Title</h2>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Dashboard", "dashboard", "account")</li>
+    <li>@Html.ActionLink("Listings", "index", "listing")</li>
+    <li>@Html.ActionLink("Choose category", "choose", "listing")</li>
+    @if (ViewBag.crumbs != null)
+        {
+            foreach (var crumb in ViewBag.crumbs)
+            {
+                if (Model.Category.Title != crumb.Key)
+                {
+                  <li>@Html.ActionLink((String)crumb.Key, "choose", "listing", new { c= crumb.Value},null)</li>
+                }else
+                {
+                    <li>@crumb.Key</li>
+                }
+            }
+        }
+</ol>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+    
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+       @*@Html.Partial("_CreateListing",Model)*@ 
+        @Html.EditorFor(model => Model)
+        <hr/>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Make, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Make, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g Toyota" } })
+                @Html.ValidationMessageFor(model => model.Make, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CarModel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CarModel, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g Vitz" } })
+                @Html.ValidationMessageFor(model => model.CarModel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mileage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 input-group">
+                <span class="input-group-addon">km</span>
+                @Html.EditorFor(model => model.Mileage, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Mileage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EngineSize, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 input-group">
+                <span class="input-group-addon" rel="tooltip" title="Litres">Ltrs</span>
+                @Html.EditorFor(model => model.EngineSize, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EngineSize, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FuelType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.FuelType, Model.fuelTypes, new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.FuelType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Transmission, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Transmission, Model.transmissionTypes, new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.Transmission, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Condition, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Condition, Model.conditionTypes, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Condition, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BodyType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BodyType, new { htmlAttributes = new { @class = "form-control" ,placeholder="e.g Sedan"} })
+                @Html.ValidationMessageFor(model => model.BodyType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

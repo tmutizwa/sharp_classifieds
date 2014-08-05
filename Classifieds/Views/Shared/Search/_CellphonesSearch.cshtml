@@ -1,0 +1,86 @@
+﻿@model Classifieds.Models.SearchViewModels.CellphonesSearchViewModel
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="glyphicon glyphicon-filter"></i> Refine search results</h3>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm(Model.action, Model.controller, FormMethod.Get, new { }))
+        {
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.text)
+            @Html.HiddenFor(model => model.cat)
+            <input type="hidden" name="page" value="1" />
+            <table class="table">
+                <tr>
+                    <td><label for="from">@Html.DisplayNameFor(model => model.from)</label></td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">$</span>
+                            @Html.EditorFor(model => model.from, "", new { htmlAttributes = new { @class = "form-control", placeholder = "e.g 300" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.from, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="from">@Html.DisplayNameFor(model => model.to)</label></td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">$</span>
+                            @Html.EditorFor(model => model.to, "", new { htmlAttributes = new { @class = "form-control", placeholder = "e.g 1500" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.to, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>@Html.DisplayNameFor(model => model.location)</label></td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            @Html.EditorFor(model => model.location, "", new { htmlAttributes = new { @class = "form-control", placeholder = "e.g Kadoma" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>@Html.DisplayNameFor(model => model.Brand)</label></td>
+                    <td>
+                        @Html.DropDownListFor(model => model.Brand, Model.brands, new { @class = "form-control input", placeholder = "e.g Toyota" })
+                        @Html.ValidationMessageFor(model => model.Brand, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>@Html.DisplayNameFor(model => model.OS)</label></td>
+                    <td>
+                        @Html.DropDownListFor(model => model.OS, Model.oses, new { @class = "form-control input", placeholder = "e.g Toyota" })
+                        @Html.ValidationMessageFor(model => model.OS, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>@Html.DisplayNameFor(model => model.CModel)</label></td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            @Html.EditorFor(model => model.CModel, "", new { htmlAttributes = new { @class = "form-control", placeholder = "e.g S4" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.CModel, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>@Html.DisplayNameFor(model => model.NetworkType)</label></td>
+                    <td>
+                        @Html.DropDownListFor(model => model.NetworkType, Model.networks, new { @class = "form-control input", placeholder = "e.g Toyota" })
+                        @Html.ValidationMessageFor(model => model.NetworkType, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit" class="btn btn-info btn-sm">
+                            Refine search
+                            <span class="glyphicon glyphicon-filter"></span>
+                        </button>
+                    </td>
+                </tr>
+
+            </table>
+        }
+    </div>
+</div>

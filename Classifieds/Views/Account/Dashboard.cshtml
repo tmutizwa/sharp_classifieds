@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Classifieds.Models.Listing>
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/Layouts/_MyAccount.cshtml";
+}
+
+<h2><i class="glyphicon glyphicon-stats"></i>  Dashboard</h2>
+<ol class="breadcrumb">
+    <li>Dashboard</li>
+</ol>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Your listings</h3>
+    </div>
+    <div class="panel-body">
+        Panel content
+    </div>
+    <table class="table">
+        <tr>
+            <th><i class="glyphicon glyphicon-hand-right"></i> Total listings</th>
+            <td>@Model.Count()</td>
+        </tr>
+        <tr>
+            <th><i class="glyphicon glyphicon-cloud-upload"></i> Hot deals</th>
+            <td>@Model.Count()</td>
+        </tr>
+        <tr>
+            <th><i class="glyphicon glyphicon-arrow-left"> </i> Hot deals</th>
+            <td>@Model.Count()</td>
+        </tr>
+    </table>
+</div>

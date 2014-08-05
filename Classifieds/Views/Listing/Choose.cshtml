@@ -1,0 +1,31 @@
+﻿@using System.Linq
+@model IEnumerable<Classifieds.Areas.Admin.Models.Category>
+
+@{
+    ViewBag.Title = "Choose Category";
+    Layout = "~/Views/Shared/Layouts/_MyAccount.cshtml";
+}
+
+<h2><i class="glyphicon glyphicon-unchecked"></i> Choose Category for new listing</h2>
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Dashboard","dashboard","account")</li>
+    <li>@Html.ActionLink("Choose category", "choose", "listing")</li>
+    @{
+        if (ViewBag.crumbs != null)
+        {
+            var crmbs  = (SortedDictionary<string, int>)ViewBag.crumbs;
+            foreach (var crumb in crmbs.OrderBy(m=>m.Value))
+            {
+               <li><a href="choose?id=@crumb.Value">@crumb.Key</a></li> 
+            }
+        }
+    }
+</ol>
+
+@foreach (var item in Model) {
+   <div class="category_choose">
+       @Html.ActionLink(item.Title, "choose","listing", new { c = item.CategoryId }, new {@class="" })
+   </div>
+}
+

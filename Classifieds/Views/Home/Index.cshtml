@@ -1,0 +1,85 @@
+﻿@using Classifieds.Models.ViewModels
+@model Classifieds.Models.SearchViewModels.ListingSearchViewModel
+@{
+    ViewBag.Title = "Home";
+}
+<hr/>
+<div class="container">
+    <div class="row">
+        <div class="featured-home ">
+            <div class="col-md-4">
+                <img style="padding:2px; border:solid 1px #eee;"  class="img-responsive margin-15-left home-ad" src="~/Images/Home_slider_ads/9042450053311662016.jpg" align="left" />
+            </div>
+            <div class="col-md-8" style="padding-right:0;">
+                <img style="padding:2px; border:solid 1px #eee;" class="img-responsive home-ad" src="~/Images/Home_slider/MERC_Fashion_VeraBradleyFlower_0722_Q314_866x250.jpg" align="left" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container">
+    
+        <div class="home-cats">
+            @{
+                int total = Model.topCategories.Count();
+                int rem = total % 4;
+                int rows = (int)Math.Floor((double)total / 4);
+                var cats = Model.topCategories.ToArray();
+                int j = 0;
+            }
+            <div class="row">
+                @for (int i = 0; i < 4; i++)
+                {
+
+                    <div class="col-md-3">
+                        <div class="home-cat">
+                            @for (int c = 0; c < rows; c++)
+                            {
+                                var subs = cats[j].getSubCategories();
+                                <h3>@Html.ActionLink(cats[j].Title, "index", "browse", new { cat = cats[j].CategoryId }, new { })</h3>
+                                <div class="blok-vider">
+                                    @if (subs != null && subs.Count() > 0)
+                                    {
+                                        <ul class="sub-cats">
+                                            @foreach (var category in subs)
+                                            {
+                                                <li>@Html.ActionLink(category.Title, "index", "browse", new { cat = category.CategoryId }, new { })</li>
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+                                    j++;
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                @for (int v = 0; v < rem; v++)
+                {
+                    var subs = cats[j].getSubCategories();
+                    <div class="col-md-3">
+                        <div class="home-cat">
+                            <h3>@Html.ActionLink(cats[j].Title, "index", "browse", new { cat = cats[j].CategoryId }, new { })</h3>
+                            <div class="blok-vider">
+                                @if (subs != null && subs.Count() > 0)
+                                {
+                                    <ul class="sub-cats">
+                                        @foreach (var category in subs)
+                                        {
+                                            <li>@Html.ActionLink(category.Title, "index", "browse", new { cat = category.CategoryId }, new { })</li>
+                                        }
+                                    </ul>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                }
+        </div>
+
+    </div>
+</div>
+<hr />
+@Html.Partial("_FooterFeaturedListings")

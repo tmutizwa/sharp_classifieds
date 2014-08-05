@@ -1,0 +1,17 @@
+﻿@model SortedDictionary<string, int> 
+@if (Model != null)
+{
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Home", "index", "home")</li>
+        @{
+   // SortedDictionary<string, int> crumbs = (SortedDictionary<string, int>)ViewBag.crumbs;
+    foreach (var crumb in Model.OrderBy(c => c.Value))
+    {
+       
+            <li>@Html.ActionLink(crumb.Key, "index", "browse", new { cat = crumb.Value }, new { })</li>
+
+    }
+        }
+
+    </ol>
+}

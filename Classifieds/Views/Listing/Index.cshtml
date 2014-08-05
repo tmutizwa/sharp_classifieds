@@ -1,0 +1,143 @@
+﻿@model PagedList.IPagedList<Classifieds.Models.Listing>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "My Listings";
+    Layout = "~/Views/Shared/Layouts/_MyAccount.cshtml";
+}
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function myfunction() {
+            $("[rel='tooltip']").tooltip();
+        });
+    </script>
+    
+}
+
+<h2><i class="glyphicon glyphicon-list-alt"></i> My Listings</h2>
+
+<p>
+    @Html.ActionLink("New Listing", "choose", null, new { @class = "btn btn-info" })
+</p>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th width="100">
+            @Html.ActionLink("Category", "index", "listing", new { order = ViewBag.categoryOrder }, new {rel="tooltip", data_placement="top", title="Order by Category"})
+        </th>
+        <th>
+            @Html.ActionLink("Title", "index", "listing", new { order = ViewBag.titleOrder }, new { title = "Order by Title", rel = "tooltip" })
+        </th>
+        <th>
+            @Html.ActionLink("Price", "index", "listing", new { order = ViewBag.priceOrder }, new { title = "Order by Price", rel = "tooltip" })
+        </th>
+        <th>
+            @Html.ActionLink("Status", "index", "listing", new { order = ViewBag.statusOrder }, new { title = "Order by Status", rel = "tooltip" })
+        </th>
+        <th>
+            @Html.ActionLink("Expires", "index", "listing", new { order = ViewBag.expiresOrder }, new { title = "Order by Expiry Date", rel = "tooltip" })
+        </th>
+        <th>
+            @Html.ActionLink("Updated", "index", "listing", new { order = ViewBag.updatedOrder }, new { title = "Order by Last Updated", rel = "tooltip" })
+        </th>
+        <th width="70"></th>
+    </tr>
+    @using (Html.BeginForm("index", "listing", FormMethod.Get, new { }))
+    {
+        <tr>
+            <td></td>
+            <td>
+                @Html.TextBox("category", null, new { @class="form-control"})
+            </td>
+            <td>
+                @Html.TextBox("ctitle", null, new { @class="form-control",placeholder="title..."})
+            </td>
+            <td></td>
+            <td width="100">
+                @Html.DropDownList("status", new List<SelectListItem> { new SelectListItem {Text="All",Value=""}, new SelectListItem { Text = "Live", Value = "live" }, new SelectListItem { Text = "Suspended", Value = "suspended" } }, new { @class = "form-control" })
+            </td>
+            <td></td>
+            <td colspan="2" align="right">
+                <input type="submit" class="btn btn-toolbar" value="Find" />
+                @Html.ActionLink("Clear", "index", "listing",null,new { @class = "btn btn-info" })
+            </td>
+        </tr>
+    }
+@foreach (var item in Model)
+{
+    if (item != null)
+    {
+        string controller = item.Category.Controller;
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.ListingId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Title)
+            </td>
+            <td>
+                @Html.ActionLink(item.Title, "edit", "listing", new { id = item.ListingId }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td class="status_glyph">
+                @if (item.Status == "live")
+                {
+                    <i class="glyphicon glyphicon-ok green" rel="tooltip" data-placement="right" title="Live"></i>
+                }
+                else
+                {
+                    <i class="glyphicon glyphicon glyphicon-ban-circle " rel="tooltip" data-placement="right" title="Suspended"></i>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Expires)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated)
+            </td>
+            <td style="text-align:center;">
+                <span>
+                    <a href="@Url.Action("images", "listing", new { id = item.ListingId }, null)">
+                        <i class="glyphicon glyphicon-picture" rel="tooltip" title="Change Images"></i>
+                    </a>
+                </span>
+                |
+                <span>
+                    <a href="@Url.Action("view", "listing", new { id=item.ListingId})">
+                        <i class="glyphicon glyphicon-zoom-in blacktext" rel="tooltip" title="View Details"></i>
+                    </a>
+                </span>
+                <span>
+                    <a href="@Url.Action("edit", "listing", new { id=item.ListingId})">
+                        <i class="glyphicon glyphicon-edit greentext" rel="tooltip" title="Edit Listing"></i>
+                    </a>
+                </span>
+                |
+                <span>
+                    <a href="@Url.Action("delete", "listing", new { id=item.ListingId})" class="">
+                        <i class="glyphicon glyphicon-remove redtext" rel="tooltip" title="Delete Listing"></i>
+                    </a>
+                </span>
+            </td>
+        </tr>
+    }
+}
+</table>
+<hr/>
+@if (Model.PageCount > 1)
+{
+    <div class="pagination">
+        @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+        @Html.PagedListPager(Model, page => Url.Action("index",new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+}
+
+
+
+<div class="status_glyph keys" style="text-align:left;">
+    <i class="glyphicon glyphicon-ok green" rel="tooltip" title="Live"></i> = <em>Live</em>
+    <br/>
+    <i class="glyphicon glyphicon-ban-circle" rel="tooltip" title="Suspended"></i> = <em>Suspended</em>
+</div>

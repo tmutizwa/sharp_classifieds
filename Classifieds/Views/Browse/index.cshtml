@@ -1,0 +1,116 @@
+﻿@model Classifieds.Models.SearchViewModels.ListingSearchViewModel
+
+@{
+    ViewBag.Title = "Browse listings";
+    //Layout = "~/Views/Shared/Layouts/_BrowseCategory.cshtml";
+}
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function myfunction() {
+            $("[rel='tooltip']").tooltip();
+        });
+    </script>
+}
+
+@Html.Partial("_BreadCrumbs", (SortedDictionary<string, int>)ViewBag.crumbs)
+<h2>
+    <i class="glyphicon glyphicon-globe"></i> @if (Model.Category == null)
+    { <span>Browse Listings</span>}
+    else
+    { <span>@Model.Category.Title</span> }
+</h2>
+
+@if (Model.subCategories != null && Model.subCategories.Count() > 0)
+{
+    <ul class="subcats">
+        @foreach (var cat in Model.subCategories)
+        {
+            <li class="">@Html.ActionLink(cat.Title, "index", "browse", new { cat = cat.CategoryId }, new { })</li>
+        }
+    </ul>
+}
+<div class="results_count">
+    <span>Found @Model.foundListings.Count() listings </span> @if (!String.IsNullOrEmpty(Model.text))
+    { <span>for</span> <em>"@Model.text" .</em>} else { <span>in this category.</span>}
+</div>
+
+<table class="table">
+@using (Html.BeginForm(Model.action,Model.controller, FormMethod.Get, new { }))
+        {
+    @Html.HiddenFor(model => model.text)
+    @Html.HiddenFor(model => model.cat)
+    @Html.HiddenFor(model =>model.from)
+    @Html.HiddenFor(model => model.to)
+    @Html.HiddenFor(model =>model.location)
+     <input type="hidden" name="page" value="1" />
+    <tr>
+        <th width="170"></th>
+        <th>
+            Title
+        </th>
+        <th width="130">
+            <button rel="tooltip" title="Order by location" type="submit" class="btn-link" name="order" value="@Model.lorder">
+                <span>Location</span>
+                @if (Model.lorder == "town")
+                {
+                    <i class="glyphicon glyphicon-sort-by-attributes-alt"></i>
+                }
+                else
+                {
+                    <i class="glyphicon glyphicon-sort-by-attributes"></i>
+                }
+            </button>
+
+        </th>
+        <th width="130">
+            <button rel="tooltip" title="Order by price" type="submit" class="btn-link" name="order" value="@Model.porder">
+                <span>Price</span>
+                @if (Model.porder == "price")
+                {
+                    <i class="glyphicon glyphicon-sort-by-attributes-alt"></i>
+                }
+                else
+                {
+                    <i class="glyphicon glyphicon-sort-by-attributes"></i>
+                }
+            </button>
+        </th>
+    </tr>
+}
+    @foreach (var item in Model.foundListings)
+    {
+        string controller = item.Category.Controller;
+        string src = "";
+        if (item.images.Count() > 0)
+        {
+
+            src = Url.Content("~/Images/Listings/small/" + item.images.OrderByDescending(c => c.Created).First().Name);
+        }
+
+        <tr>
+            <td width="170">
+                @if (src != "")
+                {
+                    <a href="@Url.Action("details", "listing", new { id=item.ListingId})"><img width="150" class="img-thumbnail img-responsive" src="@src" /></a>
+                }
+
+            </td>
+            <td>
+                <strong>
+                    @Html.ActionLink(item.Title, "details", "listing", new { id = item.ListingId }, null)
+                </strong>
+                <br />
+               @item.getIntro()
+                <br/>
+                <small>@Html.ActionLink(item.Category.Title, "index", "browse", new { cat = item.CategoryId }, new { })</small>
+            </td>
+            <td>
+                @Html.DisplayFor(mod => item.Town)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+        </tr>
+    }
+</table>
+

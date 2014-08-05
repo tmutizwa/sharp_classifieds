@@ -1,0 +1,67 @@
+﻿@using Classifieds.Models
+@using Classifieds.Models.ViewModels
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Zimpapers Classifieds</title>
+    <link rel="icon" type="image/png" href="~/Images/favicon.png" />
+    <!--[if IE]>
+    <link rel="shortcut icon" href="~/Images/favicon.png" type="image/vnd.microsoft.icon" />
+    <![endif]-->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/ilightbox.css")" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top topbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse main-menu">
+                @Html.Partial("_MainMenu")
+                @Html.Partial("_LoginPartial")
+            </div>
+
+        </div>
+    </div>
+    @Html.Partial("_MainLogo")
+    <div class="search-bar">
+        <div class="container search-bar">
+            <div class="row ">
+                <div class="col-md-12">@Html.Partial("_MainSearch", (AListingSearchModel)ViewBag.searchViewModel)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="left-column">
+                    @Html.Partial("_ListingDetailsLeftColumn", (AListingViewModel)ViewBag.viewModel)
+                </div>
+            </div>
+            <div class="col-md-9">@RenderBody()</div>
+        </div>
+    </div>
+    @Html.Partial("_Footer")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.requestAnimationFrame.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.mousewheel.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ilightbox.packed.js")"></script>
+    <script type="text/javascript">
+        $('.lighter').iLightBox();
+    </script>
+    
+</body>
+</html>
+

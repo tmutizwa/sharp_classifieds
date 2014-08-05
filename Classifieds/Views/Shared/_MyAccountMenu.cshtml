@@ -1,0 +1,55 @@
+﻿
+@{
+    var controller = @ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString().ToLower();
+    var action = @ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString().ToLower();
+    var category = @ViewContext.Controller.ValueProvider.GetValue("c");
+    string key = controller.ToString() + action.ToString();
+    string password = "";
+    string listings = "";
+    string dashboard = "";
+    string details = "";
+}
+    @switch (controller) { 
+        case "account":
+                switch(action.ToString().ToLower()){
+                    case "manage":
+                        password = "active";
+                        break;
+                    case "dashboard":
+                        dashboard = "active";
+                        break;
+                    case "details":
+                        details = "active";
+                        break;
+                }
+            break;
+        case "listing":
+            switch (action){
+                case "index":
+                    listings = "active";
+                    break;
+                default:
+                    listings = "active";
+                    break;
+            }
+            break;
+        default:
+
+            if (category != null)
+            {
+                //smn entered a category
+            }
+            listings = "active"; 
+            break;
+       }
+
+<div id="user_menu" class="well">
+    <ul class="nav nav-pills nav-stacked">
+        <li class="@dashboard"><span class="glyphicon glyphicon-stats"></span>@Html.ActionLink("Dashboard", "dashboard", "account")</li>
+        <li class="@listings"><span class="glyphicon glyphicon-list-alt"></span>@Html.ActionLink("My listings", "index", "listing")</li>
+        <li><span class="glyphicon glyphicon-envelope"></span>@Html.ActionLink("Messages", "index", "message")</li>
+        <li class="@details"><span class="glyphicon glyphicon-cog"></span>@Html.ActionLink("Account Details", "details", "account")</li>
+        <li class="@password"><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("Change password", "manage", "account", null,new { @class = "" })</li>
+    </ul>
+</div>
+

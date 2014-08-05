@@ -1,0 +1,60 @@
+﻿@model Classifieds.Models.ViewModels.GeneralListingViewModel
+
+@{
+    ViewBag.Title = @Model.Title;
+    Layout = "~/Views/Shared/Layouts/_ListingDetails.cshtml";
+}
+
+@*<h2><i class="glyphicon glyphicon-search"></i> #@Html.DisplayFor(c=>Model.Title)</h2>*@
+@if (ViewBag.crumbs != null)
+{
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Home", "index", "home")</li>
+        @{
+    SortedDictionary<string, int> crumbs = (SortedDictionary<string, int>)ViewBag.crumbs;
+    foreach (var crumb in crumbs)
+    {
+        <li>@Html.ActionLink(crumb.Key, "index", "browse", new { cat = crumb.Value }, new { })</li>
+    }
+        }
+    </ol>
+}
+<div class="listing-details">
+@Html.Partial("_ListingDetails",Model)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm more-details">
+                <ul class="nav nav-tabs ">
+                    <li class="active"><a href="#hot" data-toggle="tab">More Details</a></li>
+                    <li><a href="#contact" data-toggle="tab">Contact Seller</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="hot">
+                        <div class="list-more">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <ul>
+                                        @if (!String.IsNullOrEmpty(Model.Brand))
+                                        {
+                                            <li><strong>@Html.DisplayNameFor(m => m.Brand)</strong> : @Html.DisplayFor(m => m.Brand)</li>
+                                        }
+                                        @if (!String.IsNullOrEmpty(Model.Condition))
+                                        {
+                                            <li><strong>@Html.DisplayNameFor(m => m.Condition)</strong> : @Html.DisplayFor(m => m.Condition)</li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact">
+                       @Html.Partial("_ContactSeller")
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+

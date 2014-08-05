@@ -1,0 +1,42 @@
+﻿@using Classifieds.Library
+<div class="footer">
+    <div class="container">
+        <div class="row" style="text-align:center; padding-top:20px;">
+            <img class="img-responsive" src="~/Images/foot.jpg" />
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>About</h4>
+                <div>
+                    <p><img width="100" src="~/images/logo.png" align="left" style="margin:5px;" />Includes 200 glyphs in font format from the Glyphicon Halflings set. Includes 200 glyphs in font format from the Glyphicon Halflings set.</p>
+                    <p>Tristique pellentesque lectus egestas, augue risus? Nascetur ac phasellus et, a pulvinar! </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h4>Help</h4>
+                <ul>
+                    <li>@Html.ActionLink("Pellentesque lectus egestas", "#")</li>
+                    <li>@Html.ActionLink("Pellentesque lectus egestas", "#")</li>
+                    <li>@Html.ActionLink("Pellentesque lectus egestas", "#")</li>
+                    <li>@Html.ActionLink("Pellentesque lectus egestas", "#")</li>
+                    <li>@Html.ActionLink("Pellentesque lectus egestas", "#")</li>
+                </ul>
+            </div>
+            <div class="col-md-4 ">
+                <h4>Ads to your email</h4>
+
+                <div class="subscriber">
+                    @Html.TextBox("name", null, new { @class = "form-control", placeholder = "your full name" })
+                    @Html.TextBox("email", null, new { @class = "form-control", placeholder = "your email" })
+                    @Html.DropDownList("c", CategoryHelper.topCategoriesSelectList(), "Choose top category", new { @class = "form-control", style = "width:200px;border-radius:4px 0 0 4px;" })
+                    <button type="submit" class="btn btn-primary" value="Subscribe">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>&copy; @DateTime.Now.Year - Zimpapers (Pvt) Ltd. All rights reserved.</p>
+</footer>

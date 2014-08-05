@@ -1,0 +1,105 @@
+﻿@model PagedList.IPagedList<Classifieds.Areas.Admin.Models.Category>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Category Admin";
+}
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function myfunction() {
+            $("[rel='tooltip']").tooltip();
+        });
+    </script>
+
+}
+
+<h2>Category Admin</h2>
+<p>
+    @Html.ActionLink("Create New", "Create", new { r=ViewBag.returnUrl}, new { @class = "btn btn-info" })
+</p>
+<table class="table">
+    <tr>
+        <th width="10">Order</th>
+        <th>
+            Title
+        </th>
+        <th>
+            Status
+        </th>
+        <th width="20">
+           ID
+        </th>
+        <th>Search Model</th>
+        <th>View Model</th>
+        <th width="100">Expires In</th>
+        <th>
+           Parent
+        </th>
+        <th width="200"></th>
+    </tr>
+  @using (Html.BeginForm("Index","Category",FormMethod.Get))
+{
+     
+    <tr>
+        <td></td>
+        <td>@Html.TextBox("ctitle", null, new {@class="form-control",placeholder="e.g Cars" })</td>
+        <td></td>
+        <td>@Html.TextBox("id", "", new { @class="form-control",style="width:30px;padding:3px;"})</td>
+        <td>@Html.TextBox("searchmodel", null, new { @class = "form-control" })</td>
+        <td>@Html.TextBox("viewmodel", null, new { @class = "form-control" })</td>
+        <td></td>
+        <td>@Html.TextBox("parent", null, new { @class="form-control",placeholder="e.g Jobs"})</td>
+        <td  align="right">
+            <input type="submit" class="btn btn-toolbar " value="Find" />
+            @Html.ActionLink("Clear", "Index", new { Area = "Admin" }, new { @class="btn btn-info"})
+        </td>
+    </tr>
+  }
+    @{
+        int i = 1;
+        string url =Request.RawUrl??"";
+    }
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.Order</td>
+        <td>
+            <span>@Html.ActionLink(item.Title, "edit", "category", new { id = item.CategoryId, r = url }, new { })</span>
+        </td>
+        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryId)
+        </td>
+        <td>@Html.DisplayFor(modelItem => item.SearchModel)</td>
+        <td>@Html.DisplayFor(modelItem => item.ViewModel)</td>
+        <td>@Html.DisplayFor(modelItem => item.ExpiresIn)</td>
+        <td>
+            @if(item.Parent !=null){
+                <span>@Html.ActionLink(item.Parent.Title, "edit", "category", new { id = item.Parent.CategoryId, r = url }, null)</span>
+            }
+            
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "edit", new { id = item.CategoryId,r=url }, new { @class="btn btn-success btn-xs"}) |
+            @Html.ActionLink("Details", "details", new { id = item.CategoryId,r=url }, new { @class="btn btn-success btn-xs"}) |
+            @Html.ActionLink("Delete", "delete", new { id = item.CategoryId,r=url }, new { @class="btn btn-danger btn-xs"})
+        </td>
+    </tr>
+}
+
+</table>
+<hr/>
+<p>
+    @Html.ActionLink("Create New", "Create", new { r=url}, new { @class = "btn btn-info" })
+</p>
+
+@if (Model.PageCount > 1)
+{
+    string ctitle = (string)ViewBag.ctitle;
+    string viewmodel = (string)ViewBag.viewmodel;
+    string searchmodel = (string)ViewBag.searchmodel;
+    string parent = (string)ViewBag.parent;
+    <div class="pagination">
+        @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+        @Html.PagedListPager(Model, page => Url.Action("index", new { page, ctitle=ctitle,parent=parent,viewmodel=viewmodel,searchmodel= searchmodel, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+}

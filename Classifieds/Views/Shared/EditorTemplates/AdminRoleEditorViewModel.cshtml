@@ -1,0 +1,12 @@
+﻿@model Classifieds.Areas.Admin.Models.AdminRoleEditorViewModel
+
+@Html.HiddenFor(model => model.RoleName)
+<tr>
+    <td>
+        @Html.CheckBoxFor(model => model.Selected)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.RoleName)
+    </td>
+</tr>
+

@@ -1,0 +1,52 @@
+﻿@model Classifieds.Areas.Admin.Models.AdminUserRolesViewModel
+
+@{
+    ViewBag.Title = "User Roles";
+}
+
+<h2>Edit roles for #@Html.DisplayFor(model => model.FullName),@Html.DisplayFor(model => model.UserName)</h2>
+<hr />
+<p>
+    @Html.ActionLink("Manage Users","Index",null,new{@class="btn btn-info"})
+    @Html.ActionLink("Edit User", "Edit", new { user = Model.UserName }, new { @class="btn btn-info"})
+    </p>
+<hr/>
+@using (Html.BeginForm("UserRoles", "Account", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.UserName)
+            </div>
+        </div>
+
+        <h4>Select Role Assignments</h4>
+        <hr />
+
+        <table>
+            <tr>
+                <th width="100">
+                    Role
+                </th>
+                <th>
+                    
+                </th>
+            </tr>
+           
+            @Html.EditorFor(model => model.Roles)
+        </table>
+     
+        <hr />
+
+        <div class="form-group">
+            <div class=" col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
+

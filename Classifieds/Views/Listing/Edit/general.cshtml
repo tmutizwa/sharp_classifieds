@@ -1,0 +1,62 @@
+﻿@model Classifieds.Models.EditViewModels.EditGeneralListingViewModel
+
+@{
+    ViewBag.Title = "Update Listing";
+    Layout = "~/Views/Shared/Layouts/_MyAccount.cshtml";
+}
+
+<h2> <i class="glyphicon glyphicon-plus"></i> Update listing #@Model.Category.Title</h2>
+<p>
+    @Html.ActionLink("Back to listings", "index", "listing", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Update pictures", "images", "listing", new { id = Model.ListingId }, new { @class = "btn btn-info" })
+    @Html.ActionLink("View details", "view", "listing", new { id = Model.ListingId }, new { @class = "btn btn-info" })
+
+</p>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Dashboard", "dashboard", "account")</li>
+    <li>@Html.ActionLink("Listings", "index", "listing")</li>
+    <li>update listing</li>
+</ol>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @*@Html.Partial("_CreateListing",Model)*@
+
+        @Html.EditorFor(model => Model)
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Brand, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Brand, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g Toyota" } })
+                @Html.ValidationMessageFor(model => model.Brand, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @if (Model.showCondition)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Condition, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Condition, Model.conditions, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Condition, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+        
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

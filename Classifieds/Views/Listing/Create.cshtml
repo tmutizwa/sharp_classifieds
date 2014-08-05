@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Create listing";
+    Layout = "~/Views/Shared/Layouts/_MyAccount.cshtml";
+}
+
+<h2><i class="glyphicon glyphicon-plus" ></i> Create new listing</h2>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Dashboard", "dashboard", "account")</li>
+    <li>@Html.ActionLink("Listings", "index", "listing")</li>
+    <li>@Html.ActionLink("Choose Category","choose","listing")</li>
+    <li>New Listing</li>
+</ol>
+<hr/>
+
+<div>
+    <div class="text-danger validation-summary-errors">
+        ;( Sorry we couldn't process this request. Please choose another category or contact us to inform us about this issue...
+    </div> 
+</div>

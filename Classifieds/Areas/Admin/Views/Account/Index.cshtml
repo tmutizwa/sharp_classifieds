@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Classifieds.Areas.Admin.Models.AdminEditUserViewModel>
+
+@{
+    ViewBag.Title = "Manage Users";
+}
+
+<h2>Manage Users</h2>
+<hr/>
+<p>
+    @Html.ActionLink("Add User", "Register", null, new {@class="btn btn-info" })
+    
+</p>
+<table class="table">
+    <tr>
+        <th width="10">#</th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>Role</th>
+        <th>@Html.DisplayNameFor(model => model.Suspended)</th>
+        <th></th>
+    </tr>
+@using (Html.BeginForm("Index", "Account",new {area="Admin"}, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <tr>
+        <td></td>
+        <td>@Html.TextBox("fullName", null, new { @class = "form-control",placeholder="e.g Terrance" })</td>
+        <td>@Html.TextBox("email", null, new { @class = "form-control",placeholder="e.g email@zimpapers.co.zw" })</td>
+        <td>@Html.TextBox("role", null, new { @class="form-control",placeholder="e.g Admin"})</td>
+        <td></td>
+        <td>
+             <input type="submit" class="btn btn-toolbar" value="Find" />
+            @Html.ActionLink("Clear", "Index", new { Area = "Admin" }, new { @class = "btn btn-info" })
+        </td>
+    </tr>
+}
+    @{
+        int i = 1;
+    }
+@foreach (var item in Model) {
+    <tr>
+        <td>@(i++)</td>
+        <td>
+            @{
+                if (!String.IsNullOrEmpty(item.FullName)){
+                 @Html.ActionLink(item.FullName, "Edit", new { user = item.UserName })
+                }
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @{
+                if (item.UserRoles.Count() > 0) { 
+                    var last = item.UserRoles.Last();
+                    foreach (var role in item.UserRoles)
+                    {
+                        if(!role.Equals(last)){
+                            @role.RoleName @:,
+                         }
+                        else
+                        {
+                            @role.RoleName
+                        }
+                    }
+                }
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(model =>item.Suspended)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { user = item.UserName }, new { @class="btn btn-success btn-xs"}) |
+            @Html.ActionLink("Roles", "UserRoles", new { user = item.UserName }, new {@class="btn btn-success btn-xs" }) |
+            @Html.ActionLink("Delete", "Delete", new { user = item.UserName }, new {@class="btn btn-danger btn-xs" })
+        </td>
+    </tr>
+}
+    <tfoot>
+        <tr>
+            <td colspan="6"><strong>There are @(Model.Count()) users in total.</strong></td>
+        </tr>
+    </tfoot>
+
+</table>
+<p>
+    @Html.ActionLink("Add User", "Register", null, new { @class = "btn btn-info" })
+
+</p>

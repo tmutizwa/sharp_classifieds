@@ -1,0 +1,125 @@
+﻿@model Classifieds.Models.ViewModels.PropertiesViewModel
+
+@{
+    ViewBag.Title = @Model.Title;
+    Layout = "~/Views/Shared/Layouts/_ListingDetails.cshtml";
+}
+
+@*<h2><i class="glyphicon glyphicon-search"></i> #@Html.DisplayFor(c=>Model.Title)</h2>*@
+@if (ViewBag.crumbs != null)
+{
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Home", "index", "home")</li>
+        @{
+    SortedDictionary<string, int> crumbs = (SortedDictionary<string, int>)ViewBag.crumbs;
+    foreach (var crumb in crumbs)
+    {
+        <li>@Html.ActionLink(crumb.Key, "index", "browse", new { cat = crumb.Value }, new { })</li>
+    }
+        }
+    </ol>
+}
+<div class="listing-details">
+@Html.Partial("_ListingDetails",Model)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm more-details">
+                <ul class="nav nav-tabs ">
+                    <li class="active"><a href="#hot" data-toggle="tab">More Details</a></li>
+                    <li><a href="#contact" data-toggle="tab">Contact Seller</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="hot">
+                        <div class="list-more">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <table class="table">
+                                        @if (!String.IsNullOrEmpty(Model.Suburb))
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <strong>@Html.DisplayNameFor(m => m.Suburb)</strong>
+                                                </td>
+                                                <td>@Html.DisplayFor(m => m.Suburb)</td>
+                                            </tr>
+                                        }
+                                       
+                                        @if (Model.Bedrooms > 0)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <strong>@Html.DisplayNameFor(m => m.Bedrooms)</strong>
+                                                </td>
+                                                <td>@Html.DisplayFor(m => m.Bedrooms)</td>
+                                            </tr>
+                                        }
+                                        @if ( Model.Bathrooms > 0)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <strong>@Html.DisplayNameFor(m => m.Bathrooms)</strong>
+                                                </td>
+                                                <td>@Html.DisplayFor(m => m.Bathrooms)</td>
+                                            </tr>
+                                        }
+                                        @if (Model.LandArea > 0)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <strong>@Html.DisplayNameFor(m => m.LandArea)</strong>
+                                                </td>
+                                                <td>@Html.DisplayFor(m => m.LandArea)</td>
+                                            </tr>
+                                        }
+                                        @if ( Model.BuildingArea > 0)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <strong>@Html.DisplayNameFor(m => m.BuildingArea)</strong>
+                                                </td>
+                                                <td>@Html.DisplayFor(m => m.BuildingArea)</td>
+                                            </tr>
+                                        }
+                                        @if (Model.Boreholes > 0)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <strong>@Html.DisplayNameFor(m => m.Boreholes)</strong>
+                                                </td>
+                                                <td>@Html.DisplayFor(m => m.Boreholes) <strong>L</strong></td>
+                                            </tr>
+                                        }
+                                        @if(Model.Garages > 0){
+                                             <tr>
+                                                <td>
+                                                    <strong>@Html.DisplayNameFor(m => m.Garages)</strong>
+                                                </td>
+                                                <td>@Html.DisplayFor(m => m.Garages) <strong>L</strong></td>
+                                            </tr>
+                                        }
+                                        @if (!String.IsNullOrEmpty(Model.Power))
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <strong>@Html.DisplayNameFor(m => m.Power)</strong>
+                                                </td>
+                                                <td>@Html.DisplayFor(m => m.Power)</td>
+                                            </tr>
+                                        }
+                                       
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact">
+                       @Html.Partial("_ContactSeller")
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+

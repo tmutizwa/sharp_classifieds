@@ -1,0 +1,72 @@
+﻿@model Classifieds.Models.SearchViewModels.JobsSearchViewModel
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="glyphicon glyphicon-filter"></i> Refine search results</h3>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm(Model.action, Model.controller, FormMethod.Get, new { }))
+        {
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.text)
+            @Html.HiddenFor(model => model.cat)
+            <input type="hidden" name="page" value="1" />
+            <table class="table">
+                <tr>
+                    <td><label for="from">@Html.DisplayNameFor(model => model.MinSalary)</label></td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">$</span>
+                            @Html.EditorFor(model => model.MinSalary, "", new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.MinSalary, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="from">@Html.DisplayNameFor(model => model.MaxSalary)</label></td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">$</span>
+                            @Html.EditorFor(model => model.MaxSalary, "", new { htmlAttributes = new { @class = "form-control", placeholder = "e.g 1500" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.MaxSalary, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>@Html.DisplayNameFor(model => model.location)</label></td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            @Html.EditorFor(model => model.location, "", new { htmlAttributes = new { @class = "form-control", placeholder = "e.g Kadoma" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>@Html.DisplayNameFor(model => model.Type)</label></td>
+                    <td>
+                        @Html.DropDownListFor(model => model.Type, Model.types, new { @class = "form-control input", placeholder = "" })
+                        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>@Html.DisplayNameFor(model => model.Tags)</label></td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            @Html.EditorFor(model => model.Tags, "", new { htmlAttributes = new { @class = "form-control", placeholder = "e.g finance" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit" class="btn btn-info btn-sm">
+                            Refine search
+                            <span class="glyphicon glyphicon-filter"></span>
+                        </button>
+                    </td>
+                </tr>
+
+            </table>
+        }
+    </div>
+</div>

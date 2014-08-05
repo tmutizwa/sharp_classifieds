@@ -1,0 +1,76 @@
+﻿@model Classifieds.Models.ViewModels.AListingViewModel
+
+<div class="listing-times"><span>Started:</span> @Html.DisplayFor(m => m.Created), <span>Updated :</span>  @Html.DisplayFor(m => m.Updated)</div>
+<div class="row">
+    <div class="col-md-12 details">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3 class="details-title">@Html.DisplayFor(c => Model.Title)</h3>
+                <ul class="descripto">
+                    @if (!String.IsNullOrEmpty(Model.Description))
+                    {
+                        <li class="description">@Html.DisplayFor(c => Model.Description)</li>
+                    }
+                    @if (!String.IsNullOrEmpty(Model.Town))
+                    {
+                        <li><strong>@Html.DisplayFor(c => Model.Town)</strong></li>
+                    }
+                    @if (Model.Price > 0)
+                    {
+                        <li><strong>@Html.DisplayFor(c => Model.Price)</strong></li>
+                    }
+
+                </ul>
+                <small><span><a href="#">peport this add</a></span> | <span><a href="#">bookmark this</a></span> | <span><a href="#">share</a></span> | <span><a href="#">print</a></span></small>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-6 ">
+        @{
+
+            if (Model.Images.Count > 0)
+            {
+                var images = Model.Images.OrderByDescending(o => o.Created).ToList();
+                var img = images.First();
+                string thumb = Url.Content("~/Images/Listings/Med/" + img.Name);
+                string src = Url.Content("~/Images/Listings/Big/" + img.Name);
+                <a href="@src" class="lighter" data-options="
+                         ajax: {
+                           type: 'get',
+                           cache: true,
+                         }" id=" ilightbox">
+                    <img class="img-thumbnail img-responsive" src="@thumb" />
+                </a>
+            }
+        }
+    </div>
+    <div class="col-md-6 details-thumbs">
+        @if (Model.Images.Count() > 1)
+        {
+            foreach (var img in Model.Images)
+            {
+                if (!String.IsNullOrEmpty(img.Name) && img != Model.Images.First())
+                {
+                    string thumb = Url.Content("~/Images/Listings/Small/" + img.Name);
+                    string src = Url.Content("~/Images/Listings/Big/" + img.Name);
+
+                    <a href="@src" class="lighter" data-options="
+                         ajax: {
+                           type: 'get',
+                           cache: true,
+                         }" id=" ilightbox">
+                        <img class="img-thumbnail img-responsive" src="@thumb" />
+                    </a>
+                }
+            }
+        }
+    </div>
+
+</div>
+
+
+  

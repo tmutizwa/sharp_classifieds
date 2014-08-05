@@ -1,0 +1,108 @@
+﻿@model Classifieds.Models.EditViewModels.EditPropertiesViewModel
+
+@{
+    ViewBag.Title = "Update Listing";
+    Layout = "~/Views/Shared/Layouts/_MyAccount.cshtml";
+}
+
+<h2> <i class="glyphicon glyphicon-plus"></i> Update listing #@Model.Title</h2>
+<p>
+    @Html.ActionLink("Back to listings", "index", "listing", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Update pictures", "images", "listing", new { id = Model.ListingId }, new { @class = "btn btn-info" })
+    @Html.ActionLink("View details", "view", "listing", new { id = Model.ListingId }, new { @class = "btn btn-info" })
+
+</p>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Dashboard", "dashboard", "account")</li>
+    <li>@Html.ActionLink("Listings", "index", "listing")</li>
+    <li>update listing</li>
+</ol>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @*@Html.Partial("_CreateListing",Model)*@
+        @Html.EditorFor(model => Model)
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Suburb, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 ">
+                @Html.EditorFor(model => model.Suburb, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                @Html.ValidationMessageFor(model => model.Suburb, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LandArea, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 input-group">
+                <span class="input-group-addon">m<sup>2</sup></span>
+                @Html.EditorFor(model => model.LandArea, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g 500" } })
+                @Html.ValidationMessageFor(model => model.LandArea, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BuildingArea, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 input-group">
+                <span class="input-group-addon">m<sup>2</sup></span>
+                @Html.EditorFor(model => model.BuildingArea, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g 500" } })
+                @Html.ValidationMessageFor(model => model.BuildingArea, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Bedrooms, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 ">
+                @Html.EditorFor(model => model.Bedrooms, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g 500" } })
+                @Html.ValidationMessageFor(model => model.Bedrooms, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Bathrooms, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 ">
+                @Html.EditorFor(model => model.Bathrooms, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g 500" } })
+                @Html.ValidationMessageFor(model => model.Bathrooms, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Toilets, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 ">
+                @Html.EditorFor(model => model.Toilets, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g 500" } })
+                @Html.ValidationMessageFor(model => model.Toilets, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Boreholes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 ">
+                @Html.EditorFor(model => model.Boreholes, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g 500" } })
+                @Html.ValidationMessageFor(model => model.Boreholes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Garages, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 ">
+                @Html.EditorFor(model => model.Garages, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g 500" } })
+                @Html.ValidationMessageFor(model => model.Garages, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Power, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Power, Model.powers, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Power, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

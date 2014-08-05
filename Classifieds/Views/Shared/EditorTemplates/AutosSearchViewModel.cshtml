@@ -1,0 +1,41 @@
+﻿@model Classifieds.Models.SearchViewModels.AutosSearchViewModel
+
+<tr>
+    <td><label>@Html.DisplayNameFor(model => model.make)</label></td>
+    <td>
+        <div class="input-group input-group-sm">
+            @Html.EditorFor(model => model.make, "", new { htmlAttributes = new { @class = "form-control", placeholder = "e.g Toyota" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.make, "", new { @class = "text-danger" })
+</td>
+</tr>
+<tr>
+    <td><label>@Html.DisplayNameFor(model => model.model)</label></td>
+    <td>
+        <div class="input-group input-group-sm">
+            @Html.EditorFor(model => model.model, "", new { htmlAttributes = new { @class = "form-control", placeholder = "e.g Vitz" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.model, "", new { @class = "text-danger" })
+</td>
+</tr>
+<tr>
+    <td><label>@Html.DisplayNameFor(model => model.Mileage)</label></td>
+    <td>
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon">km</span>
+            @Html.EditorFor(model => model.Mileage, "", new { htmlAttributes = new { @class = "form-control", placeholder = "e.g 60 000" } })
+        </div>
+        @Html.ValidationMessageFor(model => model.Mileage, "", new { @class = "text-danger" })
+    </td>
+</tr>
+<tr>
+    <td><label>@Html.DisplayNameFor(model => model.Transmission)</label></td>
+    <td>
+        <div class="input-group input-group-sm">
+            @Html.EditorFor(model => model.Transmission, "", new { htmlAttributes = new { @class = "form-control", placeholder = "e.g Manual" } })
+        </div>
+        @Html.ValidationMessageFor(model => model.Transmission, "", new { @class = "text-danger" })
+    </td>
+</tr>
+
+  

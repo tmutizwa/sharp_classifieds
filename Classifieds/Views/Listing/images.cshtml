@@ -1,0 +1,108 @@
+﻿@model  Classifieds.Models.Listing
+
+@{
+    ViewBag.Title = "Change Pictures";
+    Layout = "~/Views/Shared/Layouts/_MyAccount.cshtml";
+}
+@section scripts{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/dropzone.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("[rel='tooltip']").tooltip();
+            //delete images 
+            $("a.deleteImage i").click(function () {
+                var imageId = $(this).attr("imageId");
+                var listingId = $(this).attr("listingId");
+                if (confirm("Are you sure you want to delete this image?")) {
+                    d = new Date();
+                    $.ajax({
+                        url: "@Url.Action("deleteImage","listing")",
+                        type:"POST",
+                        data: { listing: "@Model.ListingId", image: imageId, r:d.getTime() },
+                        beforeSend: function () {
+            
+                        },
+                        success: function (data) {
+                            //date.listingId, data.imageId
+                            $("div#" + data.imageId).remove();
+                        }
+                    });
+                } else {
+                    return false;
+                }
+            });
+        });
+        Dropzone.options.pixer = {
+            maxFilesize: 2,//MB
+            paramName: "pix",
+            uploadMultiple: true,
+            //addRemoveLinks: true,
+            maxFiles: 5,
+            headers:{"ListingId":@Model.ListingId},
+            //dictDefaultMessage:"Drop here",
+            acceptedFiles:"image/png,image/jpg,image/jpeg,image/gif",
+           
+        }
+</script>
+
+}
+@section styles{
+    <link href="@Url.Content("~/Content/dropzone.css")" rel="stylesheet" type="text/css" />
+}
+@if (Model.images.Count() > 0)
+{
+    <h2><i class="glyphicon glyphicon-picture"></i> Change pics for #@Model.Title </h2>
+}
+else
+{
+    <h2><i class="glyphicon glyphicon-picture"></i> Add new pictures for #@Model.Title</h2>
+}
+<p>
+    @Html.ActionLink("Back to listings", "index", "listing", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Update details", "edit", "listing", new { id = Model.ListingId }, new { @class = "btn btn-info" })
+    @Html.ActionLink("View details", "view", "listing", new { id = Model.ListingId }, new { @class="btn btn-info"})
+
+</p>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Dashboard", "dashboard", "account")</li>
+    <li>@Html.ActionLink("Listings", "index", "listing")</li>
+    <li>Change Pictures</li>
+</ol>
+<hr/>
+<div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4>Maximum 10 pictures allowed</h4>
+    @if (Model.images.Count() > 0)
+    {
+        <span class="">
+            <i class="glyphicon glyphicon-info-sign"></i> You can delete existing ones to make space.
+        </span>
+    }
+</div>
+
+<div class="listing-images row">
+    @if (Model.images != null)
+    {
+        foreach (var listingImage in Model.images)
+        {
+            <div class="listing-image" id="@listingImage.ListingImageId">
+                <img height="100" src="@Url.Content("~/Images/Listings/Small/"+listingImage.Name)" class="listing-image " />
+                <a class="deleteImage " href="#" title="Delete image" rel="tooltip">
+                    <i class="glyphicon glyphicon-remove-circle" listing="@listingImage.ListingId" imageId="@listingImage.ListingImageId"></i>
+                </a>
+            </div>
+        }
+    }
+</div>
+<div class="drop-file">
+    @using (Html.BeginForm("imageX", "listing", FormMethod.Post, new { @class = "dropzone", id = "pixer" }))
+    {
+        @Html.HiddenFor(m => Model.ListingId);
+    }
+    @Html.ActionLink("Refresh", "images", "listing", new { id = @Model.ListingId }, new { @class="btn btn-default"})
+    @Html.ActionLink("Done", "index", "listing", null, new { @class = "btn btn-default" })
+</div>
+
+
+
+

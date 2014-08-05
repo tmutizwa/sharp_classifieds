@@ -1,0 +1,125 @@
+﻿@model Classifieds.Models.ViewModels.JobsViewModel
+
+@{
+    ViewBag.Title = "View Details";
+    Layout = "~/Views/Shared/Layouts/_MyAccount.cshtml";
+}
+
+<h2><i class="glyphicon glyphicon-search"></i> Details for #@Model.Title</h2>
+<p>
+    @Html.ActionLink("Back to listings", "index", "listing", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Update details", "edit", "listing", new { id = Model.ListingId }, new { @class = "btn btn-info" })
+    @Html.ActionLink("Change pictures", "images", "listing", new { id = Model.ListingId }, new { @class = "btn btn-info" })
+</p>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Dashboard", "dashboard", "account")</li>
+    <li>@Html.ActionLink("Listings", "index", "listing")</li>
+    <li>Details</li>
+</ol>
+<div class="details">
+
+    <fieldset>
+        <legend> <i class="glyphicon glyphicon-time"></i> Time</legend>
+        <dl class="dl-horizontal">
+            <dt>Created</dt>
+            <dd>@Model.Created</dd>
+            <dt>Updated</dt>
+            <dd>@Model.Updated</dd>
+            <dt>Expires</dt>
+            <dd>@Model.Expires</dd>
+        </dl>
+    </fieldset>
+    <fieldset>
+        <legend><i class="glyphicon glyphicon-zoom-in"></i>  Listing Details</legend>
+        <dl class="dl-horizontal">
+            <div class="status_glyph" style="text-align:left">
+                <dt>Status  </dt>
+                <dd>
+                    @if (Model.Status == "live")
+                    {
+                        <i class="glyphicon glyphicon-ok green" rel="tooltip" data-placement="right" title="Live"></i>
+                    }
+                    else
+                    {
+                        <i class="glyphicon glyphicon glyphicon-ban-circle " rel="tooltip" data-placement="right" title="Suspended"></i>
+                    }
+                </dd>
+            </div>
+            <dt>Pictures</dt>
+            <dd>
+                @if (Model.Images != null && Model.Images.Count() > 0)
+                {
+                    foreach (var image in Model.Images)
+                    {
+                        <div class="listing-image">
+                            <a href="@Url.Action("images", "listing", new { id=Model.ListingId})">
+                                <img align="left" height="100" src="~/Images/listings/small/@image.Name" />
+                            </a>
+                        </div>
+                    }
+                }
+            </dd>
+            <dt>Category</dt>
+            <dd>@Html.DisplayFor(model => model.Category.Title)</dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd>@Html.DisplayFor(model => model.Title)</dd>
+            <dt>Town</dt>
+            <dd>@Html.DisplayFor(model => model.Town)</dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MinAge)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MinAge)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MaxAge)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MaxAge)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MinSalary)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MinSalary)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MaxSalary)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MaxSalary)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Tags)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Tags)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd>@Html.DisplayFor(model => model.Description)</dd>
+        </dl>
+    </fieldset>
+</div>
+<hr />
+<p>
+    @Html.ActionLink("Back to listings", "index", "listing", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Update details", "edit", "listing", new { id = Model.ListingId }, new { @class = "btn btn-info" })
+    @Html.ActionLink("Change pictures", "images", "listing", new { id = Model.ListingId }, new { @class = "btn btn-info" })
+</p>
