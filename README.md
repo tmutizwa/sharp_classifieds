@@ -1,4 +1,4 @@
 Zim-Taxononomies
 ================
 
-zim weather app
+zim app
