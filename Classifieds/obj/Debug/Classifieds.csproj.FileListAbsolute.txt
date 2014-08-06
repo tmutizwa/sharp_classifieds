@@ -502,3 +502,4 @@ D:\MVC_APPS\GitClassifieds\Classifieds\obj\Debug\Classifieds.Migrations.dating1.
 D:\MVC_APPS\GitClassifieds\Classifieds\obj\Debug\Classifieds.csproj.GenerateResource.Cache
 D:\MVC_APPS\GitClassifieds\Classifieds\obj\Debug\Classifieds.dll
 D:\MVC_APPS\GitClassifieds\Classifieds\obj\Debug\Classifieds.pdb
+D:\MVC_APPS\GitClassifieds\Classifieds\obj\Debug\Classifieds.Migrations.user_alias.resources

@@ -129,6 +129,7 @@ namespace Classifieds.Controllers
                 user.Phone = model.Phone;
                 user.Sex = model.Sex;
                 user.DOB = model.DOB;
+                user.Alias = model.Alias;
                 db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 ViewBag.message = "Changes successfully saved.";
@@ -159,6 +160,7 @@ namespace Classifieds.Controllers
                                             FullName = model.FullName,
                                             //DOB = model.DOB,
                                             //Sex = model.Sex,
+                                            Alias = model.Alias,
                                             Phone = model.Phone,
                                             Address = model.Address
                 };
@@ -494,7 +496,8 @@ namespace Classifieds.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email,PhoneNumber=model.Phone,Address=model.Address,DOB = model.DOB,Sex = model.Sex,FullName = model.Fullname };
+                
+                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email,PhoneNumber=model.Phone,Address=model.Address,FullName = model.Fullname,Alias = model.Alias };
                 IdentityResult result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

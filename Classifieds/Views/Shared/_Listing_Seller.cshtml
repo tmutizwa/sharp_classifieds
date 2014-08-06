@@ -1,17 +1,24 @@
 ﻿@model Classifieds.Models.ViewModels.AListingViewModel
 <div class="listing_seller">
-      <h3>Seller Info</h3>
-      <img src="~/IMages/User/zimoco.jpg" />
-      <ul class="seller-details">
-          <li>
-              Gate 4 Showgrounds , Rekai Tangwena Avenue
-              Harare
-          </li>
-          <li>
-              Phone : 0775 124 100
-          </li>
-          <li><a href="#">Email Seller</a></li>
-          <li><a href="#">Listings by this seller</a></li>
-      </ul>
-      
+    @{
+        if (!String.IsNullOrEmpty(@Model.Owner.Alias))
+        {
+            <h3>@Html.DisplayFor(m => Model.Owner.Alias)</h3>
+        }
+        else
+        {
+            <h3>@Html.DisplayFor(m => Model.Owner.FullName) </h3>
+        }
+    }
+            @* <img src="~/IMages/User/zimoco.jpg" />*@
+            <ul class="seller-details">
+                <li>
+                    @Html.DisplayFor(m=>Model.Owner.Address)
+                </li>
+                <li>
+                    @Html.DisplayFor(m=>Model.Owner.Phone)
+                </li>
+                <li><a href="#">Email Seller</a></li>
+            </ul>
+
 </div>

@@ -16,6 +16,7 @@ namespace Classifieds.Library
         public AppUserManager():base(new UserStore<ApplicationUser>(new ApplicationDbContext()))
         {
            // PasswordValidator = new MinimumLengthValidator(5);
+
             PasswordValidator = new CustomizePasswordValidation(5);
         }
     }   

@@ -11,14 +11,12 @@ namespace Classifieds.Models
         [EmailAddress]
         [Display(Name = "Username / Email")]
         public string Email { get; set; }
+        [Display(Name = "Alias / Nickname")]
+        public string Alias { get; set; }
         [Required]
         public string Phone { get; set; }
         [Display(Name="Home / Buss address")]
-        [Required]
         public string Address { get; set; }
-        public DateTime? DOB { get; set; }
-        public string Sex { get; set; }
-        [Required]
         public string Fullname { get; set; }
 
     }
@@ -81,20 +79,18 @@ namespace Classifieds.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [Display(Name = "Alias / Nickname"),MaxLength(10)]
+        [Required]
+        public string Alias { get; set; }
 
-        //terry added
-        [Required, Display(Name = "Fullname")]
+        [Required]
+        [Display(Name = "Fullname")]
         [MaxLength(50)]
         public string FullName { get; set; }
         public string Sex { get; set; }
         [MaxLength(100,ErrorMessage="Phone number too long"),MinLength(5,ErrorMessage="Phone number too short.")]
         [Required]
         public string Phone { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-mm-YY}")]
-        [Display(Name = "Date of birth")]
-        public DateTime DOB { get; set; }
-        [Required]
         [Display(Name="Home / Buss address")]
         public string Address { get; set; }
         // Return a pre-poulated instance of AppliationUser:
@@ -124,6 +120,7 @@ namespace Classifieds.Models
             Phone = user.Phone;
             Pic = user.Pic;
             DOB = user.DOB;
+            Alias = user.Alias;
         }
         [Required]
         [EmailAddress]
@@ -131,6 +128,8 @@ namespace Classifieds.Models
         public string Email { get; set; }
         [MaxLength(100)]
         public string Address { get; set; }
+        [Display(Name = "Alias / Nickname")]
+        public string Alias { get; set; }
         public string Pic { get; set; }
         [Required, Display(Name = "Fullname")]
         [MaxLength(50)]
@@ -187,9 +186,11 @@ namespace Classifieds.Models
             //this.Sex = user.Sex;
            // this.DOB = user.DOB;
         }
-        [Required]
+        
         [Display(Name = "Fullname")]
         public string FullName { get; set; }
+        [Display(Name = "Alias / Nickname")]
+        public string Alias { get; set; }
         [Display(Name = "Sex")]
         public string Sex { get; set; }
         [Required]

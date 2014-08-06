@@ -419,6 +419,10 @@
     <Compile Include="Migrations\201408031353502_dating1.Designer.cs">
       <DependentUpon>201408031353502_dating1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408060854566_user_alias.cs" />
+    <Compile Include="Migrations\201408060854566_user_alias.Designer.cs">
+      <DependentUpon>201408060854566_user_alias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AListingSearchModel.cs" />
@@ -794,6 +798,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408031353502_dating1.resx">
       <DependentUpon>201408031353502_dating1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408060854566_user_alias.resx">
+      <DependentUpon>201408060854566_user_alias.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

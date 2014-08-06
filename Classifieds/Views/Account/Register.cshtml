@@ -4,7 +4,6 @@
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/Layouts/_Layout_pages.cshtml";
 }
-
 <hr/>
 <div class="col-md-4">
     <h3>Use your social logins</h3>
@@ -27,27 +26,33 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label"})
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Alias, new { @class = "col-md-2 control-label", rel = "tooltip", title = "Keep it short, we display this on your listings." })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Alias, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Alias, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label",rel="tooltip", title="The phone number we will display on your listings." })
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label",rel="tooltip", title="We will display this on your listings else leave blank." })
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
@@ -78,4 +83,9 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function myfunction() {
+            $("[rel='tooltip']").tooltip();
+        });
+</script>
 }
