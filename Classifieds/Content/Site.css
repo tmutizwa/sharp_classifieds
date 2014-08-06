@@ -396,3 +396,12 @@ ul.seller-details {
 .left-column label {
     font-size:0.9em;
 }
+.index-desc {
+    min-height:100px
+}
+.index-meta .left {
+    float:left;
+}
+.index-meta .right {
+    float:right;
+}
