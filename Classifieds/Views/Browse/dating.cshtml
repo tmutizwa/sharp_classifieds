@@ -68,19 +68,6 @@
 
             </th>
             <th>@Html.DisplayNameFor(model => model.Type)</th>
-            <th width="130">
-                <button rel="tooltip" title="Order by price" type="submit" class="btn-link" name="order" value="@Model.porder">
-                    <span>Price</span>
-                    @if (Model.porder == "price")
-                    {
-                        <i class="glyphicon glyphicon-sort-by-attributes-alt"></i>
-                    }
-                    else
-                    {
-                        <i class="glyphicon glyphicon-sort-by-attributes"></i>
-                    }
-                </button>
-            </th>
         </tr>
     }
     @if(Model.foundListings != null && Model.foundListings.Count > 0){
