@@ -105,7 +105,7 @@
                 </div>
                 <div class="index-meta">
                      <div class="left"><small>Seller:</small>@if (!String.IsNullOrEmpty(item.Owner.Alias)) {<small>@Html.DisplayFor(m => item.Owner.Alias)</small> } else { <small>@Html.DisplayFor(m => item.Owner.FullName)</small> }</div>
-                     <div class="right"><small>@Html.ActionLink(item.Category.Title, "index", "browse", new { cat = item.CategoryId }, new { })</small></div> 
+                     <div class="right"><small>@Html.ActionLink(item.Category.Title, "index", "browse", new { cat = item.CategoryId }, new {@class="btn btn-xs btn-meta" })</small></div> 
                 </div>
             </td>
             <td>

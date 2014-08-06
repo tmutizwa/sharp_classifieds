@@ -119,6 +119,7 @@ namespace Classifieds.Models.SearchViewModels
            this.foundListings = listingsQ.ToPagedList(page, this.pagesize);
         }
         public PagedList.IPagedList<Dating> foundListings { get { return this._foundListings; } set { this._foundListings = value; } }
+        [Display(Name="Rel. Type")]
         public string Type { get; set; }
         public int MinAge { get; set; }
         public int MaxAge { get; set; }

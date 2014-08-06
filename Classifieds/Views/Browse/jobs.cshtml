@@ -53,6 +53,7 @@
             <th>
                 Title
             </th>
+            <th></th>
             <th width="130">
                 <button rel="tooltip" title="Order by location" type="submit" class="btn-link" name="order" value="@Model.lorder">
                     <span>Location</span>
@@ -93,11 +94,22 @@
 
             </td>*@
             <td>
-                <strong>
-                    @Html.ActionLink(item.Listing.Title, "details", "listing", new { id = item.ListingId }, null)
-                </strong>
-                <br />
-                @item.Listing.getIntro()
+                <div class="index-desc">
+                    <strong>
+                        @Html.ActionLink(item.Listing.Title, "details", "listing", new { id = item.ListingId }, null)
+                    </strong>
+                    <br />
+                    @item.Listing.getIntro()
+                </div>
+                </td>
+            <td>
+                <div class="">
+                    <small>Seller:</small>@if (!String.IsNullOrEmpty(item.Listing.Owner.Alias))
+                    {<small>@Html.DisplayFor(m => item.Listing.Owner.Alias)</small>}
+                    else
+                    {<small>@Html.DisplayFor(m => item.Listing.Owner.FullName)</small> }
+                </div>
+                <small>@Html.ActionLink(item.Listing.Category.Title, "index", "browse", new { cat = item.Listing.CategoryId }, new { @class = "btn btn-xs btn-meta" })</small>
             </td>
             <td>
                 @Html.DisplayFor(mod => item.Listing.Town)

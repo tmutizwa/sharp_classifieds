@@ -29,6 +29,7 @@ namespace Classifieds.Models.ViewModels
         }
         private string _view = "dating.cshtml";
         public override string view { get { return this._view; } set{} }
+        [Display(Name="Rel. Type")]
         public string Type { get; set; }
         public int Age { get; set; }
         public string Sex { get; set; }

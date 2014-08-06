@@ -399,9 +399,16 @@ ul.seller-details {
 .index-desc {
     min-height:100px
 }
+.index-meta {
+    color:#777;
+}
 .index-meta .left {
     float:left;
 }
 .index-meta .right {
     float:right;
+}
+.index-meta .btn-meta {
+    background:#f6f9fc;
+
 }
