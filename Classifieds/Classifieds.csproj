@@ -199,6 +199,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DealsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\ValidationController.cs" />
@@ -423,6 +424,18 @@
     <Compile Include="Migrations\201408060854566_user_alias.Designer.cs">
       <DependentUpon>201408060854566_user_alias.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408070944159_email_subs.cs" />
+    <Compile Include="Migrations\201408070944159_email_subs.Designer.cs">
+      <DependentUpon>201408070944159_email_subs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408070949537_email_subs1.cs" />
+    <Compile Include="Migrations\201408070949537_email_subs1.Designer.cs">
+      <DependentUpon>201408070949537_email_subs1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408071018400_email_subs2.cs" />
+    <Compile Include="Migrations\201408071018400_email_subs2.Designer.cs">
+      <DependentUpon>201408071018400_email_subs2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AListingSearchModel.cs" />
@@ -441,6 +454,7 @@
     <Compile Include="Models\EditViewModels\EditComputersViewModel.cs" />
     <Compile Include="Models\EditViewModels\EditJobsViewModel.cs" />
     <Compile Include="Models\EditViewModels\EditGeneralListingViewModel.cs" />
+    <Compile Include="Models\EmailSubscriptions.cs" />
     <Compile Include="Models\GeneralListing.cs" />
     <Compile Include="Models\ClassifiedsCreateListingModelBinder.cs" />
     <Compile Include="Models\ClassifiedsEditListingModelBinder.cs" />
@@ -467,6 +481,7 @@
     <Compile Include="Models\SearchViewModels\ISearchViewModel.cs" />
     <Compile Include="Models\SearchViewModels\ListingSearchViewModel.cs" />
     <Compile Include="Models\ViewModels\DatingViewModel.cs" />
+    <Compile Include="Models\ViewModels\EmailSubscriptionViewModel.cs" />
     <Compile Include="Models\ViewModels\PropertiesViewModel.cs" />
     <Compile Include="Models\ViewModels\JobsViewModel.cs" />
     <Compile Include="Models\ViewModels\ComputersViewModel.cs" />
@@ -632,9 +647,12 @@
     <Content Include="Views\Listing\View\dating.cshtml" />
     <Content Include="Views\Listing\Edit\dating.cshtml" />
     <Content Include="Views\Listing\Details\dating.cshtml" />
+    <Content Include="Views\Home\Email.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Group.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Deals\" />
     <Folder Include="Views\Auth\" />
     <Folder Include="Views\Validation\" />
   </ItemGroup>
@@ -801,6 +819,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408060854566_user_alias.resx">
       <DependentUpon>201408060854566_user_alias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408070944159_email_subs.resx">
+      <DependentUpon>201408070944159_email_subs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408070949537_email_subs1.resx">
+      <DependentUpon>201408070949537_email_subs1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408071018400_email_subs2.resx">
+      <DependentUpon>201408071018400_email_subs2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

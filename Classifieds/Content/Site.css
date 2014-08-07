@@ -397,7 +397,7 @@ ul.seller-details {
     font-size:0.9em;
 }
 .index-desc {
-    min-height:100px
+    min-height:85px
 }
 .index-meta {
     color:#777;
@@ -410,5 +410,4 @@ ul.seller-details {
 }
 .index-meta .btn-meta {
     background:#f6f9fc;
-
 }

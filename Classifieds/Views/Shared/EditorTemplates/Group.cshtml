@@ -1,0 +1,8 @@
+﻿@model Classifieds.Models.ViewModels.Group
+
+
+<tr>
+    <td><strong>@Model.Text</strong></td>
+    <td>@Html.RadioButtonFor(m =>m.Cycle, "daily_"+@Model.GroupId, new { })</td>
+    <td>@Html.RadioButtonFor(m => m.Cycle, "weekly_" + @Model.GroupId, new { })</td>
+</tr>

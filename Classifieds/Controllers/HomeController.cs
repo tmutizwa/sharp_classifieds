@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using Classifieds.Library;
+using Microsoft.AspNet.Identity;
 
 namespace Classifieds.Controllers
 {
@@ -15,6 +17,7 @@ namespace Classifieds.Controllers
     {
         
         private ApplicationDbContext db = new ApplicationDbContext();
+        CategoryHelper catHelper = new CategoryHelper();
 
         public HomeController() { }
 
@@ -30,6 +33,18 @@ namespace Classifieds.Controllers
             ViewBag.Message = "Your application description page.";
 
             return View();
+        }
+        public ActionResult Email()
+        {
+            var cts = catHelper.subCategories(0);
+            var model = new EmailSubscriptionViewModel();
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Email(EmailSubscriptionViewModel model){
+            string id = User.Identity.GetUserId();
+            ViewBag.cats = catHelper.subCategories(0);
+            return View(model);
         }
 
         public ActionResult Contact()
