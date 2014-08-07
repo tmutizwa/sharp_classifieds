@@ -637,3 +637,4 @@ D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\bin\Microsoft.Owin.Secur
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.dll
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.pdb
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.csprojResolveAssemblyReference.cache
+D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.subs_date.resources
