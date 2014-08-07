@@ -436,6 +436,18 @@
     <Compile Include="Migrations\201408071018400_email_subs2.Designer.cs">
       <DependentUpon>201408071018400_email_subs2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408071738321_substarted.cs" />
+    <Compile Include="Migrations\201408071738321_substarted.Designer.cs">
+      <DependentUpon>201408071738321_substarted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408071748595_subsUpdated.cs" />
+    <Compile Include="Migrations\201408071748595_subsUpdated.Designer.cs">
+      <DependentUpon>201408071748595_subsUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408071817174_date_on_sub.cs" />
+    <Compile Include="Migrations\201408071817174_date_on_sub.Designer.cs">
+      <DependentUpon>201408071817174_date_on_sub.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AListingSearchModel.cs" />
@@ -828,6 +840,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408071018400_email_subs2.resx">
       <DependentUpon>201408071018400_email_subs2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408071738321_substarted.resx">
+      <DependentUpon>201408071738321_substarted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408071748595_subsUpdated.resx">
+      <DependentUpon>201408071748595_subsUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408071817174_date_on_sub.resx">
+      <DependentUpon>201408071817174_date_on_sub.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
