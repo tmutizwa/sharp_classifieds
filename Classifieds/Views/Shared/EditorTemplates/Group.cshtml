@@ -1,8 +1,19 @@
 ﻿@model Classifieds.Models.ViewModels.Group
 
-
+@Html.HiddenFor(m => Model.GroupId)
+@Html.HiddenFor(m => Model.Text)
+@{
+    object html = new { };
+    object htmlW = new { };
+    if(Model.Cycle == "daily"){
+         html = new { @checked = "checked" };
+    }
+    if(Model.Cycle == "weekly"){
+         htmlW = new { @checked = "checked" };
+    }
+}
 <tr>
     <td><strong>@Model.Text</strong></td>
-    <td>@Html.RadioButtonFor(m =>m.Cycle, "daily_"+@Model.GroupId, new { })</td>
-    <td>@Html.RadioButtonFor(m => m.Cycle, "weekly_" + @Model.GroupId, new { })</td>
+    <td>@Html.RadioButtonFor(m => Model.Cycle, "daily_" + @Model.GroupId, html)</td>
+    <td>@Html.RadioButtonFor(m => Model.Cycle, "weekly_" + @Model.GroupId, htmlW)</td>
 </tr>

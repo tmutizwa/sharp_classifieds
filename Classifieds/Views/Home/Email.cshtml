@@ -6,7 +6,8 @@
 }
 
 <h2>Classifieds to your email, it's easy!</h2>
-@if(!String.IsNullOrEmpty((String)ViewBag.Message)){
+@if (!String.IsNullOrEmpty((String)ViewBag.Message))
+{
     <div class="alert alert-success" role="alert">@ViewBag.Message</div>
 }
 <p>
@@ -16,7 +17,7 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <table class="table">
@@ -30,11 +31,11 @@
                     </thead>
                     <tbody>
                         @*<tr>
-                            <td><strong>All Categories</strong></td>
-                            <td>@Html.RadioButtonFor(m => Model.Cat[0], "daily", new { })</td>
-                            <td>@Html.RadioButtonFor(m => Model.Cat[0], "weekly", new { })</td>
-                        </tr>*@
-                        @Html.EditorFor(m=>Model.Groups)
+                                <td><strong>All Categories</strong></td>
+                                <td>@Html.RadioButtonFor(m => Model.Cat[0], "daily", new { })</td>
+                                <td>@Html.RadioButtonFor(m => Model.Cat[0], "weekly", new { })</td>
+                            </tr>*@
+                        @Html.EditorFor(m => Model.Groups)
                         <tr>
                             <td>@Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })</td>
                             <td colspan="2">
@@ -57,7 +58,7 @@
                         <tr>
                             <td></td>
                             <td>
-                                <input type="submit" value="Submit" class="btn btn-default" />   
+                                <input type="submit" value="Submit" class="btn btn-default" />
                             </td>
                             <td></td>
                         </tr>
@@ -66,10 +67,10 @@
             </div>
         </div>
     }
-    </div>
+</div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
 
