@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -23,11 +22,5 @@ namespace Classifieds.Models
         public int CategoryId { get; set; }
         [Required]
         public string Period { get; set; }
-        [Column(TypeName = "datetime2")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-y H:mm}")]
-        public DateTime? Started { get; set; }
-        [Column(TypeName = "datetime2")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-y H:mm}")]
-        public DateTime? Updated { get; set; }
     }
 }
