@@ -89,6 +89,7 @@ h1,h2,h3 {
 }
 .search-bar {
     margin-bottom:5px;
+    min-height:50px;
     background: #1d74bc; /* Old browsers */
 background: -moz-linear-gradient(top,  #1d74bc 0%, #043e85 99%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1d74bc), color-stop(99%,#043e85)); /* Chrome,Safari4+ */
