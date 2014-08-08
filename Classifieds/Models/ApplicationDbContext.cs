@@ -43,5 +43,6 @@ namespace Classifieds.Models
         public System.Data.Entity.DbSet<Classifieds.Models.Property> Properties { get; set; }
         public System.Data.Entity.DbSet<Classifieds.Models.Dating> Dates { get; set; }
         public System.Data.Entity.DbSet<Classifieds.Models.EmailSubscriptions> EmailSubscriptions { get; set; }
+        public System.Data.Entity.DbSet<Classifieds.Models.Deal> Deals { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿@using Classifieds.Library
+@using Classifieds.Models.ViewModels
 <div class="footer">
     <div class="container">
         <div class="row" style="text-align:center; padding-top:20px;">
@@ -23,17 +24,9 @@
                 </ul>
             </div>
             <div class="col-md-4 ">
-                <h4>Ads to your email</h4>
-
-                <div class="subscriber">
-                    @Html.TextBox("name", null, new { @class = "form-control", placeholder = "your full name" })
-                    @Html.TextBox("email", null, new { @class = "form-control", placeholder = "your email" })
-                    @Html.DropDownList("c", CategoryHelper.topCategoriesSelectList(), "Choose top category", new { @class = "form-control", style = "width:200px;border-radius:4px 0 0 4px;" })
-                    <button type="submit" class="btn btn-primary" value="Subscribe">
-                        Subscribe
-                    </button>
-                </div>
-            </div>
+                @*@Html.Action("EmailSubscribe", "widget", new { })*@
+                @*@Html.Partial("~/Views/Shared/Widgets/_EmailSubscriber.cshtml",(EmailSubscriptionViewModel)ViewBag.EmailSubscriber)*@           
+             </div>
         </div>
     </div>
 </div>

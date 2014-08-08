@@ -14,5 +14,6 @@ namespace Classifieds.Areas.Admin.Controllers
 
             return View();
         }
+
     }
 }

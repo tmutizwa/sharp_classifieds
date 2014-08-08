@@ -210,6 +210,7 @@
     <Compile Include="Controllers\BrowseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingController.cs" />
+    <Compile Include="Controllers\WidgetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -440,6 +441,14 @@
     <Compile Include="Migrations\201408071906489_subs_date.Designer.cs">
       <DependentUpon>201408071906489_subs_date.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408080914320_deals.cs" />
+    <Compile Include="Migrations\201408080914320_deals.Designer.cs">
+      <DependentUpon>201408080914320_deals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408081243396_schema_live.cs" />
+    <Compile Include="Migrations\201408081243396_schema_live.Designer.cs">
+      <DependentUpon>201408081243396_schema_live.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AListingSearchModel.cs" />
@@ -452,6 +461,7 @@
     <Compile Include="Models\CreateViewModels\CreatePropertiesViewModel.cs" />
     <Compile Include="Models\CreateViewModels\CreateJobsViewModel.cs" />
     <Compile Include="Models\Dating.cs" />
+    <Compile Include="Models\Deal.cs" />
     <Compile Include="Models\EditViewModels\EditCellphonesViewModel.cs" />
     <Compile Include="Models\EditViewModels\EditDatingViewModel.cs" />
     <Compile Include="Models\EditViewModels\EditPropertiesViewModel.cs" />
@@ -534,6 +544,7 @@
     <Content Include="Areas\Admin\Views\Category\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Deals\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -577,13 +588,13 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Widgets\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AdminRoleEditorViewModel.cshtml" />
-    <Content Include="Views\Shared\Search\_MainSearch.cshtml" />
+    <Content Include="Views\Shared\Widgets\Search\_MainSearch.cshtml" />
     <Content Include="Views\Shared\Layouts\_MyAccount.cshtml" />
-    <Content Include="Views\Shared\_MyAccountMenu.cshtml" />
+    <Content Include="Views\Shared\Widgets\_MyAccountMenu.cshtml" />
     <Content Include="Views\Account\Dashboard.cshtml" />
-    <Content Include="Views\Shared\_MainMenu.cshtml" />
+    <Content Include="Views\Shared\Widgets\_MainMenu.cshtml" />
     <Content Include="Views\Listing\Index.cshtml" />
     <Content Include="Views\Listing\Choose.cshtml" />
     <Content Include="Views\Listing\Create.cshtml" />
@@ -592,11 +603,11 @@
     <Content Include="Views\Listing\search.cshtml" />
     <Content Include="Views\Shared\Layouts\_SearchResults.cshtml" />
     <Content Include="Views\Shared\Layouts\_BrowseCategory.cshtml" />
-    <Content Include="Views\Shared\Search\_BrowseCategorySearch.cshtml" />
+    <Content Include="Views\Shared\Widgets\Search\_BrowseCategorySearch.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AutosSearchViewModel.cshtml" />
     <Content Include="Views\Browse\index.cshtml" />
     <Content Include="Views\Browse\autos.cshtml" />
-    <Content Include="Views\Shared\Search\_AutosSearch.cshtml" />
+    <Content Include="Views\Shared\Widgets\Search\_AutosSearch.cshtml" />
     <Content Include="Views\Listing\Create\autos.cshtml" />
     <Content Include="Views\Shared\_CreateListing.cshtml" />
     <Content Include="Views\Listing\Edit\autos.cshtml" />
@@ -611,16 +622,16 @@
     <Content Include="Views\Listing\Details\general.cshtml" />
     <Content Include="Views\Shared\Layouts\_Layout_Pages.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_FooterFeaturedListings.cshtml" />
-    <Content Include="Views\Shared\_ListingDetails.cshtml" />
+    <Content Include="Views\Shared\Widgets\_FooterFeaturedListings.cshtml" />
+    <Content Include="Views\Shared\Widgets\_ListingDetails.cshtml" />
     <Content Include="Views\Listing\Details\autos.cshtml" />
-    <Content Include="Views\Shared\_ContactSeller.cshtml" />
-    <Content Include="Views\Shared\_ListingDetailsLeftColumn.cshtml" />
-    <Content Include="Views\Shared\_Listing_Seller.cshtml" />
+    <Content Include="Views\Shared\Widgets\_ContactSeller.cshtml" />
+    <Content Include="Views\Shared\Widgets\_ListingDetailsLeftColumn.cshtml" />
+    <Content Include="Views\Shared\Widgets\_Listing_Seller.cshtml" />
     <Content Include="Views\Account\details.cshtml" />
-    <Content Include="Views\Shared\_MainLogo.cshtml" />
+    <Content Include="Views\Shared\Widgets\_MainLogo.cshtml" />
     <Content Include="Views\Browse\cellphones.cshtml" />
-    <Content Include="Views\Shared\Search\_CellphonesSearch.cshtml" />
+    <Content Include="Views\Shared\Widgets\Search\_CellphonesSearch.cshtml" />
     <Content Include="Views\Listing\Create\cellphones.cshtml" />
     <Content Include="Views\Listing\Edit\cellphones.cshtml" />
     <Content Include="Views\Browse\_BreadCrumbs.cshtml" />
@@ -632,33 +643,35 @@
     <Content Include="Views\Listing\View\computers.cshtml" />
     <Content Include="Views\Listing\Details\computers.cshtml" />
     <Content Include="Views\Browse\computers.cshtml" />
-    <Content Include="Views\Shared\Search\_ComputersSearch.cshtml" />
+    <Content Include="Views\Shared\Widgets\Search\_ComputersSearch.cshtml" />
     <Content Include="Views\Listing\Create\jobs.cshtml" />
     <Content Include="Views\Listing\Details\jobs.cshtml" />
     <Content Include="Views\Listing\Edit\jobs.cshtml" />
     <Content Include="Views\Listing\View\jobs.cshtml" />
     <Content Include="Views\Browse\jobs.cshtml" />
-    <Content Include="Views\Shared\Search\_JobsSearch.cshtml" />
+    <Content Include="Views\Shared\Widgets\Search\_JobsSearch.cshtml" />
     <Content Include="Views\Listing\Create\properties.cshtml" />
     <Content Include="Views\Listing\Edit\properties.cshtml" />
     <Content Include="Views\Listing\Details\properties.cshtml" />
     <Content Include="Views\Listing\View\properties.cshtml" />
     <Content Include="Views\Browse\properties.cshtml" />
-    <Content Include="Views\Shared\Search\_PropertiesSearch.cshtml" />
+    <Content Include="Views\Shared\Widgets\Search\_PropertiesSearch.cshtml" />
     <Content Include="Views\Browse\dating.cshtml" />
-    <Content Include="Views\Shared\Search\_DatingSearch.cshtml" />
+    <Content Include="Views\Shared\Widgets\Search\_DatingSearch.cshtml" />
     <Content Include="Views\Listing\Create\dating.cshtml" />
     <Content Include="Views\Listing\View\dating.cshtml" />
     <Content Include="Views\Listing\Edit\dating.cshtml" />
     <Content Include="Views\Listing\Details\dating.cshtml" />
     <Content Include="Views\Home\Email.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Group.cshtml" />
+    <Content Include="Views\Shared\Widgets\_EmailSubscriber.cshtml" />
+    <Content Include="Views\Shared\Widgets\_HotDeals.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Deals\" />
     <Folder Include="Views\Auth\" />
     <Folder Include="Views\Validation\" />
+    <Folder Include="Views\Widget\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -835,6 +848,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408071906489_subs_date.resx">
       <DependentUpon>201408071906489_subs_date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408080914320_deals.resx">
+      <DependentUpon>201408080914320_deals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408081243396_schema_live.resx">
+      <DependentUpon>201408081243396_schema_live.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

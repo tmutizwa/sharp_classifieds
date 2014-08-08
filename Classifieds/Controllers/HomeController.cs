@@ -18,8 +18,9 @@ namespace Classifieds.Controllers
 
         private ApplicationDbContext db = new ApplicationDbContext();
         CategoryHelper catHelper = new CategoryHelper();
+        EmailSubscriptionViewModel subscriBerWidget = new EmailSubscriptionViewModel();
 
-        public HomeController() { }
+        public HomeController() {}
 
         public ActionResult Index()
         {

@@ -211,6 +211,10 @@ home-cat:hover {
  .btn-toolbar {
      background:#ccc;
  }
+ .subscriber {
+     padding:15px;
+     background:#eee;
+ }
  .subscriber input,.subscriber button {
      margin:3px 0;
  }
@@ -221,6 +225,7 @@ home-cat:hover {
  .footer {
      background:#949599;
      font-size:12px;
+     padding-bottom:20px;
      margin-top:40px;
  }
  footer p {

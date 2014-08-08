@@ -25,12 +25,12 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse main-menu">
-                @Html.Partial("_MainMenu")
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("~/Views/Shared/Widgets/_MainMenu.cshtml")
+                @Html.Partial("~/Views/Shared/Widgets/_LoginPartial.cshtml")
             </div>
         </div>
     </div>
-    @Html.Partial("_MainLogo")
+    @Html.Partial("~/Views/Shared/Widgets/_MainLogo.cshtml")
     <div class="search-bar"></div>
     <div class="container body-content">
         <div class="row">
@@ -40,7 +40,7 @@
     <div class="col-md-3">
         <h2><i class="glyphicon glyphicon-user" ></i> My Account</h2>
         <div class="left-column">
-            @Html.Partial("_MyAccountMenu")
+            @Html.Partial("~/Views/Shared/Widgets/_MyAccountMenu.cshtml")
         </div>
     </div>
     <div class="col-md-9">@RenderBody()</div>

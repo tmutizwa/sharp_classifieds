@@ -25,13 +25,13 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse main-menu">
-                @Html.Partial("_MainMenu")
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("~/Views/Shared/Widgets/_MainMenu.cshtml")
+                @Html.Partial("~/Views/Shared/Widgets/_LoginPartial.cshtml")
             </div>
             
         </div>
     </div>
-    @Html.Partial("_MainLogo")
+    @Html.Partial("~/Views/Shared/Widgets/_MainLogo.cshtml")
     <div class="search-bar"></div>
     <div class="container body-content">
         @RenderBody()

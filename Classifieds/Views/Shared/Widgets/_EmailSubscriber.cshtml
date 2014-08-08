@@ -1,0 +1,22 @@
+﻿@model Classifieds.Models.ViewModels.EmailSubscriptionViewModel
+@using Classifieds.Library;
+
+@using (Html.BeginForm("email", "home"))
+{
+        <h4>Ads to your email</h4>
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <div class="subscriber">
+        @Html.TextBoxFor(m=>m.Name, null, new { @class = "form-control", placeholder = "your name" })
+        @Html.TextBoxFor(m=>m.Email, null, new { @class = "form-control", placeholder = "your email" })
+        @Html.DropDownList("c", CategoryHelper.topCategoriesSelectList(), "Choose top category", new { @class = "form-control", style = "width:200px;border-radius:4px 0 0 4px;" })
+        Subscribe  @Html.RadioButtonFor(m => m.subscriptionType, "subscribe", new { @checked = "checked" })
+        UnSubscribe  @Html.RadioButtonFor(m => m.subscriptionType, "unsubscribe")
+        <br/>
+        <button type="submit" class="btn btn-primary" value="Subscribe">
+            Submit
+        </button>
+
+    </div>
+}
+   
