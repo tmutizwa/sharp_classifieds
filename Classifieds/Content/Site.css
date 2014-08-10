@@ -214,6 +214,7 @@ home-cat:hover {
  .subscriber {
      padding:15px;
      background:#eee;
+     font-size:1.1em;
  }
  .subscriber input,.subscriber button {
      margin:3px 0;

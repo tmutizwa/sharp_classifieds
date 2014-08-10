@@ -1,0 +1,43 @@
+﻿@model Classifieds.Models.ViewModels.EmailSubscriptionViewModel
+@using Classifieds.Library;
+@{
+    ViewBag.Title = "categorysubscriber";
+    Layout = "~/Views/Shared/Layouts/_Layout_Pages.cshtml";
+}
+
+<h2>Ads to your email, it's easy! </h2>
+@if (!String.IsNullOrEmpty((String)ViewBag.Message))
+{
+    <div class="alert alert-success" role="alert">@ViewBag.Message</div>
+}
+<p>
+    We will send you new Daily or Weekly listings to you email depending on your choice for options below.
+</p>
+@using (Html.BeginForm())
+{
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <div class="subscriber">
+        @Html.TextBoxFor(m => m.Name, null, new { @class = "form-control", placeholder = "your name" })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        @Html.TextBoxFor(m => m.Email, null, new { @class = "form-control", placeholder = "your email" })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        @Html.DropDownListFor(m => m.GroupId, CategoryHelper.topCategoriesSelectList(), "Choose top category", new { @class = "form-control", style = "width:200px;border-radius:4px 0 0 4px;" })
+        <p>
+            <div>
+                Send me these emails every <strong>Day</strong> @Html.RadioButtonFor(m => Model.Cycle, "daily", new { @checked = "checked" })
+                <strong>Week </strong> @Html.RadioButtonFor(m => Model.Cycle, "weekly", new { })
+            </div>
+        </p>
+
+        Subscribe  @Html.RadioButtonFor(m => m.Choice, "subscribe", new { @checked = "checked" })
+        UnSubscribe  @Html.RadioButtonFor(m => m.Choice, "unsubscribe")
+        <br />
+        <button type="submit" class="btn btn-primary" value="Subscribe">
+            Submit
+        </button>
+
+    </div>
+}
+

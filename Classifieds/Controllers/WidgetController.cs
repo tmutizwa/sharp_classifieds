@@ -12,7 +12,12 @@ namespace Classifieds.Controllers
         // GET: Widget
         public ActionResult HotDeals()
         {
-            return PartialView("~/Views/Shared/Widgets/_HotDEals.cshtml");
+            return PartialView("~/Views/Shared/Widgets/_HotDeals.cshtml");
+        }
+        public ActionResult EmailSubscriber()
+        {
+            var model = new EmailSubscriptionViewModel();
+            return PartialView("~/Views/Shared/Widgets/_EmailSubscriber.cshtml",model);
         }
     }
 }

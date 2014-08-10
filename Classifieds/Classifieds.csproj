@@ -208,6 +208,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BrowseController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingController.cs" />
     <Compile Include="Controllers\WidgetController.cs" />
@@ -495,6 +496,7 @@
     <Compile Include="Models\SearchViewModels\ISearchViewModel.cs" />
     <Compile Include="Models\SearchViewModels\ListingSearchViewModel.cs" />
     <Compile Include="Models\ViewModels\DatingViewModel.cs" />
+    <Compile Include="Models\ViewModels\EmailSubscriptionListViewModel.cs" />
     <Compile Include="Models\ViewModels\EmailSubscriptionViewModel.cs" />
     <Compile Include="Models\ViewModels\PropertiesViewModel.cs" />
     <Compile Include="Models\ViewModels\JobsViewModel.cs" />
@@ -662,10 +664,11 @@
     <Content Include="Views\Listing\View\dating.cshtml" />
     <Content Include="Views\Listing\Edit\dating.cshtml" />
     <Content Include="Views\Listing\Details\dating.cshtml" />
-    <Content Include="Views\Home\Email.cshtml" />
+    <Content Include="Views\Email\subscribe.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Group.cshtml" />
     <Content Include="Views\Shared\Widgets\_EmailSubscriber.cshtml" />
     <Content Include="Views\Shared\Widgets\_HotDeals.cshtml" />
+    <Content Include="Views\Email\categorysubscriber.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
