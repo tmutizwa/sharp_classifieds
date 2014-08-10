@@ -17,7 +17,7 @@ namespace Classifieds.Models.SearchViewModels
         string _view = "~/Views/Browse/jobs.cshtml";
         string _controller = "browse";
         string _action = "index";
-        string _searchWidgetView = "~/Views/Shared/Search/_JobsSearch.cshtml";
+        string _searchWidgetView = "~/Views/Shared/Widgets/Search/_JobsSearch.cshtml";
         public JobsSearchViewModel() : base() {  }
         public JobsSearchViewModel(Category ct) : base(ct) { }
         public List<SelectListItem> types = new List<SelectListItem> { new SelectListItem { Text = "Choose", Value = "" }, new SelectListItem { Text = "Full-time", Value = "full-time" }, new SelectListItem { Text = "Contract", Value = "contract" }, new SelectListItem { Text = "Part-time", Value = "part-time" }, new SelectListItem { Text = "Temporary", Value = "temporary" }, new SelectListItem { Text = "Graduate", Value = "graduate" }, new SelectListItem { Text = "Internship", Value = "internship" }, new SelectListItem { Text = "Casual", Value = "casual" }, new SelectListItem { Text = "Voluntary", Value = "voluntary" } };

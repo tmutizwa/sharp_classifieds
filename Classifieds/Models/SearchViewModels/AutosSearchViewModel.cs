@@ -19,7 +19,7 @@ namespace Classifieds.Models.SearchViewModels
         string _action = "index";
         string _view = "~/Views/Browse/autos.cshtml";
         string _layout = "~/Views/Shared/Layouts/_BrowseCategory.cshtml";
-        string _searchWidgetView = "~/Views/Shared/Search/_AutosSearch.cshtml";
+        string _searchWidgetView = "~/Views/Shared/Widgets/Search/_AutosSearch.cshtml";
         public List<SelectListItem> fuelTypes = new List<SelectListItem> {new SelectListItem { Text="Any",Value=""},new SelectListItem { Text="Petrol",Value="Petrol"},new SelectListItem{Text="Diesel",Value="Diesel"},new SelectListItem{Text="Electric",Value="Electric"} };
         public List<SelectListItem> transmissions = new List<SelectListItem> { new SelectListItem { Text="Any",Value=""},new SelectListItem { Text="Automatic",Value="Automatic"},new SelectListItem{Text="Manual",Value="Manual"}};
         public List<SelectListItem> conditions = new List<SelectListItem> { new SelectListItem { Text = "Any", Value = "" }, new SelectListItem { Text = "Brand new", Value = "brand new" }, new SelectListItem { Text = "New", Value = "new" }, new SelectListItem { Text = "Very good", Value = "very good" }, new SelectListItem { Text = "Good", Value = "good" }, new SelectListItem { Text = "Neat", Value = "neat" }, new SelectListItem { Text = "Used", Value = "used" }, new SelectListItem { Text = "So so", Value = "so so" }, new SelectListItem { Text = "Old", Value = "old" } };

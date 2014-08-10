@@ -251,6 +251,23 @@ home-cat:hover {
      font-size:13px;
      color:#fff;
  }
+ .footer-help li {
+     margin:4px 0;
+ }
+ 
+ .footer-help li a {
+     padding:11px ;
+     border:solid #eee 1px;
+     font-size:1.5em;
+     background:#ccc;
+     color:#555;
+     display:inline-block;
+     width:100%;
+ }
+ .footer-help li a:hover {
+     background:#c6e2f2;
+     text-decoration:none;
+ }
  .blue-b {
      background:#c6e2f2;
  }

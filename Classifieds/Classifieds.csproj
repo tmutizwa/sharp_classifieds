@@ -450,6 +450,10 @@
     <Compile Include="Migrations\201408081243396_schema_live.Designer.cs">
       <DependentUpon>201408081243396_schema_live.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408101432539_deal2.cs" />
+    <Compile Include="Migrations\201408101432539_deal2.Designer.cs">
+      <DependentUpon>201408101432539_deal2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AListingSearchModel.cs" />
@@ -547,6 +551,7 @@
     <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Deals\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Deals\create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -669,6 +674,9 @@
     <Content Include="Views\Shared\Widgets\_EmailSubscriber.cshtml" />
     <Content Include="Views\Shared\Widgets\_HotDeals.cshtml" />
     <Content Include="Views\Email\categorysubscriber.cshtml" />
+    <Content Include="Views\Shared\Widgets\_MiddleFooterWidget.cshtml" />
+    <Content Include="Views\Shared\Widgets\_LeftFooterWidget.cshtml" />
+    <Content Include="Views\Shared\Widgets\_RightFooterWidget.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -857,6 +865,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408081243396_schema_live.resx">
       <DependentUpon>201408081243396_schema_live.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408101432539_deal2.resx">
+      <DependentUpon>201408101432539_deal2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -19,7 +19,7 @@ namespace Classifieds.Models.SearchViewModels
         string _action = "index";
         string _view = "~/Views/Browse/cellphones.cshtml";
         string _layout = "~/Views/Shared/Layouts/_BrowseCategory.cshtml";
-        string _searchWidgetView = "~/Views/Shared/Search/_CellphonesSearch.cshtml";
+        string _searchWidgetView = "~/Views/Shared/Widgets/Search/_CellphonesSearch.cshtml";
         public List<SelectListItem> conditions = new List<SelectListItem> {new SelectListItem { Text="Choose",Value=""},new SelectListItem { Text="Brand new boxed",Value="brand new boxed"},new SelectListItem { Text="Brand new",Value="brand new"},new SelectListItem{Text="As new",Value="as new"},new SelectListItem{Text="Good",Value="good"},new SelectListItem{Text="Fair",Value="fair"},new SelectListItem{Text="Used",Value="used"} };
         public List<SelectListItem> oses = new List<SelectListItem> { new SelectListItem { Text = "Choose", Value = "" }, new SelectListItem { Text = "Windows", Value = "windows" }, new SelectListItem { Text = "Android", Value = "android" }, new SelectListItem { Text = "IOs / Iphone", Value = "ios" }, new SelectListItem { Text = "Blackberry", Value = "blackberry" }, new SelectListItem { Text = "Other", Value = "other" } };
         // public List<SelectListItem> warranties = new List<SelectListItem> { new SelectListItem { Text="Choose",Value=""},new SelectListItem { Text="Yes",Value=""},new SelectListItem { Text="Automatic",Value="Automatic"},new SelectListItem{Text="Manual",Value="Manual"}};

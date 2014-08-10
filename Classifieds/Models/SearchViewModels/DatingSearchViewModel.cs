@@ -19,7 +19,7 @@ namespace Classifieds.Models.SearchViewModels
         string _action = "index";
         string _view = "~/Views/Browse/dating.cshtml";
         string _layout = "~/Views/Shared/Layouts/_BrowseCategory.cshtml";
-        string _searchWidgetView = "~/Views/Shared/Search/_DatingSearch.cshtml";
+        string _searchWidgetView = "~/Views/Shared/Widgets/Search/_DatingSearch.cshtml";
         public List<SelectListItem> types = new List<SelectListItem> { new SelectListItem { Text = "Choose", Value = "" }, new SelectListItem { Text = "Love", Value = "love" }, new SelectListItem { Text = "Relationship", Value = "relationship" }, new SelectListItem { Text = "Casual", Value = "casual" }, new SelectListItem { Text = "Friendship", Value = "friendship" }, new SelectListItem { Text = "Life partner", Value = "life-partner" }, new SelectListItem { Text = "Anything", Value = "anything" }, new SelectListItem { Text = "Other", Value = "other" } };
         public List<SelectListItem> sexes = new List<SelectListItem> { new SelectListItem { Text = "Choose", Value = "" }, new SelectListItem { Text = "Male", Value = "male" }, new SelectListItem { Text = "Female", Value = "female" }, new SelectListItem { Text = "Other", Value = "other" } };
         public List<SelectListItem> yesno = new List<SelectListItem> { new SelectListItem { Text = "Choose", Value = "" }, new SelectListItem { Text = "Yes", Value = "yes" }, new SelectListItem { Text = "No", Value = "no" } };

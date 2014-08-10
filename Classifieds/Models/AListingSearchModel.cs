@@ -21,7 +21,7 @@ namespace Classifieds.Models
         
         public AListingSearchModel()
         {
-            categoriesSelectList = new List<SelectListItem>() {new SelectListItem { Value = "0", Text = "Choose category" } };
+            categoriesSelectList = new List<SelectListItem>() {new SelectListItem { Value = "0", Text = "Any category" } };
             this.topCategories = catHelper.subCategories(0);
             if (topCategories.Count > 0)
             {
@@ -35,7 +35,7 @@ namespace Classifieds.Models
         public AListingSearchModel(Category category)
         {
             this.Category = category;
-            categoriesSelectList = new List<SelectListItem>() { new SelectListItem { Value = "0", Text = "Choose category" } };
+            categoriesSelectList = new List<SelectListItem>() { new SelectListItem { Value = "0", Text = "Any category" } };
             if(category != null)
               categoriesSelectList.Add(new SelectListItem { Value = "" +Category.CategoryId, Text = Category.Title, Selected = true });
             this.topCategories = catHelper.subCategories(0);

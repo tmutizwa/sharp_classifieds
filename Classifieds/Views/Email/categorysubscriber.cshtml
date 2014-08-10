@@ -24,6 +24,7 @@
         @Html.TextBoxFor(m => m.Email, null, new { @class = "form-control", placeholder = "your email" })
         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         @Html.DropDownListFor(m => m.GroupId, CategoryHelper.topCategoriesSelectList(), "Choose top category", new { @class = "form-control", style = "width:200px;border-radius:4px 0 0 4px;" })
+        @Html.ValidationMessageFor(model => model.GroupId, "", new { @class = "text-danger" })
         <p>
             <div>
                 Send me these emails every <strong>Day</strong> @Html.RadioButtonFor(m => Model.Cycle, "daily", new { @checked = "checked" })

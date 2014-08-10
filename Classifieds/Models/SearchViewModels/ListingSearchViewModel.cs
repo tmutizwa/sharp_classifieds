@@ -17,7 +17,7 @@ namespace Classifieds.Models.SearchViewModels
         string _view = "~/Views/Browse/index.cshtml";
         string _controller = "browse";
         string _action = "index";
-        string _searchWidgetView = "~/Views/Shared/Search/_BrowseCategorySearch.cshtml";
+        string _searchWidgetView = "~/Views/Shared/Widgets/Search/_BrowseCategorySearch.cshtml";
         public ListingSearchViewModel() : base() {  }
         public ListingSearchViewModel(Category ct) : base(ct) { }
         public override void findListings()

@@ -1,8 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+    ViewBag.Title = "Deals ";
+   // Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
+<h2>All deals</h2>
+<p>
+    @Html.ActionLink("New deal", "create", new { }, new { @class = "btn btn-info" })
+</p>

@@ -21,7 +21,7 @@ namespace Classifieds.Models.SearchViewModels
         string _action = "index";
         string _view = "~/Views/Browse/properties.cshtml";
         string _layout = "~/Views/Shared/Layouts/_BrowseCategory.cshtml";
-        string _searchWidgetView = "~/Views/Shared/Search/_PropertiesSearch.cshtml";
+        string _searchWidgetView = "~/Views/Shared/Widgets/Search/_PropertiesSearch.cshtml";
         public List<SelectListItem> powers = new List<SelectListItem> { new SelectListItem { Text = "Choose", Value = "" }, new SelectListItem { Text = "ZESA - reliable", Value = "zesa-reliable" }, new SelectListItem { Text = "ZESA - unreliable", Value = "zesa-unreliable" }, new SelectListItem { Text = "Solar", Value = "solar" }, new SelectListItem { Text = "Other", Value = "other" } };
         private PagedList.IPagedList<Property> _foundListings = null;
         

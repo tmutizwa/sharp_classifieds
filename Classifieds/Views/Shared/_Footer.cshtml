@@ -7,25 +7,13 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <h4>About</h4>
-                <div>
-                    <p><img width="100" src="~/images/logo.png" align="left" style="margin:5px;" />Includes 200 glyphs in font format from the Glyphicon Halflings set. Includes 200 glyphs in font format from the Glyphicon Halflings set.</p>
-                    <p>Tristique pellentesque lectus egestas, augue risus? Nascetur ac phasellus et, a pulvinar! </p>
-                </div>
+               @Html.Partial("~/Views/Shared/Widgets/_LeftFooterWidget.cshtml")
             </div>
             <div class="col-md-4">
-                <h4>Help</h4>
-                <ul>
-                    <li>@Html.ActionLink("Pellentesque lectus egestas", "#")</li>
-                    <li>@Html.ActionLink("Pellentesque lectus egestas", "#")</li>
-                    <li>@Html.ActionLink("Pellentesque lectus egestas", "#")</li>
-                    <li>@Html.ActionLink("Pellentesque lectus egestas", "#")</li>
-                    <li>@Html.ActionLink("Pellentesque lectus egestas", "#")</li>
-                </ul>
+                @Html.Partial("~/Views/Shared/Widgets/_MiddleFooterWidget.cshtml")
             </div>
             <div class="col-md-4 ">
-                @Html.Action("EmailSubscriber", "widget", new { })
-                @*@Html.Partial("~/Views/Shared/Widgets/_EmailSubscriber.cshtml",(EmailSubscriptionViewModel)ViewBag.EmailSubscriber)*@           
+                @Html.Partial("~/Views/Shared/Widgets/_RightFooterWidget.cshtml")
              </div>
         </div>
     </div>
