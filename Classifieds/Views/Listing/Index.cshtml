@@ -19,7 +19,7 @@
 <p>
     @Html.ActionLink("New Listing", "choose", null, new { @class = "btn btn-info" })
 </p>
-<table class="table">
+<table class="table listings">
     <tr>
         <th>ID</th>
         <th width="100">
@@ -97,27 +97,27 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Updated)
             </td>
-            <td style="text-align:center;">
+            <td style="text-align:center;" width="100">
                 <span>
                     <a href="@Url.Action("images", "listing", new { id = item.ListingId }, null)">
-                        <i class="glyphicon glyphicon-picture" rel="tooltip" title="Change Images"></i>
+                        <i class=" buttonglyphicon glyphicon glyphicon-picture" rel="tooltip" title="Change Images"></i>
                     </a>
                 </span>
                 |
                 <span>
                     <a href="@Url.Action("view", "listing", new { id=item.ListingId})">
-                        <i class="glyphicon glyphicon-zoom-in blacktext" rel="tooltip" title="View Details"></i>
+                        <i class=" buttonglyphicon glyphicon glyphicon-zoom-in blacktext" rel="tooltip" title="View Details"></i>
                     </a>
                 </span>
                 <span>
                     <a href="@Url.Action("edit", "listing", new { id=item.ListingId})">
-                        <i class="glyphicon glyphicon-edit greentext" rel="tooltip" title="Edit Listing"></i>
+                        <i class=" buttonglyphicon glyphicon glyphicon-edit greentext" rel="tooltip" title="Edit Listing"></i>
                     </a>
                 </span>
                 |
                 <span>
                     <a href="@Url.Action("delete", "listing", new { id=item.ListingId})" class="">
-                        <i class="glyphicon glyphicon-remove redtext" rel="tooltip" title="Delete Listing"></i>
+                        <i class="buttonglyphicon glyphicon glyphicon-remove redtext" rel="tooltip" title="Delete Listing"></i>
                     </a>
                 </span>
             </td>

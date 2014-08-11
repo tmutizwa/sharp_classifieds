@@ -307,6 +307,9 @@ home-cat:hover {
  .table th {
      background:#f5f5f5;
  }
+ table.listings .buttonglyphicon{
+     font-size:2em;
+ }
  .details {
      font-size:1.1em;
  }
