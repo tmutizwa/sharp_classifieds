@@ -7,7 +7,7 @@ namespace Classifieds.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.AspNetUsers", "Phone", c => c.String());
+            AddColumn("dbo.AspNetUsers", "ClassifiedsPhone", c => c.String());
             AddColumn("dbo.AspNetUsers", "Pic", c => c.String());
             AddColumn("dbo.AspNetUsers", "Address", c => c.String());
         }
@@ -16,7 +16,7 @@ namespace Classifieds.Migrations
         {
             DropColumn("dbo.AspNetUsers", "Address");
             DropColumn("dbo.AspNetUsers", "Pic");
-            DropColumn("dbo.AspNetUsers", "Phone");
+            DropColumn("dbo.AspNetUsers", "ClassifiedsPhone");
         }
     }
 }

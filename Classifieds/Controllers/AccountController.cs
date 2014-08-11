@@ -126,7 +126,7 @@ namespace Classifieds.Controllers
                   return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 user.Email = model.Email;
                 user.Address = model.Address;
-                user.Phone = model.Phone;
+                user.ClassifiedsPhone = model.ClassifiedsPhone;
                 user.Sex = model.Sex;
                 user.DOB = model.DOB;
                 user.Alias = model.Alias;
@@ -161,7 +161,7 @@ namespace Classifieds.Controllers
                                             //DOB = model.DOB,
                                             //Sex = model.Sex,
                                             Alias = model.Alias,
-                                            Phone = model.Phone,
+                                            ClassifiedsPhone = model.ClassifiedsPhone,
                                             Address = model.Address
                 };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
@@ -497,7 +497,7 @@ namespace Classifieds.Controllers
                     return View("ExternalLoginFailure");
                 }
                 
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email,PhoneNumber=model.Phone,Address=model.Address,FullName = model.Fullname,Alias = model.Alias };
+                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email,PhoneNumber=model.ClassifiedsPhone,Address=model.Address,FullName = model.Fullname,Alias = model.Alias };
                 IdentityResult result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

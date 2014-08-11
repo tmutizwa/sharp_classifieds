@@ -21,13 +21,16 @@
                     }
 
                 </ul>
-                <small><span><a href="#">peport this add</a></span> | <span><a href="#">bookmark this</a></span> | <span><a href="#">share</a></span> | <span><a href="#">print</a></span></small>
+                <br/>
+            @Html.ActionLink("Email seller", "contactseller", "email", new { id = @Model.ListingId }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Report abuse", "reportabuse", "email", new { id = @Model.ListingId }, new { @class = "btn btn-info" })
             </div>
         </div>
 
     </div>
 
 </div>
+
 <div class="row">
     <div class="col-md-6 ">
         @{

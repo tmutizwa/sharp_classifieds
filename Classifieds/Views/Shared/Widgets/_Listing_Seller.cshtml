@@ -16,9 +16,15 @@
                     @Html.DisplayFor(m=>Model.Owner.Address)
                 </li>
                 <li>
-                    @Html.DisplayFor(m=>Model.Owner.Phone)
+                   @if (!String.IsNullOrEmpty(Model.Owner.ClassifiedsPhone)){
+                        @Html.DisplayFor(m=>Model.Owner.ClassifiedsPhone)
+                   }
+                   else if (!String.IsNullOrEmpty(Model.Owner.PhoneNumber))
+                   {
+                    @Html.DisplayFor(m=>Model.Owner.PhoneNumber)
+                   }
                 </li>
-                <li><a href="#">Email Seller</a></li>
+                <li><a href="#contact">Email Seller</a></li>
             </ul>
 
 </div>

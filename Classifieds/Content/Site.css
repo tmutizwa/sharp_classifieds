@@ -24,7 +24,12 @@ h1,h2,h3 {
     padding: 10px 5px;
     margin: 10px;
 }
-
+.btn {
+    font-size:1.3em;
+}
+.btn-xs {
+    font-size:1.1em;
+}
 .btn-default {
     background: #222;
     color: #fff;

@@ -1,0 +1,140 @@
+﻿@model Classifieds.Models.Deal
+
+@{
+    ViewBag.Title = "delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this deal, #@Model.Listing.Title?</h3>
+<div>
+    <p>
+        @Html.ActionLink("Cancel", "index", new { }, new { @class = "btn btn-info" })
+        @Html.ActionLink("Confirm details", "details", "listing", new { id = Model.Listing.ListingId, Area = "" }, new { target = "_blank", @class = "btn btn-info" })
+    </p>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Listing.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Listing.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updater.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updater.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriceScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OutreachScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OutreachScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QualityScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QualityScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DurationScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DurationScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BulkBuyingScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BulkBuyingScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Votes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Votes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Starts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Starts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ends)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ends)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m=>m.DealId)
+        @Html.HiddenFor(m=>m.ListingId)
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

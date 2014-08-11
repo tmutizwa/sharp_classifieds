@@ -23,9 +23,20 @@ namespace Classifieds.Models
         public int DurationScore { get; set; }
         [Required]
         public int BulkBuyingScore { get; set; }
+        public string UpdaterId { get; set; }
+        public ApplicationUser Updater { get; set; }
+        public decimal TotalScore
+        {
+            get
+            {
+                return this.BulkBuyingScore + this.DurationScore + this.OutreachScore + this.PriceScore + this.QualityScore;
+            }
+            set
+            {
+
+            }
+        }
         public int Votes { get; set; }
-        public Decimal TotalScore { get; set; }
-        public int Hits { get; set; }
         public int Duration { get; set; }
         [Column(TypeName = "datetime2")]
         [DisplayFormat(DataFormatString = "{0:dd-MM-y H:mm}")]

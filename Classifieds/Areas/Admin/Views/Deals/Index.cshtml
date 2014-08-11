@@ -1,10 +1,97 @@
-﻿
+﻿@model PagedList.IPagedList<Classifieds.Models.Deal>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Deals ";
    // Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
 }
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function myfunction() {
+            $("[rel='tooltip']").tooltip();
+        });
+    </script>
 
+}
 <h2>All deals</h2>
 <p>
-    @Html.ActionLink("New deal", "create", new { }, new { @class = "btn btn-info" })
+    @Html.ActionLink("New deal", "confirmlisting", new { }, new { @class = "btn btn-info" })
 </p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Deal ID</th>
+            <th>Owner</th>
+            <th>Listing Title</th>
+            <th>Listing ID</th>
+            <th>Score</th>
+            <th>Starts</th>
+            <th>Ends</th>
+            <th></th>
+        </tr>
+        <tr>
+            @using (Html.BeginForm())
+            {
+                <th></th>
+                <th width="100">@Html.TextBox("dealId", null, new { @class = "form-control", placeholder = "Deal ID" })</th>
+                <th>@Html.TextBox("username", null, new { @class = "form-control", placeholder = "Username" })</th>
+                <th>@Html.TextBox("ltitle", null, new { @class = "form-control", placeholder = "Listing title" })</th>
+                <th width="100">@Html.TextBox("listingID", null, new { @class = "form-control", placeholder = "Listing ID" })</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th width="150">
+                    <input type="submit" class="btn btn-toolbar " value="Find" />
+                    @Html.ActionLink("Clear", "index", new { Area = "Admin" }, new { @class = "btn btn-info" })
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+        }
+        @foreach (var deal in Model)
+        {
+            
+            
+            <tr>
+                <td>@i</td>
+                <td>@deal.DealId</td>
+                <td>
+                    <strong>Username :</strong>@deal.Listing.Owner.UserName <br/>
+                    @if (!String.IsNullOrEmpty(deal.Listing.Owner.Alias))
+                    {
+                       <strong>Alias :</strong>  <span>@deal.Listing.Owner.Alias</span><br/>
+                    }
+                    @if (!String.IsNullOrEmpty(deal.Listing.Owner.PhoneNumber))
+                    {
+                        <strong>Phone :</strong><span>@deal.Listing.Owner.PhoneNumber</span><br />
+                    }
+                    @if (!String.IsNullOrEmpty(deal.Listing.Owner.ClassifiedsPhone))
+                    {
+                        <strong>Phone :</strong><span>@deal.Listing.Owner.ClassifiedsPhone</span><br />
+                    } 
+                    <strong>Address :</strong>@deal.Listing.Owner.Address
+                </td>
+                <td>@Html.ActionLink(deal.Listing.Title, "details", "listing", new { id = deal.ListingId,Area="" }, new { target = "_blank"})</td>
+                <td>@deal.ListingId</td>
+                <td>@deal.TotalScore</td>
+                <td>@Html.DisplayFor(m=>deal.Starts)</td>
+                <td>@Html.DisplayFor(m=>deal.Ends)</td>
+                <td>
+                    @Html.ActionLink("Edit","edit", new { id = deal.DealId }, new { @class="btn btn-xs btn-info"}) 
+                    @Html.ActionLink("Delete", "delete", new { id = deal.DealId }, new { @class = "btn btn-xs btn-danger" })
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
+@if (Model.PageCount > 1)
+{
+    <div class="pagination">
+        @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+        @Html.PagedListPager(Model, page => Url.Action("index", new { page}))
+    </div>
+}

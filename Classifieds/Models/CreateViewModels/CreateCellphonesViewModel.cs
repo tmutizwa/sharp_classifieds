@@ -53,7 +53,7 @@ namespace Classifieds.Models.CreateViewModels
         [Display(Name="Model")]
         public string CModel { get; set; }
         public decimal ScreenSize { get; set; }
-        [Display(Name = "Sim/Network type")]
+        [Display(Name = "Network type")]
         public string NetworkType { get; set; }
         [Required]
         public string Condition { get; set; }

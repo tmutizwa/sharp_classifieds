@@ -16,7 +16,7 @@ namespace Classifieds.Models
         public Boolean Suspended { get; set; }
         public string Sex { get; set; }
         public DateTime? DOB { get; set; }
-        public string Phone { get; set; }
+        public string ClassifiedsPhone { get; set; }
         public string Alias { get; set; }
         public string Pic { get; set; }
         public string Address { get; set; }

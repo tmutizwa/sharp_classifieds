@@ -22,7 +22,6 @@ namespace Classifieds.Controllers
                 ViewBag.Message = "Successfully unsubscribed from all lists.";
             return View(new EmailSubscriptionListViewModel());
         }
-
         [HttpPost]
         public ActionResult subscribe(EmailSubscriptionListViewModel model)
         {

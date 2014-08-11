@@ -128,7 +128,7 @@ namespace Classifieds.Models.SearchViewModels
         [Display(Name="Model")]
         public string CModel { get; set; }
         public decimal ScreenSize { get; set; }
-        [Display(Name = "Sim/Network type")]
+        [Display(Name = "Network")]
         public string NetworkType { get; set; }
         public string Condition { get; set; }
         public override string controller { get { return this._controller; } set { this._controller = value; } }

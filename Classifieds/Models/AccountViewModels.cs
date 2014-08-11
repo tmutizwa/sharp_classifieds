@@ -14,7 +14,7 @@ namespace Classifieds.Models
         [Display(Name = "Alias / Nickname")]
         public string Alias { get; set; }
         [Required]
-        public string Phone { get; set; }
+        public string ClassifiedsPhone { get; set; }
         [Display(Name="Home / Buss address")]
         public string Address { get; set; }
         public string Fullname { get; set; }
@@ -88,9 +88,9 @@ namespace Classifieds.Models
         [MaxLength(50)]
         public string FullName { get; set; }
         public string Sex { get; set; }
-        [MaxLength(100,ErrorMessage="Phone number too long"),MinLength(5,ErrorMessage="Phone number too short.")]
+        [MaxLength(100,ErrorMessage="ClassifiedsPhone number too long"),MinLength(5,ErrorMessage="ClassifiedsPhone number too short.")]
         [Required]
-        public string Phone { get; set; }
+        public string ClassifiedsPhone { get; set; }
         [Display(Name="Home / Buss address")]
         public string Address { get; set; }
         // Return a pre-poulated instance of AppliationUser:
@@ -117,7 +117,7 @@ namespace Classifieds.Models
             Address = user.Address;
             FullName = user.FullName;
             Sex = user.Sex;
-            Phone = user.Phone;
+            ClassifiedsPhone = user.ClassifiedsPhone;
             Pic = user.Pic;
             DOB = user.DOB;
             Alias = user.Alias;
@@ -135,9 +135,9 @@ namespace Classifieds.Models
         [MaxLength(50)]
         public string FullName { get; set; }
         public string Sex { get; set; }
-        [MaxLength(100, ErrorMessage = "Phone number too long"), MinLength(5, ErrorMessage = "Phone number too short.")]
+        [MaxLength(100, ErrorMessage = "ClassifiedsPhone number too long"), MinLength(5, ErrorMessage = "ClassifiedsPhone number too short.")]
         [Required]
-        public string Phone { get; set; }
+        public string ClassifiedsPhone { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-mm-YY}")]
         [Display(Name = "Date of birth")]
@@ -194,7 +194,7 @@ namespace Classifieds.Models
         [Display(Name = "Sex")]
         public string Sex { get; set; }
         [Required]
-        public string Phone { get; set; }
+        public string ClassifiedsPhone { get; set; }
         [Display(Name = "DOB")]
         public DateTime DOB { get; set; }
         [EmailAddress,Required,Display(Name="Email")]

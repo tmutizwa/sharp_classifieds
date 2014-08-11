@@ -136,7 +136,7 @@ namespace Classifieds.Models.SearchViewModels
         public decimal mileage { get; set; }
         [Display(Name="Fuel type")]
         public string fuelType { get; set; }
-        [Display(Name="Transmission type")]
+        [Display(Name="Gearbox")]
         public string transmission { get; set; }
         [Display(Name="Condition")]
         public string condition { get; set; }

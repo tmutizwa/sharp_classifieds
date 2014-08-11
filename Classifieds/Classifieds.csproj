@@ -454,6 +454,22 @@
     <Compile Include="Migrations\201408101432539_deal2.Designer.cs">
       <DependentUpon>201408101432539_deal2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408111128105_deal3.cs" />
+    <Compile Include="Migrations\201408111128105_deal3.Designer.cs">
+      <DependentUpon>201408111128105_deal3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408111304030_totlascrore.cs" />
+    <Compile Include="Migrations\201408111304030_totlascrore.Designer.cs">
+      <DependentUpon>201408111304030_totlascrore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408111348560_phone.cs" />
+    <Compile Include="Migrations\201408111348560_phone.Designer.cs">
+      <DependentUpon>201408111348560_phone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408111708395_dealsfor.cs" />
+    <Compile Include="Migrations\201408111708395_dealsfor.Designer.cs">
+      <DependentUpon>201408111708395_dealsfor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AListingSearchModel.cs" />
@@ -463,12 +479,14 @@
     <Compile Include="Models\CreateViewModels\CreateAutosViewModel.cs" />
     <Compile Include="Models\CreateViewModels\CreateComputersViewModel.cs" />
     <Compile Include="Models\CreateViewModels\CreateDatingViewModel.cs" />
+    <Compile Include="Models\CreateViewModels\CreateDealViewModel.cs" />
     <Compile Include="Models\CreateViewModels\CreatePropertiesViewModel.cs" />
     <Compile Include="Models\CreateViewModels\CreateJobsViewModel.cs" />
     <Compile Include="Models\Dating.cs" />
     <Compile Include="Models\Deal.cs" />
     <Compile Include="Models\EditViewModels\EditCellphonesViewModel.cs" />
     <Compile Include="Models\EditViewModels\EditDatingViewModel.cs" />
+    <Compile Include="Models\EditViewModels\EditDealViewModel.cs" />
     <Compile Include="Models\EditViewModels\EditPropertiesViewModel.cs" />
     <Compile Include="Models\EditViewModels\EditComputersViewModel.cs" />
     <Compile Include="Models\EditViewModels\EditJobsViewModel.cs" />
@@ -552,6 +570,9 @@
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Deals\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Deals\create.cshtml" />
+    <Content Include="Areas\Admin\Views\Deals\confirmListing.cshtml" />
+    <Content Include="Areas\Admin\Views\Deals\edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Deals\delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -868,6 +889,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408101432539_deal2.resx">
       <DependentUpon>201408101432539_deal2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408111128105_deal3.resx">
+      <DependentUpon>201408111128105_deal3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408111304030_totlascrore.resx">
+      <DependentUpon>201408111304030_totlascrore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408111348560_phone.resx">
+      <DependentUpon>201408111348560_phone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408111708395_dealsfor.resx">
+      <DependentUpon>201408111708395_dealsfor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

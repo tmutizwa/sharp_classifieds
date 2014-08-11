@@ -1,0 +1,110 @@
+﻿@model Classifieds.Models.EditViewModels.EditDealViewModel
+@{
+    ViewBag.Title = "edit";
+}
+
+<h2>Update deal #@Model.Listing.Title</h2>
+<p>
+    @Html.ActionLink("List all deals", "index", new { }, new { @class = "btn btn-info" })
+    @Html.ActionLink("Confirm details", "details", "listing", new { id = Model.Listing.ListingId, Area = "" }, new { target = "_blank", @class = "btn btn-info" })
+</p>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => Model.DealId)
+    @Html.HiddenFor(d =>d.ListingId)
+    if (!String.IsNullOrEmpty(ViewBag.Message))
+    {
+        <p class="alert alert-success">
+            @ViewBag.Message
+        </p>
+    }
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-5">
+                <strong>Username :</strong>@Model.Listing.Owner.UserName <br />
+                @if (!String.IsNullOrEmpty(Model.Listing.Owner.Alias))
+                {
+                    <strong>Alias :</strong>  <span>@Model.Listing.Owner.Alias</span><br />
+                }
+                @if (!String.IsNullOrEmpty(Model.Listing.Owner.PhoneNumber))
+                {
+                    <strong>Phone :</strong><span>@Model.Listing.Owner.PhoneNumber</span><br />
+                }
+                @if (!String.IsNullOrEmpty(Model.Listing.Owner.ClassifiedsPhone))
+                {
+                    <strong>Phone :</strong><span>@Model.Listing.Owner.ClassifiedsPhone</span><br />
+                }
+                <strong>Address :</strong>@Model.Listing.Owner.Address
+            </div>
+            
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ListingId, htmlAttributes: new { @class = " col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ListingId, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+                @Html.ValidationMessageFor(model => model.ListingId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PriceScore, htmlAttributes: new { @class = " col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PriceScore, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PriceScore, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.QualityScore, htmlAttributes: new { @class = " col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QualityScore, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QualityScore, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = " col-md-2" })
+            <div class="col-md-10 input-group">
+                <span class="input-group-addon">days</span>
+                @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DurationScore, htmlAttributes: new { @class = " col-md-2" })
+            <div class="col-md-10 ">
+                @Html.EditorFor(model => model.DurationScore, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DurationScore, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BulkBuyingScore, htmlAttributes: new { @class = " col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BulkBuyingScore, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BulkBuyingScore, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.OutreachScore, htmlAttributes: new { @class = " col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OutreachScore, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OutreachScore, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Starts, htmlAttributes: new { @class = " col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Starts, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Starts, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
