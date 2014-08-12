@@ -45,11 +45,11 @@ namespace Classifieds.Models
         [Column(TypeName = "datetime2")]
         public DateTime? Expires { get; set; }
         public List<ListingImage> images { get; set; }
-        public string getIntro()
+        public string getIntro(int length = 160)
         {
             string st = this.Description;
-            if(!String.IsNullOrEmpty(this.Description) && this.Description.Count() > 160)
-                st =  this.Description.Substring(0, 160)+"...";
+            if(!String.IsNullOrEmpty(this.Description) && this.Description.Count() > length)
+                st =  this.Description.Substring(0, length)+"...";
             return st;
         }
         

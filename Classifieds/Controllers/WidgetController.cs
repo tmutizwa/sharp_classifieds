@@ -1,4 +1,6 @@
-﻿using Classifieds.Models.ViewModels;
+﻿using Classifieds.Models;
+using Classifieds.Models.ViewModels;
+using Classifieds.Models.WidgetViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +11,11 @@ namespace Classifieds.Controllers
 {
     public class WidgetController : Controller
     {
-        // GET: Widget
+        ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult HotDeals()
         {
-            return PartialView("~/Views/Shared/Widgets/_HotDeals.cshtml");
+            
+            return PartialView("~/Views/Shared/Widgets/_HotDeals.cshtml",new HotDealsViewModel());
         }
         public ActionResult EmailSubscriber()
         {

@@ -30,6 +30,9 @@ h1,h2,h3 {
 .btn-xs {
     font-size:1.1em;
 }
+.main-menu .btn {
+    font-size:1em;
+}
 .btn-default {
     background: #222;
     color: #fff;
@@ -202,7 +205,7 @@ home-cat:hover {
     padding:9px;
 }
 .featured-listings .featured-listing {
-    border-bottom:solid 1px #eee;
+    border-right:solid 1px #eee;
 }
  .featured-listings .featured-listing-price {
      font-weight:bold;
@@ -212,6 +215,15 @@ home-cat:hover {
  }
  .featured-listings .featured-listing-image {
      padding-top:5px;
+     min-height:130px;
+ }
+ .featured-listing-text {
+     min-height:60px;
+ }
+ .featured-listing-title {
+     min-height:40px;
+     display:inline-block;
+     font-size:1.1em;
  }
  .btn-toolbar {
      background:#ccc;

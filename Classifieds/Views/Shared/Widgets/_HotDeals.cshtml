@@ -1,39 +1,114 @@
-﻿<div class="container">
+﻿@model Classifieds.Models.WidgetViewModel.HotDealsViewModel
+<div class="container">
     <div class="row">
         <div class="col-md-12 margin-15-left">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#hot" data-toggle="tab">Hot Deals daddy</a></li>
+                <li class="active"><a href="#hot" data-toggle="tab">Hot Deals</a></li>
                 <li><a href="#latest" data-toggle="tab">Latest</a></li>
-                <li><a href="#random" data-toggle="tab">Random</a></li>
+                <li><a href="#random" data-toggle="tab">Editor's Pick</a></li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="hot">
                     <div class="featured-listings">
                         <div class="row">
-                            @for (int i = 1; i < 7; i++)
-                            {
-                                <div class="col-md-2 featured-listing">
-                                    <div class="featured-listing-image">
-                                        <img src="~/Images/demo/@(i).jpg" style="height:130px" />
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        @foreach (var deal in Model.RandomDeals)
+                                        {
+                                            <div class="col-md-2 featured-listing">
+                                                <div class="featured-listing-image">
+                                                    <a href="@Url.Action("details", "listing", new { id = deal.ListingId })">
+                                                        <img class="img-responsive img-thumbnail" src="~/Images/Listings/Small/@deal.Listing.images.Last().Name" />
+                                                    </a>
+
+                                                </div>
+                                                <div class="featured-listing-body">
+                                                    <span class="featured-listing-title">@Html.ActionLink(deal.Listing.Title, "details", "listing", new { id = deal.ListingId }, new { })</span>
+                                                    <div class="featured-listing-text">
+                                                        @deal.Listing.getIntro(50)
+                                                    </div>
+                                                    <span class="featured-listing-price">$@deal.Listing.Price</span>
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
-                                    <div class="featured-listing-body">
-                                        <span class="featured-listing-title">@Html.ActionLink("47\" Samsung UHD DDE TV", "details", "listing")</span>
-                                        <div class="featured-listing-text">
-                                            1080p HDTV with Micro Dimming: Best picture quality
-                                            240Hz Refresh Rate, ...
-                                        </div>
-                                        <span class="featured-listing-price">$2 300</span>
-                                    </div>
+
                                 </div>
-                            }
+                            </div>
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="latest">
+                    <div class="featured-listings">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        @foreach (var deal in Model.LatestDeals)
+                                        {
+                                            <div class="col-md-2 featured-listing">
+                                                <div class="featured-listing-image">
+                                                    <a href="@Url.Action("details", "listing", new { id = deal.ListingId })">
+                                                        <img class="img-responsive img-thumbnail" src="~/Images/Listings/Small/@deal.Listing.images.Last().Name" />
+                                                    </a>
+
+                                                </div>
+                                                <div class="featured-listing-body">
+                                                    <span class="featured-listing-title">@Html.ActionLink(deal.Listing.Title, "details", "listing", new { id = deal.ListingId }, new { })</span>
+                                                    <div class="featured-listing-text">
+                                                        @deal.Listing.getIntro(50)
+                                                    </div>
+                                                    <span class="featured-listing-price">$@deal.Listing.Price</span>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+
 
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="latest">latest</div>
-                <div class="tab-pane fade" id="random">random</div>
+                <div class="tab-pane fade" id="random">
+                    <div class="featured-listings">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        @foreach (var deal in Model.EditorPicks)
+                                        {
+                                            <div class="col-md-2 featured-listing">
+                                                <div class="featured-listing-image">
+                                                    <a href="@Url.Action("details", "listing", new { id = deal.ListingId })">
+                                                        <img class="img-responsive img-thumbnail" src="~/Images/Listings/Small/@deal.Listing.images.Last().Name" />
+                                                    </a>
+
+                                                </div>
+                                                <div class="featured-listing-body">
+                                                    <span class="featured-listing-title">@Html.ActionLink(deal.Listing.Title, "details", "listing", new { id = deal.ListingId }, new { })</span>
+                                                    <div class="featured-listing-text">
+                                                        @deal.Listing.getIntro(50)
+                                                    </div>
+                                                    <span class="featured-listing-price">$@deal.Listing.Price</span>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
