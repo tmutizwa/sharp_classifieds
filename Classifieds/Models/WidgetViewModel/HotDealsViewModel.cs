@@ -13,21 +13,17 @@ namespace Classifieds.Models.WidgetViewModel
             ApplicationDbContext db = new ApplicationDbContext();
             var now = DateTime.Now;
             // get random deals
-            var randomDealsQ = from d in db.Deals.Include("Listing").Include("Listing.images")
+            var dealsQ = from d in db.Deals.Include("Listing").Include("Listing.images")
                          where d.Ends > now && d.Starts < now && d.Listing.images.Count() > 0
                          select d;
-            RandomDeals = randomDealsQ.OrderBy(c => Guid.NewGuid()).Take(size).ToList();
+            RandomDeals = dealsQ.OrderBy(c => Guid.NewGuid()).Take(size).ToList();
             //get latest deals
-            var latestDealsQ = from d in db.Deals
-                               where d.Ends > now && d.Starts < now && d.Listing.images.Count() > 0
-                               select d;
-            LatestDeals = latestDealsQ.OrderByDescending(c => c.Starts).Take(size).ToList();
+           
+            LatestDeals = dealsQ.OrderByDescending(c => c.Starts).Take(size).ToList();
 
             //get highest scoring deals
-            var editorPickQ = from d in db.Deals
-                               where d.Ends > now && d.Starts < now && d.Listing.images.Count() > 0
-                               select d;
-            EditorPicks = editorPickQ.OrderByDescending(c => c.TotalScore).Take(size).ToList();
+            
+            EditorPicks = dealsQ.OrderByDescending(c => c.TotalScore).Take(size).ToList();
 
              
         }

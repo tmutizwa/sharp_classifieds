@@ -723,7 +723,7 @@
     <Content Include="Views\Feedback\features.cshtml" />
     <Content Include="Views\Home\faqs.cshtml" />
     <Content Include="Views\Deals\Index.cshtml" />
-    <Content Include="Views\Shared\Layouts\_2Column.cshtml" />
+    <Content Include="Views\Shared\Layouts\_DealsLayout.cshtml" />
     <Content Include="Views\Shared\Widgets\Search\_DealSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>

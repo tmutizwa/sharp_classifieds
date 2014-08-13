@@ -98,6 +98,47 @@ namespace Classifieds.Library
             
             return kids;
         }
+
+        public int[] allSubCategoryIds(int cat)
+        {
+            List<Category> kids = new List<Category>();
+            Stack<Category> nods = new Stack<Category>();
+            var rootNod = db.Categories.Find(cat);
+            if(rootNod == null){
+                return new int[]{};
+            }
+            nods.Push(rootNod);
+            do
+            {
+                Category currentNode = nods.Pop();
+                var cats = from c in db.Categories
+                           where c.ParentId == currentNode.CategoryId
+                           select c;
+                List<Category> categories = cats.ToList();
+                if (categories.Count() == 0)
+                {
+                    //this is a leaf node so add it to kids list
+                    kids.Add(currentNode);
+                }
+                else
+                {
+                    //add these to nodes stack for future consideration
+                    foreach (var nodcat in categories)
+                    {
+                        nods.Push(nodcat);
+                    }
+                }
+
+            } while (nods.Count > 0);
+            int[] catIds = new int[kids.Count()];
+            int i= 0;
+            foreach (var c in kids)
+            {
+                catIds[i] = c.CategoryId;
+                i++;
+            }
+                return catIds;
+        }
         public static List<SelectListItem> topCategoriesSelectList(){
             ApplicationDbContext db = new ApplicationDbContext();
             List<SelectListItem> list = new List<SelectListItem>();

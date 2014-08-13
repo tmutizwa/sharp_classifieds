@@ -7,7 +7,6 @@
         @using (Html.BeginForm("index", "deals", FormMethod.Get, new { }))
         {
             @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.ListingId)
             <input type="hidden" name="page" value="1" />
             <table class="table">
                 <tr>
@@ -49,12 +48,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label>@Html.DisplayNameFor(model => model.CategoryId)</label></td>
+                    <td><label>@Html.DisplayNameFor(model => model.Category)</label></td>
                     <td>
                         <div class="input-group input-group-sm">
-                            @Html.DropDownListFor(model => model.CategoryId, Model.types, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.Category, Model.cats, new { @class = "form-control input" })
                         </div>
-                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
                     </td>
                 </tr>
                

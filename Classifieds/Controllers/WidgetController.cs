@@ -15,8 +15,8 @@ namespace Classifieds.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult HotDeals()
         {
-            
-            return PartialView("~/Views/Shared/Widgets/_HotDeals.cshtml",new HotDealsViewModel());
+            var model = new HotDealsViewModel();
+            return PartialView("~/Views/Shared/Widgets/_HotDeals.cshtml",model);
         }
         public ActionResult EmailSubscriber()
         {
@@ -26,6 +26,9 @@ namespace Classifieds.Controllers
         public ActionResult DealSearch()
         {
             var model = new DealSearchViewModel();
+            var from = Request["PriceFrom"];
+            if(from != null)
+               model.PriceFrom = Int32.Parse(from);
             return PartialView("~/Views/Shared/Widgets/Search/_DealSearch.cshtml",model);
         }
         public ActionResult MainSearch()
