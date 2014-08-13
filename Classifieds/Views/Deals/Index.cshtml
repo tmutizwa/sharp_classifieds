@@ -1,0 +1,35 @@
+﻿@model PagedList.IPagedList<Classifieds.Models.Deal>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layouts/_2Column.cshtml";
+}
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function myfunction() {
+            $("[rel='tooltip']").tooltip();
+        });
+    </script>
+
+}
+<h2>Deals & Offers</h2>
+
+<div class="container">
+    <div class="col-md-12">
+        @foreach (var deal in Model)
+        {
+            <div class="deal-row">
+                <div>@deal.Listing.Title</div>
+            </div>
+        }
+        
+    </div>
+</div>
+<hr />
+@if (Model.PageCount > 1)
+{
+    <div class="pagination">
+        @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+        @Html.PagedListPager(Model, page => Url.Action("index", new {  }))
+    </div>
+}

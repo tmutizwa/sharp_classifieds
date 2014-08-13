@@ -17,6 +17,25 @@
         <div class="form-horizontal">
             @Html.ValidationSummary(false, "", new { @class = "text-danger" })
             <div class="form-group">
+                <div class="col-md-5">
+                    <strong>Username :</strong>@Model.Listing.Owner.UserName <br />
+                    @if (!String.IsNullOrEmpty(Model.Listing.Owner.Alias))
+                    {
+                        <strong>Alias :</strong>  <span>@Model.Listing.Owner.Alias</span><br />
+                    }
+                    @if (!String.IsNullOrEmpty(Model.Listing.Owner.PhoneNumber))
+                    {
+                        <strong>Phone :</strong><span>@Model.Listing.Owner.PhoneNumber</span><br />
+                    }
+                    @if (!String.IsNullOrEmpty(Model.Listing.Owner.ClassifiedsPhone))
+                    {
+                        <strong>Phone :</strong><span>@Model.Listing.Owner.ClassifiedsPhone</span><br />
+                    }
+                    <strong>Address :</strong>@Model.Listing.Owner.Address
+                </div>
+
+            </div>
+            <div class="form-group">
                 @Html.LabelFor(model => model.ListingId, htmlAttributes: new { @class = " col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.ListingId, new { htmlAttributes = new { @class = "form-control", disabled="true" } })

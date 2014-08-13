@@ -1,0 +1,81 @@
+﻿@model Classifieds.Models.EmailViewModel.GeneralEmailViewModel
+@{
+    ViewBag.Title = "Contact Us";
+    Layout = "~/Views/Shared/Layouts/_Layout_pages.cshtml";
+}
+<h2>Zimpapers Head Office</h2>
+@if (!String.IsNullOrEmpty(ViewBag.Message))
+{
+    <p class="alert alert-success">
+        @ViewBag.Message
+    </p>
+}
+<address>
+    Herald House<br />
+    George Silundika Avenue, corner Sam Nujoma St
+    Harare<br />
+    Zimbabwe<br />
+    <br />
+    <abbr title="Phone">P:</abbr>
+    04 795 771
+</address>
+<hr />
+<div class="container contact-form">
+    <div class="row">
+        <div class="col-md-4">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @* @Html.LabelFor(model => model.EmailFrom, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.EmailFrom, new { htmlAttributes = new { @class = "form-control", placeholder = "Your email" } })
+                        @Html.ValidationMessageFor(model => model.EmailFrom, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @* @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", placeholder = "Subject" } })
+                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @* @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Body, 10, 50, new { @class = "form-control", placeholder = "Your message" })
+                        @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.Copy, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+
+                        @Html.CheckBoxFor(model => model.Copy, new { @class = "" })
+                        @Html.ValidationMessageFor(model => model.Copy, "", new { @class = "text-danger" })
+                        Copy to email below
+                    </div>
+                </div>
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.CopyEmail, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CopyEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Copy email" } })
+                        @Html.ValidationMessageFor(model => model.CopyEmail, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <button name="submit" class="btn btn-default">
+                            Send
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+         <div class="col-md-8">
+             <div class="map">
+                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.219389680766!2d31.056146000000005!3d-17.82834749999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7a881bf6fac73d88!2sZimpapers!5e0!3m2!1sen!2szw!4v1407853879640" width="100%" height="450" frameborder="0" style="border:0"></iframe>
+             </div>
+         </div>  
+        </div>
+    </div>

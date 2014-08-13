@@ -52,7 +52,7 @@ namespace Classifieds.Models.CreateViewModels
             var ln = lQ.FirstOrDefault();
             if(ln == null)
             {
-               yield return new ValidationResult("Listing with id "+ListingId+" either does not exist, is expired or has been suspended by user.",new string[]{"ListingId"});
+               yield return new ValidationResult("Listing with id "+ListingId+" either does not exist, is expired or has been suspended by userId.",new string[]{"ListingId"});
             }
         }
     }

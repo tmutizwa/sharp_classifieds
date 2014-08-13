@@ -1,0 +1,46 @@
+﻿@model Classifieds.Models.CreateViewModels.CreateFeatureRequestViewModel
+@{
+    ViewBag.Title = "Feature request";
+    Layout = "~/Views/Shared/Layouts/_Layout_Pages.cshtml";
+}
+
+<h2>Feature Request</h2>
+@if (!String.IsNullOrEmpty(ViewBag.Message))
+{
+    <p class="alert alert-success">@ViewBag.Message</p>
+}
+<div class="container">
+    <div class="col-md-12">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(u => u.UserId)
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Your email" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Feature title" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Detail, 10, 50, new { @class = "form-control", placeholder = "Details of your feature request." })
+                    @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <button name="submit" class="btn btn-default">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

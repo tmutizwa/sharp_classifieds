@@ -1,18 +1,16 @@
-﻿@using Microsoft.AspNet.Identity
-@using Classifieds.Models.SearchViewModels
+﻿@using Classifieds.Models
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>@ViewBag.Title - Zimpapers Classifieds</title>
     <link rel="icon" type="image/png" href="~/Images/favicon.png" />
     <!--[if IE]>
     <link rel="shortcut icon" href="~/Images/favicon.png" type="image/vnd.microsoft.icon" />
     <![endif]-->
-    @RenderSection("styles", false)
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
@@ -26,28 +24,34 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse main-menu">
-                @Html.Partial("_MainMenu")
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("~/Views/Shared/Widgets/_MainMenu.cshtml")
+                @Html.Partial("~/Views/Shared/Widgets/_LoginPartial.cshtml")
+            </div>
+
+        </div>
+    </div>
+    @Html.Partial("~/Views/Shared/Widgets/_MainLogo.cshtml")
+    <div class="search-bar">
+        <div class="container search-bar">
+            <div class="row ">
+                <div class="col-md-12">@Html.Action("mainsearch","widget")</div>
             </div>
         </div>
     </div>
-    @Html.Partial("_MainLogo")
-    <div class="container body-content search_results">
-        <div class="col-md-12">
-            @Html.Partial("_MainSearch",(ListingSearchViewModel)ViewBag.searchViewModel)
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="left-column">
-                    @Html.Partial("_GeneralSearch", (ListingSearchViewModel)ViewBag.searchViewModel)
-                </div>
+    <div class="container ">
+        <div class="left-column ">
+            <div class="col-md-3" style="padding:0;">
+                @Html.Action("dealsearch", "widget", new { })
             </div>
-            <div class="col-md-9">@RenderBody()</div>
         </div>
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Zimpapers (Pvt) Ltd. All rights reserved.</p>
-        </footer>
+        <div class="col-md-9">
+            <div class=" ">
+                @RenderBody()
+            </div>
+        </div>
+
     </div>
+    @Html.Partial("_Footer")
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

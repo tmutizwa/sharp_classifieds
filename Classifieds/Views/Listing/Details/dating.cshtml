@@ -20,16 +20,10 @@
     </ol>
 }
 <div class="listing-details">
-@Html.Partial("_ListingDetails",Model)
+@Html.Partial("~/Views/Shared/Widgets/_ListingDetails.cshtml", Model)
     <div class="row">
         <div class="col-md-12">
             <div class="well well-sm more-details">
-                <ul class="nav nav-tabs ">
-                    <li class="active"><a href="#hot" data-toggle="tab">More Details</a></li>
-                    <li><a href="#contact" data-toggle="tab">Contact Seller</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane fade in active" id="hot">
                         <div class="list-more">
                             <div class="panel panel-default">
                                 <div class="panel-body">
@@ -140,16 +134,13 @@
                                     </table>
                                 </div>
                             </div>
-
+                            @if (Model.Images.Count > 0)
+                            {
+                                <div>@Html.ActionLink("Email seller", "contactseller", "email", new { id = @Model.ListingId }, new { @class = "btn btn-info" })</div>
+                            }
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="contact">
-                       @Html.Partial("_ContactSeller")
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
+              </div>
+       </div>
 </div>
 

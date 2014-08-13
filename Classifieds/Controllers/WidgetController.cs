@@ -1,4 +1,5 @@
 ﻿using Classifieds.Models;
+using Classifieds.Models.SearchViewModels;
 using Classifieds.Models.ViewModels;
 using Classifieds.Models.WidgetViewModel;
 using System;
@@ -21,6 +22,16 @@ namespace Classifieds.Controllers
         {
             var model = new EmailSubscriptionViewModel();
             return PartialView("~/Views/Shared/Widgets/_EmailSubscriber.cshtml",model);
+        }
+        public ActionResult DealSearch()
+        {
+            var model = new DealSearchViewModel();
+            return PartialView("~/Views/Shared/Widgets/Search/_DealSearch.cshtml",model);
+        }
+        public ActionResult MainSearch()
+        {
+            var model = new ListingSearchViewModel();
+            return PartialView("~/Views/Shared/Widgets/Search/_MainSearch.cshtml",model);
         }
     }
 }

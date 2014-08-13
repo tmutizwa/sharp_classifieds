@@ -1,6 +1,7 @@
 ﻿using Classifieds.Models;
 using Classifieds.Models.SearchViewModels;
 using Classifieds.Models.ViewModels;
+using Classifieds.Models.EmailViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,13 +36,12 @@ namespace Classifieds.Controllers
 
             return View();
         }
-        
 
-        public ActionResult Contact()
+        public ActionResult FAQs()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
+
+       
     }
 }

@@ -62,7 +62,10 @@ namespace Classifieds.Areas.Admin.Controllers
         public ActionResult create(int id = 0)
         {
             var now = DateTime.Now;
-            var ln = db.Listings.Find(id);
+            var lnQ = from l in db.Listings.Include("Owner")
+                      where l.ListingId == id
+                      select l;
+            var ln = lnQ.FirstOrDefault();
             if (ln == null)
             {
                 return RedirectToAction("confirmListing", new { listing = id});

@@ -78,7 +78,7 @@ namespace Classifieds.Areas.Admin.Controllers
             catch (DataException)
             {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
-                ModelState.AddModelError("", "Unable to save user. Try again, and if the problem persists submit bug report.");
+                ModelState.AddModelError("", "Unable to save userId. Try again, and if the problem persists submit bug report.");
             }
 
             // If we got this far, something failed, redisplay form
@@ -169,7 +169,7 @@ namespace Classifieds.Areas.Admin.Controllers
             catch (DataException)
             {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
-                ModelState.AddModelError("", "Unable to save user. Try again, and if the problem persists submit bug report.");
+                ModelState.AddModelError("", "Unable to save userId. Try again, and if the problem persists submit bug report.");
             }
             // If we got this far, something failed, redisplay form
             return View(model);
@@ -308,7 +308,7 @@ namespace Classifieds.Areas.Admin.Controllers
                 var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    ModelState.AddModelError("", "The user either does not exist or is not confirmed.");
+                    ModelState.AddModelError("", "The userId either does not exist or is not confirmed.");
                     return View();
                 }
 
@@ -356,7 +356,7 @@ namespace Classifieds.Areas.Admin.Controllers
                 var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null)
                 {
-                    ModelState.AddModelError("", "No user found.");
+                    ModelState.AddModelError("", "No userId found.");
                     return View();
                 }
                 IdentityResult result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);

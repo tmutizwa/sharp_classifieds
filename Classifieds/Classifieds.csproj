@@ -208,7 +208,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BrowseController.cs" />
+    <Compile Include="Controllers\DealsController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingController.cs" />
     <Compile Include="Controllers\WidgetController.cs" />
@@ -217,6 +219,7 @@
     </Compile>
     <Compile Include="Library\AppUserManager.cs" />
     <Compile Include="Library\CategoryHelper.cs" />
+    <Compile Include="Library\TMSendEmail.cs" />
     <Compile Include="Migrations\201407160744213_catsmodels.cs" />
     <Compile Include="Migrations\201407160744213_catsmodels.Designer.cs">
       <DependentUpon>201407160744213_catsmodels.cs</DependentUpon>
@@ -470,16 +473,31 @@
     <Compile Include="Migrations\201408111708395_dealsfor.Designer.cs">
       <DependentUpon>201408111708395_dealsfor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408130808544_bugreport_featureRequests.cs" />
+    <Compile Include="Migrations\201408130808544_bugreport_featureRequests.Designer.cs">
+      <DependentUpon>201408130808544_bugreport_featureRequests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408130839234_bugUserId.cs" />
+    <Compile Include="Migrations\201408130839234_bugUserId.Designer.cs">
+      <DependentUpon>201408130839234_bugUserId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408130842305_features_user.cs" />
+    <Compile Include="Migrations\201408130842305_features_user.Designer.cs">
+      <DependentUpon>201408130842305_features_user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AListingSearchModel.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Bug.cs" />
     <Compile Include="Models\Cellphone.cs" />
     <Compile Include="Models\Computer.cs" />
     <Compile Include="Models\CreateViewModels\CreateAutosViewModel.cs" />
+    <Compile Include="Models\CreateViewModels\CreateBugReport.cs" />
     <Compile Include="Models\CreateViewModels\CreateComputersViewModel.cs" />
     <Compile Include="Models\CreateViewModels\CreateDatingViewModel.cs" />
     <Compile Include="Models\CreateViewModels\CreateDealViewModel.cs" />
+    <Compile Include="Models\CreateViewModels\CreateFeatureRequestViewModel.cs" />
     <Compile Include="Models\CreateViewModels\CreatePropertiesViewModel.cs" />
     <Compile Include="Models\CreateViewModels\CreateJobsViewModel.cs" />
     <Compile Include="Models\Dating.cs" />
@@ -492,6 +510,9 @@
     <Compile Include="Models\EditViewModels\EditJobsViewModel.cs" />
     <Compile Include="Models\EditViewModels\EditGeneralListingViewModel.cs" />
     <Compile Include="Models\EmailSubscriptions.cs" />
+    <Compile Include="Models\EmailViewModel\GeneralEmailViewModel.cs" />
+    <Compile Include="Models\EmailViewModel\ListingEmailViewModel.cs" />
+    <Compile Include="Models\FeatureRequest.cs" />
     <Compile Include="Models\GeneralListing.cs" />
     <Compile Include="Models\ClassifiedsCreateListingModelBinder.cs" />
     <Compile Include="Models\ClassifiedsEditListingModelBinder.cs" />
@@ -505,6 +526,7 @@
     <Compile Include="Models\Motor.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Models\SearchViewModels\DatingSearchViewModel.cs" />
+    <Compile Include="Models\SearchViewModels\DealSearchViewModel.cs" />
     <Compile Include="Models\SearchViewModels\PropertiesSearchViewModel.cs" />
     <Compile Include="Models\SearchViewModels\ComputersSearchViewModel.cs" />
     <Compile Include="Models\SearchViewModels\CellphonesSearchViewModel.cs" />
@@ -600,7 +622,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\Layouts\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Feedback\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
@@ -630,7 +652,6 @@
     <Content Include="Views\Shared\EditorTemplates\ACreateListingViewModel.cshtml" />
     <Content Include="Views\Listing\images.cshtml" />
     <Content Include="Views\Listing\search.cshtml" />
-    <Content Include="Views\Shared\Layouts\_SearchResults.cshtml" />
     <Content Include="Views\Shared\Layouts\_BrowseCategory.cshtml" />
     <Content Include="Views\Shared\Widgets\Search\_BrowseCategorySearch.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AutosSearchViewModel.cshtml" />
@@ -651,7 +672,6 @@
     <Content Include="Views\Listing\Details\general.cshtml" />
     <Content Include="Views\Shared\Layouts\_Layout_Pages.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\Widgets\_FooterFeaturedListings.cshtml" />
     <Content Include="Views\Shared\Widgets\_ListingDetails.cshtml" />
     <Content Include="Views\Listing\Details\autos.cshtml" />
     <Content Include="Views\Shared\Widgets\_ContactSeller.cshtml" />
@@ -699,6 +719,12 @@
     <Content Include="Views\Shared\Widgets\_MiddleFooterWidget.cshtml" />
     <Content Include="Views\Shared\Widgets\_LeftFooterWidget.cshtml" />
     <Content Include="Views\Shared\Widgets\_RightFooterWidget.cshtml" />
+    <Content Include="Views\Feedback\Bugs.cshtml" />
+    <Content Include="Views\Feedback\features.cshtml" />
+    <Content Include="Views\Home\faqs.cshtml" />
+    <Content Include="Views\Deals\Index.cshtml" />
+    <Content Include="Views\Shared\Layouts\_2Column.cshtml" />
+    <Content Include="Views\Shared\Widgets\Search\_DealSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -902,6 +928,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408111708395_dealsfor.resx">
       <DependentUpon>201408111708395_dealsfor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408130808544_bugreport_featureRequests.resx">
+      <DependentUpon>201408130808544_bugreport_featureRequests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408130839234_bugUserId.resx">
+      <DependentUpon>201408130839234_bugUserId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408130842305_features_user.resx">
+      <DependentUpon>201408130842305_features_user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

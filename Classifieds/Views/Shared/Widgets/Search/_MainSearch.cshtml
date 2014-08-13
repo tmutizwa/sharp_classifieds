@@ -12,13 +12,13 @@
                     @Html.TextBoxFor(m => Model.text, new { @class = "form-control input-lg", placeholder = "what are you looking for" })
                     <div class="input-group-btn">
                         @* @Html.DropDownList("cat",Model.categories, "Choose category", new { @class="form-control input-lg",style="width:200px;border-radius:4px 0 0 4px;"})*@
-                        @Html.DropDownListFor(c => c.cat, Model.categoriesSelectList, new { @class = "form-control input-lg", style = "width:200px;border-radius:0px 4px 4px 0px; margin-top:-1px;" })
+                        @Html.DropDownListFor(c => c.cat, Model.categoriesSelectList, new { @class = "form-control input-lg", style = "width:200px;border-radius:0px 4px 4px 0px;" })
                         @Html.ValidationMessageFor(model => model.cat, "", new { @class="text-danger"})
                     </div><!-- /btn-group -->
                     
                     
                     <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" style="color:#fff;border-radius:4px;margin-right:10px;padding-bottom:9px; margin-left:30px;" type="submit">
+                        <button class="btn btn-info btn-lg" style="color:#fff;border-radius:4px;margin:8px 10px 0 30px;padding-bottom:9px;" type="submit">
                             <span>Find it</span> <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>

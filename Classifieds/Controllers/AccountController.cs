@@ -238,7 +238,7 @@ namespace Classifieds.Controllers
                 var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    ModelState.AddModelError("", "The user either does not exist or is not confirmed.");
+                    ModelState.AddModelError("", "The userId either does not exist or is not confirmed.");
                     return View();
                 }
 
@@ -289,7 +289,7 @@ namespace Classifieds.Controllers
                 var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null)
                 {
-                    ModelState.AddModelError("", "No user found.");
+                    ModelState.AddModelError("", "No userId found.");
                     return View();
                 }
                 IdentityResult result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
