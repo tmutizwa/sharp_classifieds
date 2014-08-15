@@ -12,7 +12,7 @@
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Html.Partial("~/Views/Shared/_GoogleCode.cshtml")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top topbar">
@@ -32,6 +32,7 @@
         </div>
     </div>
     @Html.Partial("~/Views/Shared/Widgets/_MainLogo.cshtml")
+
     <div class="search-bar">
         <div class="container search-bar">
             <div class="row ">

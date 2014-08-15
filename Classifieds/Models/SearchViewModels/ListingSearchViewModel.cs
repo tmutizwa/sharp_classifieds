@@ -57,11 +57,11 @@ namespace Classifieds.Models.SearchViewModels
                listingsQ = listingsQ.Where(c => allSubCategoryIds.Contains(c.CategoryId));
            if (this.from > 0)
            {
-               listingsQ = listingsQ.Where(l=>l.Price >= this.from);
+               listingsQ = listingsQ.Where(l=>l.Price >= this.from && l.Price > 0);
            }
            if (this.to > 0)
            {
-               listingsQ = listingsQ.Where(l=>l.Price <= this.to);
+               listingsQ = listingsQ.Where(l=>l.Price <= this.to && l.Price > 0);
            }
            if (!String.IsNullOrEmpty(this.location))
            {
@@ -80,11 +80,11 @@ namespace Classifieds.Models.SearchViewModels
                    this.lorder = "loc";
                    break;
                case "price":
-                   listingsQ = listingsQ.OrderBy(c=>c.Price);
+                   listingsQ = listingsQ.Where(c=>c.Price > 0).OrderBy(c=>c.Price);
                    this.porder = "price_desc";
                    break;
                case "price_desc":
-                   listingsQ = listingsQ.OrderByDescending(c=>c.Price);
+                   listingsQ = listingsQ.Where(c => c.Price > 0).OrderByDescending(c => c.Price);
                    this.porder = "price";
                    break;
                default :

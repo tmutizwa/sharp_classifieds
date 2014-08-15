@@ -29,10 +29,10 @@
         }
     </ul>
 }
-<div class="results_count">
+@*<div class="results_count">
     <span>Found @Model.foundListings.Count() listings </span> @if (!String.IsNullOrEmpty(Model.text))
     { <span>for</span> <em>"@Model.text" .</em>} else { <span>in this category.</span>}
-</div>
+</div>*@
 
 <table class="table">
 @using (Html.BeginForm(Model.action,Model.controller, FormMethod.Get, new { }))
@@ -44,11 +44,7 @@
     @Html.HiddenFor(model =>model.location)
      <input type="hidden" name="page" value="1" />
     <tr>
-        <th width="170"></th>
-        <th>
-            Title
-        </th>
-        <th width="130">
+        <th colspan="4" style="text-align:right;">
             <button rel="tooltip" title="Order by location" type="submit" class="btn-link" name="order" value="@Model.lorder">
                 <span>Location</span>
                 @if (Model.lorder == "town")
@@ -61,8 +57,6 @@
                 }
             </button>
 
-        </th>
-        <th width="130">
             <button rel="tooltip" title="Order by price" type="submit" class="btn-link" name="order" value="@Model.porder">
                 <span>Price</span>
                 @if (Model.porder == "price")
@@ -88,14 +82,14 @@
         }
 
         <tr>
-            <td width="170">
+            <td width="170" class="listing_row_image">
                 @if (src != "")
                 {
-                    <a href="@Url.Action("details", "listing", new { id=item.ListingId})"><img width="150" class="img-thumbnail img-responsive" src="@src" /></a>
+                    <a href="@Url.Action("details", "listing", new { id=item.ListingId})"><img class="img-thumbnail img-responsive" src="@src" /></a>
                 }
 
             </td>
-            <td>
+            <td colspan="2">
                 <div class="index-desc">
                     <strong>
                         @Html.ActionLink(item.Title, "details", "listing", new { id = item.ListingId }, null)
@@ -104,15 +98,17 @@
                     @item.getIntro()
                 </div>
                 <div class="index-meta">
-                     <div class="left"><small>Seller:</small>@if (!String.IsNullOrEmpty(item.Owner.Alias)) {<small>@Html.DisplayFor(m => item.Owner.Alias)</small> } else { <small>@Html.DisplayFor(m => item.Owner.FullName)</small> }</div>
-                     <div class="right"><small>@Html.ActionLink(item.Category.Title, "index", "browse", new { cat = item.CategoryId }, new {@class="btn btn-xs btn-meta" })</small></div> 
+                     <div class="left">
+                           @if (!String.IsNullOrEmpty(item.Owner.Alias)) {<small>@Html.DisplayFor(m => item.Owner.Alias)</small> } else { <small>@Html.DisplayFor(m => item.Owner.FullName)</small> },
+                            <small>@Html.ToWords(item.Created)</small>,
+                            <small>@item.Town</small>
+                     </div>
+                     
                 </div>
             </td>
-            <td>
-                @Html.DisplayFor(mod => item.Town)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
+            <td style="text-align:right;">
+                <strong class="row-price">@Html.DisplayFor(modelItem => item.Price)</strong>
+                <small>@Html.ActionLink(item.Category.Title, "index", "browse", new { cat = item.CategoryId }, new { @class = "btn btn-xs btn-meta" })</small>
             </td>
         </tr>
     }
