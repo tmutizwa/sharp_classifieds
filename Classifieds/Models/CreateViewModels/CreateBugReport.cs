@@ -14,7 +14,8 @@ namespace Classifieds.Models.CreateViewModels
         [EmailAddress]
         public string Email { get; set; }
         public string Title { get; set; }
-        [Display(Name="Bug details")]
+        [Display(Name="Bug details"),MinLength(50)]
+        [Required]
         public string Detail { get; set; }
     }
 }

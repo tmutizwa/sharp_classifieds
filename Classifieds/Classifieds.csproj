@@ -219,6 +219,7 @@
     </Compile>
     <Compile Include="Library\AppUserManager.cs" />
     <Compile Include="Library\CategoryHelper.cs" />
+    <Compile Include="Library\TMTimeHelper.cs" />
     <Compile Include="Library\TMSendEmail.cs" />
     <Compile Include="Migrations\201407160744213_catsmodels.cs" />
     <Compile Include="Migrations\201407160744213_catsmodels.Designer.cs">
@@ -725,6 +726,7 @@
     <Content Include="Views\Deals\Index.cshtml" />
     <Content Include="Views\Shared\Layouts\_DealsLayout.cshtml" />
     <Content Include="Views\Shared\Widgets\Search\_DealSearch.cshtml" />
+    <Content Include="Views\Shared\_GoogleCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

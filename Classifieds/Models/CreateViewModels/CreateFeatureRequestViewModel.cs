@@ -14,6 +14,7 @@ namespace Classifieds.Models.CreateViewModels
         public string Title { get; set; }
         [EmailAddress]
         public string Email { get; set; }
+        [Required,MinLength(50)]
         public string Detail { get; set; }
 
     }

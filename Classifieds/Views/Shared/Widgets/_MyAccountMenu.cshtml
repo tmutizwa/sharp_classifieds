@@ -45,9 +45,9 @@
 
 <div id="user_menu" class="well">
     <ul class="nav nav-pills nav-stacked">
-        <li class="@dashboard"><span class="glyphicon glyphicon-stats"></span>@Html.ActionLink("Dashboard", "dashboard", "account")</li>
+        @*<li class="@dashboard"><span class="glyphicon glyphicon-stats"></span>@Html.ActionLink("Dashboard", "dashboard", "account")</li>*@
         <li class="@listings"><span class="glyphicon glyphicon-list-alt"></span>@Html.ActionLink("My listings", "index", "listing")</li>
-        <li><span class="glyphicon glyphicon-envelope"></span>@Html.ActionLink("Messages", "index", "message")</li>
+       @* <li><span class="glyphicon glyphicon-envelope"></span>@Html.ActionLink("Messages", "index", "message")</li>*@
         <li class="@details"><span class="glyphicon glyphicon-cog"></span>@Html.ActionLink("Account Details", "details", "account")</li>
         <li class="@password"><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("Change password", "manage", "account", null,new { @class = "" })</li>
     </ul>

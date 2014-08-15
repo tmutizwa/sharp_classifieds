@@ -1,4 +1,5 @@
 ﻿@model Classifieds.Models.WidgetViewModel.HotDealsViewModel
+           @using Classifieds.Library
 <div class="container">
     <div class="row">
         <div class="">
@@ -30,13 +31,15 @@
                                                     <div class="featured-listing-text">
                                                         @deal.Listing.getIntro(50)
                                                     </div>
-                                                    <span class="featured-listing-price">$@deal.Listing.Price</span>
+                                                    <span class="featured-listing-price">@Html.DisplayFor(m=>deal.Listing.Price)</span>
+                                                    <small>@Html.ToWords(deal.Created)</small>
                                                 </div>
                                             </div>
                                         }
+                                       
                                     </div>
-
-                                </div>
+                                    
+                                </div>@Html.ActionLink("View all deals", "index", "deals", new { }, new { @class = " deal-all" })
                             </div>
                             
                            
@@ -64,6 +67,7 @@
                                                         @deal.Listing.getIntro(50)
                                                     </div>
                                                     <span class="featured-listing-price">$@deal.Listing.Price</span>
+                                                    <small>@Html.ToWords(deal.Created)</small>
                                                 </div>
                                             </div>
                                         }
@@ -97,6 +101,7 @@
                                                         @deal.Listing.getIntro(50)
                                                     </div>
                                                     <span class="featured-listing-price">$@deal.Listing.Price</span>
+                                                    <small>@Html.ToWords(deal.Created)</small>
                                                 </div>
                                             </div>
                                         }

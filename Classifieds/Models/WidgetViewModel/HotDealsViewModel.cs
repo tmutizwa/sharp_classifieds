@@ -13,7 +13,7 @@ namespace Classifieds.Models.WidgetViewModel
             ApplicationDbContext db = new ApplicationDbContext();
             var now = DateTime.Now;
             // get random deals
-            var dealsQ = from d in db.Deals.Include("Listing").Include("Listing.images")
+            var dealsQ = from d in db.Deals.Include("Listing").Include("Listing.images").Include("Listing.Category")
                          where d.Ends > now && d.Starts < now && d.Listing.images.Count() > 0
                          select d;
             RandomDeals = dealsQ.OrderBy(c => Guid.NewGuid()).Take(size).ToList();

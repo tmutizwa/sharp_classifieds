@@ -1,8 +1,11 @@
 ﻿@model PagedList.IPagedList<Classifieds.Models.Deal>
 @using PagedList.Mvc
+@using Classifieds.Models.SearchViewModels;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layouts/_DealsLayout.cshtml";
+
+    DealSearchViewModel dm = (DealSearchViewModel)ViewBag.searchModel;
 }
 @section scripts{
     <script type="text/javascript">
@@ -10,16 +13,50 @@
             $("[rel='tooltip']").tooltip();
         });
     </script>
-
 }
-<h2>Deals & Offers</h2>
+<div>
+    <h2>Deals & Offers</h2>
+    <div style="float:right; margin-top:-40px">
+    @using (Html.BeginForm("index","deals",FormMethod.Get))
+    {
+        @*@Html.HiddenFor(m => dm.Category);
+        @Html.HiddenFor(m=>dm.Location);
+        @Html.HiddenFor(m=>dm.Category);
+        @Html.HiddenFor(m => dm.PriceFrom);
+        @Html.HiddenFor(m=>dm.PriceTo);*@
+        <div>
+            Order by: <button name="order" class="btn btn-xs btn-info" value="@ViewBag.categoryOrder">Category</button>  
+            <button name="order" class="btn btn-xs btn-info" value="@ViewBag.dateOrder">Date</button>  
+            <button name="order" class="btn btn-xs btn-info" value="@ViewBag.pointsOrder">Points</button>  
+            <button name="order" class="btn btn-xs btn-info" value="@ViewBag.priceOrder" >Price</button>
+        </div>
+        
+    }   
+    </div>
+</div>
 
 <div class="container">
     <div class="col-md-12">
         @foreach (var deal in Model)
         {
-            <div class="deal-row">
-                <div>@deal.Listing.Title</div>
+            
+            <div class="deal-row row">
+                <div class="col-md-9">
+                     @Html.ActionLink(deal.Listing.Title, "details", "listing", new { id = deal.ListingId }, new { @class = "deal-title" })
+                     <span style="float:right;">@Html.DisplayFor(m => deal.Listing.Price)</span>
+                    <br/>
+                    <p class="deal-desc">
+                        @deal.Listing.getIntro()
+                    </p>
+                    <div class="deal-meta">
+                        <small>@Html.ActionLink(deal.Listing.Category.Title, "index", "browse", new { @class = "btn btn-xs btn-meta" })</small>
+                        <small style="float:right">Started:@Html.DisplayFor(m => deal.Starts) </small>
+                        
+                    </div>
+                </div>
+                <div class="col-md-3 deal-img-column">
+                    <a href="@Url.Action("details", "listing", new { id=deal.ListingId})"><img height="100" src="~/Images/Listings/Med/@deal.Listing.images.First().Name" class="deal-img img-circle" /></a>
+                </div>
             </div>
         }
         
@@ -30,6 +67,6 @@
 {
     <div class="pagination">
         @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
-        @Html.PagedListPager(Model, page => Url.Action("index", new {  }))
+        @Html.PagedListPager(Model, page => Url.Action("index", new { page}))
     </div>
 }
