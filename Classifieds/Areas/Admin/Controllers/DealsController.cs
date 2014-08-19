@@ -35,7 +35,7 @@ namespace Classifieds.Areas.Admin.Controllers
             {
                 deal = deal.Where(d => d.Listing.Owner.UserName.ToLower().Contains(username.ToLower()));
             }
-            deal = deal.OrderByDescending(d =>d.Starts);
+            deal = deal.OrderByDescending(d =>d.Ends);
             return View(deal.ToPagedList(page,pagesize));
         }
         public ActionResult confirmListing()

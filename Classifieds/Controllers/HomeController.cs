@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Classifieds.Controllers
 {
-    [RequireHttps]
+   // [RequireHttps]
     public class HomeController : Controller
     {
 

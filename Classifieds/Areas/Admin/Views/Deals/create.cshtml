@@ -2,7 +2,9 @@
 @{
     ViewBag.Title = "Create deal";
 }
-
+<script type="text/javascript">
+    $(document).ready(function () { $(".datepicker").datepicker({}); });
+</script>
 <h2>Create new Hot Deal for listing #@Model.Listing.Title</h2>
 <p>
     @Html.ActionLink("Cancel", "index", new { }, new { @class = "btn btn-info" })
@@ -88,7 +90,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Starts, htmlAttributes: new { @class = " col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Starts, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Starts, new { htmlAttributes = new { @class = "form-control datepicker" } })
                     @Html.ValidationMessageFor(model => model.Starts, "", new { @class = "text-danger" })
                 </div>
             </div>

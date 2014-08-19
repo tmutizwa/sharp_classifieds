@@ -51,9 +51,12 @@
             </div>
             <div class="col-md-9">@RenderBody()</div>
         </div>
-        
+        <div class="row">
+            @Html.Action("HotDeals", "widget") 
+        </div>
+       
     </div>
-    @Html.Action("HotDeals", "widget")
+    
     @Html.Partial("_Footer")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

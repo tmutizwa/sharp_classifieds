@@ -214,7 +214,7 @@ home-cat:hover {
  .featured-listings .featured-listing-price {
      font-weight:bold;
      font-size:14px;
-     padding:5px 10px;
+     padding:5px 0px;
      display:block;
      background:#fbf9f9;
  }
@@ -441,6 +441,7 @@ ul.seller-details {
 }
 .regform .form-horizontal .control-label {
     padding:0;
+    font-size:0.85em;
 }
 .social_login {
     padding:0; 
@@ -448,7 +449,7 @@ ul.seller-details {
     margin-bottom:10px;
 }
 .left-column label {
-    font-size:0.9em;
+    font-size:0.85em;
 }
 .index-desc {
     min-height:85px
@@ -498,4 +499,8 @@ ul.seller-details {
 .row-price {
     display:block;
     min-height:85px;
+}
+.header-banner {
+    margin-top:35px;
+    text-align:right;
 }

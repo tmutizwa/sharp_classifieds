@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<Classifieds.Models.Deal>
 @using PagedList.Mvc;
+@using TMLib;
 @{
     ViewBag.Title = "Deals ";
    // Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
@@ -64,10 +65,6 @@
                     {
                        <strong>Alias :</strong>  <span>@deal.Listing.Owner.Alias</span><br/>
                     }
-                    @if (!String.IsNullOrEmpty(deal.Listing.Owner.PhoneNumber))
-                    {
-                        <strong>Phone :</strong><span>@deal.Listing.Owner.PhoneNumber</span><br />
-                    }
                     @if (!String.IsNullOrEmpty(deal.Listing.Owner.ClassifiedsPhone))
                     {
                         <strong>Phone :</strong><span>@deal.Listing.Owner.ClassifiedsPhone</span><br />
@@ -77,8 +74,8 @@
                 <td>@Html.ActionLink(deal.Listing.Title, "details", "listing", new { id = deal.ListingId,Area="" }, new { target = "_blank"})</td>
                 <td>@deal.ListingId</td>
                 <td>@deal.TotalScore</td>
-                <td>@Html.DisplayFor(m=>deal.Starts)</td>
-                <td>@Html.DisplayFor(m=>deal.Ends)</td>
+                <td>@Html.ToWords(deal.Starts)</td>
+                <td>@Html.ToWords(deal.Ends)</td>
                 <td>
                     @Html.ActionLink("Edit","edit", new { id = deal.DealId }, new { @class="btn btn-xs btn-info"}) 
                     @Html.ActionLink("Delete", "delete", new { id = deal.DealId }, new { @class = "btn btn-xs btn-danger" })

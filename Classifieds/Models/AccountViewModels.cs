@@ -14,10 +14,13 @@ namespace Classifieds.Models
         [Display(Name = "Alias / Nickname")]
         public string Alias { get; set; }
         [Required]
+        [Display(Name="Phone")]
         public string ClassifiedsPhone { get; set; }
         [Display(Name="Home / Buss address")]
         public string Address { get; set; }
         public string Fullname { get; set; }
+        [Required(ErrorMessage="You need to accept the terms and conditions.")]
+        public Boolean Terms { get; set; }
 
     }
 
@@ -88,11 +91,14 @@ namespace Classifieds.Models
         [MaxLength(50)]
         public string FullName { get; set; }
         public string Sex { get; set; }
-        [MaxLength(100,ErrorMessage="ClassifiedsPhone number too long"),MinLength(5,ErrorMessage="ClassifiedsPhone number too short.")]
+        [MaxLength(100),MinLength(5)]
         [Required]
+        [Display(Name = "Phone")]
         public string ClassifiedsPhone { get; set; }
         [Display(Name="Home / Buss address")]
         public string Address { get; set; }
+        [Required(ErrorMessage = "You need to accept the terms and conditions.")]
+        public Boolean Terms { get; set; }
         // Return a pre-poulated instance of AppliationUser:
         public ApplicationUser GetUser()
         {
@@ -135,8 +141,9 @@ namespace Classifieds.Models
         [MaxLength(50)]
         public string FullName { get; set; }
         public string Sex { get; set; }
-        [MaxLength(100, ErrorMessage = "ClassifiedsPhone number too long"), MinLength(5, ErrorMessage = "ClassifiedsPhone number too short.")]
+        [MaxLength(100), MinLength(5)]
         [Required]
+        [Display(Name = "Phone")]
         public string ClassifiedsPhone { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-mm-YY}")]
@@ -194,6 +201,8 @@ namespace Classifieds.Models
         [Display(Name = "Sex")]
         public string Sex { get; set; }
         [Required]
+        [Display(Name = "Phone")]
+        [MaxLength(100),MinLength(5)]
         public string ClassifiedsPhone { get; set; }
         [Display(Name = "DOB")]
         public DateTime DOB { get; set; }

@@ -1,6 +1,9 @@
 ﻿@model Classifieds.Models.ViewModels.AListingViewModel
 
-<div class="listing-times"><span>Started:</span> @Html.DisplayFor(m => m.Created), <span>Updated :</span>  @Html.DisplayFor(m => m.Updated)</div>
+<div class="listing-times"><small>started: @Html.ToWords(Model.Created)
+      @if(Model.Updated > Model.Created){
+          <span>, updated : @Html.ToWords(Model.Updated)</span>
+      }</small></div>
 <div class="row">
     <div class="col-md-12 details">
         <div class="panel panel-default">

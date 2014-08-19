@@ -16,7 +16,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -726,7 +727,7 @@
     <Content Include="Views\Deals\Index.cshtml" />
     <Content Include="Views\Shared\Layouts\_DealsLayout.cshtml" />
     <Content Include="Views\Shared\Widgets\Search\_DealSearch.cshtml" />
-    <Content Include="Views\Shared\_GoogleCode.cshtml" />
+    <Content Include="Views\Shared\Widgets\_HeaderBannerCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -959,7 +960,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>13667</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44300/</IISUrl>
+          <IISUrl>http://localhost:44300/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
