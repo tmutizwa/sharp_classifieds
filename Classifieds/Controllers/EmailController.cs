@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Classifieds.Models.ViewModels;
 using Classifieds.Models;
 using Classifieds.Library;
+using Classifieds.Models.CreateViewModels;
+using System.Net;
 
 namespace Classifieds.Controllers
 {
@@ -141,6 +143,66 @@ namespace Classifieds.Controllers
                 }
                 
             }
+            return View(model);
+        }
+
+        public ActionResult contactseller(int id)
+        {
+            var listing = db.Listings.Find(id);
+            var userId = User.Identity.GetUserId();
+            var model = new CreateMessageViewModel();
+            if (listing == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            var user = db.Users.Find(userId);
+            if (user != null)
+            {
+                model.Phone = user.ClassifiedsPhone;
+                model.SenderEmail = user.Email;
+                model.SenderName = user.Alias ?? user.FullName;
+            }
+            ViewBag.Listing = listing;
+            model.ListingId = listing.ListingId;
+            model.Subject = "About listing #" + listing.ListingId + " - " + listing.Title;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult contactseller(CreateMessageViewModel model)
+        {
+            var listing = db.Listings.Find(model.ListingId);
+                if (listing == null)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (ModelState.IsValid)
+            {
+                
+                var userId = User.Identity.GetUserId();
+                Message message = new Message();
+                message.Detail = model.Detail;
+                message.ListingId = model.ListingId;
+                message.Phone = model.Phone;
+                message.SenderEmail = model.SenderEmail;
+                if(!String.IsNullOrEmpty(userId))
+                    message.SenderId = userId;
+                message.SenderName = model.SenderName;
+                message.Subject = model.Subject;
+                message.Type = "listing";
+                message.Created = DateTime.Now;
+                message.Updated = DateTime.Now;
+                db.Messages.Add(message);
+                db.SaveChanges();
+                ViewBag.Message = "Message sent to seller successfully. Thank you for your message. ";
+                
+                var user = db.Users.Find(userId);
+                if (user != null)
+                {
+                    model.ListingId = listing.ListingId;
+                    model.Phone = user.ClassifiedsPhone;
+                    model.SenderEmail = user.Email;
+                    model.SenderName = user.Alias ?? user.FullName;
+                }
+               
+                model.Subject = "About listing #" + listing.ListingId + " - " + listing.Title;
+            }
+            ViewBag.Listing = listing;
             return View(model);
         }
     }

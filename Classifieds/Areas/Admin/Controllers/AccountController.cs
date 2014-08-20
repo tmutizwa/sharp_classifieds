@@ -155,7 +155,14 @@ namespace Classifieds.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     var Db = new ApplicationDbContext();
+                    var id = User.Identity.GetUserId();
                     var user = Db.Users.First(u => u.UserName == model.UserName);
+
+                    if (!String.IsNullOrEmpty(model.NewPassword))
+                    {
+                        user.PasswordHash  = new PasswordHasher().HashPassword(model.NewPassword);
+                    }
+                    
                     // Update the user data:
                     user.FullName = model.FullName;
                     user.Email = model.Email;

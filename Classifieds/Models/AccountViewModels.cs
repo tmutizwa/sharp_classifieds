@@ -2,11 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
+using Microsoft.AspNet.Identity;
+using System.Linq;
 
 namespace Classifieds.Models
 {
-    public class ExternalLoginConfirmationViewModel
+    public class ExternalLoginConfirmationViewModel:IValidatableObject
     {
+        ApplicationDbContext db = new ApplicationDbContext();
+
         [Required]
         [EmailAddress]
         [Display(Name = "Username / Email")]
@@ -21,6 +26,20 @@ namespace Classifieds.Models
         public string Fullname { get; set; }
         [Required(ErrorMessage="You need to accept the terms and conditions.")]
         public Boolean Terms { get; set; }
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+            var now = DateTime.Now;
+            var usrQ = from u in db.Users
+                       where u.Alias == Alias && u.Id != userId
+                       select u;
+                     
+            var user = usrQ.FirstOrDefault();
+            if (user != null)
+            {
+                yield return new ValidationResult("Alias " + Alias + " already taken,please try another one.", new string[] { "Alias" });
+            }
+        }
 
     }
 
@@ -65,8 +84,9 @@ namespace Classifieds.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
+    public class RegisterViewModel :IValidatableObject
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -112,10 +132,25 @@ namespace Classifieds.Models
             };
             return user;
         }
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+            var now = DateTime.Now;
+            var usrQ = from u in db.Users
+                       where u.Alias == Alias && u.Id != userId
+                       select u;
+
+            var user = usrQ.FirstOrDefault();
+            if (user != null)
+            {
+                yield return new ValidationResult("Alias " + Alias + " already taken,please try another one.", new string[] { "Alias" });
+            }
+        }
     }
 
-    public class EditAccountViewModel
+    public class EditAccountViewModel:IValidatableObject
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         public EditAccountViewModel() { }
         public EditAccountViewModel(ApplicationUser user)
         {
@@ -150,6 +185,20 @@ namespace Classifieds.Models
         [Display(Name = "Date of birth")]
         public DateTime? DOB { get; set; }
         // Return a pre-poulated instance of AppliationUser:
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+            var now = DateTime.Now;
+            var usrQ = from u in db.Users
+                       where u.Alias == Alias && u.Id != userId
+                       select u;
+
+            var user = usrQ.FirstOrDefault();
+            if (user != null)
+            {
+                yield return new ValidationResult("Alias " + Alias + " already taken,please try another one.", new string[] { "Alias" });
+            }
+        }
         
     }
     public class ResetPasswordViewModel
@@ -181,7 +230,7 @@ namespace Classifieds.Models
         public string Email { get; set; }
     }
 
-    public class EditUserViewModel
+    public class EditUserViewModel:IValidatableObject
     {
         public EditUserViewModel() { }
 
@@ -193,7 +242,7 @@ namespace Classifieds.Models
             //this.Sex = user.Sex;
            // this.DOB = user.DOB;
         }
-        
+        ApplicationDbContext db = new ApplicationDbContext();
         [Display(Name = "Fullname")]
         public string FullName { get; set; }
         [Display(Name = "Alias / Nickname")]
@@ -208,6 +257,20 @@ namespace Classifieds.Models
         public DateTime DOB { get; set; }
         [EmailAddress,Required,Display(Name="Email")]
         public string UserName { get; set; }
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+            var now = DateTime.Now;
+            var usrQ = from u in db.Users
+                       where u.Alias == Alias && u.Id != userId
+                       select u;
+
+            var user = usrQ.FirstOrDefault();
+            if (user != null)
+            {
+                yield return new ValidationResult("Alias " + Alias + " already taken,please try another one.", new string[] { "Alias" });
+            }
+        }
 
     }
 

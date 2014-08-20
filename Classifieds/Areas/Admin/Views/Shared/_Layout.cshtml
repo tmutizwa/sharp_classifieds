@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - Classifieds Admin</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Styles.Render("~/Content/themes/base/css")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -41,6 +41,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
     @RenderSection("scripts", required: false)
 </body>
 </html>

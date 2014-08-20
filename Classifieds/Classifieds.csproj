@@ -40,6 +40,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JQueryUIHelpers">
+      <HintPath>..\packages\jQueryUIHelpers.Mvc5.2.2.0\lib\net45\JQueryUIHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="LinqKit">
       <HintPath>..\packages\LinqKit.1.1.1\lib\net45\LinqKit.dll</HintPath>
     </Reference>
@@ -487,6 +490,18 @@
     <Compile Include="Migrations\201408130842305_features_user.Designer.cs">
       <DependentUpon>201408130842305_features_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408191323010_check.cs" />
+    <Compile Include="Migrations\201408191323010_check.Designer.cs">
+      <DependentUpon>201408191323010_check.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408201235125_messages.cs" />
+    <Compile Include="Migrations\201408201235125_messages.Designer.cs">
+      <DependentUpon>201408201235125_messages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408201307402_message_date.cs" />
+    <Compile Include="Migrations\201408201307402_message_date.Designer.cs">
+      <DependentUpon>201408201307402_message_date.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AListingSearchModel.cs" />
@@ -500,6 +515,7 @@
     <Compile Include="Models\CreateViewModels\CreateDatingViewModel.cs" />
     <Compile Include="Models\CreateViewModels\CreateDealViewModel.cs" />
     <Compile Include="Models\CreateViewModels\CreateFeatureRequestViewModel.cs" />
+    <Compile Include="Models\CreateViewModels\CreateMessageViewModel.cs" />
     <Compile Include="Models\CreateViewModels\CreatePropertiesViewModel.cs" />
     <Compile Include="Models\CreateViewModels\CreateJobsViewModel.cs" />
     <Compile Include="Models\Dating.cs" />
@@ -524,6 +540,7 @@
     <Compile Include="Models\EditViewModels\AEditListingViewModel.cs" />
     <Compile Include="Models\EditViewModels\EditAutosViewModel.cs" />
     <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Mota.cs" />
     <Compile Include="Models\Motor.cs" />
     <Compile Include="Models\Property.cs" />
@@ -539,9 +556,9 @@
     <Compile Include="Models\Listing.cs" />
     <Compile Include="Models\ListingImage.cs" />
     <Compile Include="Models\SearchViewModels\AutosSearchViewModel.cs" />
-    <Compile Include="Models\SearchViewModels\ISearchViewModel.cs" />
     <Compile Include="Models\SearchViewModels\ListingSearchViewModel.cs" />
     <Compile Include="Models\ViewModels\DatingViewModel.cs" />
+    <Compile Include="Models\ViewModels\EmailSellerViewModel.cs" />
     <Compile Include="Models\ViewModels\EmailSubscriptionListViewModel.cs" />
     <Compile Include="Models\ViewModels\EmailSubscriptionViewModel.cs" />
     <Compile Include="Models\ViewModels\PropertiesViewModel.cs" />
@@ -562,6 +579,68 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dropzone.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -602,6 +681,10 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.10.0.js" />
+    <Content Include="Scripts\jquery-ui-1.10.0.min.js" />
+    <Content Include="Scripts\jquery-ui.unobtrusive-2.2.0.js" />
+    <Content Include="Scripts\jquery-ui.unobtrusive-2.2.0.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -728,6 +811,7 @@
     <Content Include="Views\Shared\Layouts\_DealsLayout.cshtml" />
     <Content Include="Views\Shared\Widgets\Search\_DealSearch.cshtml" />
     <Content Include="Views\Shared\Widgets\_HeaderBannerCode.cshtml" />
+    <Content Include="Views\Email\contactseller.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -940,6 +1024,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408130842305_features_user.resx">
       <DependentUpon>201408130842305_features_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408191323010_check.resx">
+      <DependentUpon>201408191323010_check.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408201235125_messages.resx">
+      <DependentUpon>201408201235125_messages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408201307402_message_date.resx">
+      <DependentUpon>201408201307402_message_date.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

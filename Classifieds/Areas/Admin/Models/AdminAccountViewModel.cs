@@ -86,6 +86,11 @@ namespace Classifieds.Areas.Admin.Models
         public Boolean Suspended { get; set; }
         [EmailAddress, Required]
         public string Email { get; set; }
+        [DataType(DataType.Password)]
+        public string NewPassword { get; set; }
+        [DataType(DataType.Password)]
+        [Compare("NewPassword", ErrorMessage = "The password and confirmation password do not match.")]
+        public string NewPasswordRepeat { get; set; }
         [Required,MaxLength(100,ErrorMessage="Username too long")]
         public string UserName { get; set; }
         public List<AdminRoleEditorViewModel> AllRoles { get; set; }

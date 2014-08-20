@@ -31,10 +31,6 @@
                 {
                     <strong>Alias :</strong>  <span>@Model.Listing.Owner.Alias</span><br />
                 }
-                @if (!String.IsNullOrEmpty(Model.Listing.Owner.PhoneNumber))
-                {
-                    <strong>Phone :</strong><span>@Model.Listing.Owner.PhoneNumber</span><br />
-                }
                 @if (!String.IsNullOrEmpty(Model.Listing.Owner.ClassifiedsPhone))
                 {
                     <strong>Phone :</strong><span>@Model.Listing.Owner.ClassifiedsPhone</span><br />
@@ -96,7 +92,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Starts, htmlAttributes: new { @class = " col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Starts, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.JQueryUI().DatepickerFor(m=>Model.Starts, new {@class="" }).Inline(true)
                 @Html.ValidationMessageFor(model => model.Starts, "", new { @class = "text-danger" })
             </div>
         </div>

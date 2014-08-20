@@ -31,20 +31,21 @@ namespace Classifieds.Models
               HasForeignKey(m => m.ParentId);
         }
 
-      //  public System.Data.Entity.DbSet<Classifieds.Models.Motor> Vehicles { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.Motor> Motors { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.Mota> Motas { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.Listing> Listings { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.GeneralListing> GeneralListings { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.ListingImage> ListingImages { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.Cellphone> Cellphones { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.Computer> Computers { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.Job> Jobs { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.Property> Properties { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.Dating> Dates { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.EmailSubscriptions> EmailSubscriptions { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.Deal> Deals { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.Bug> Bugs { get; set; }
-        public System.Data.Entity.DbSet<Classifieds.Models.FeatureRequest> FeatureRequests { get; set; }
+      //  public System.Data.Entity.DbSet< Motor> Vehicles { get; set; }
+        public  DbSet<Motor>Motors{get;set;}
+        public  DbSet<Mota> Motas { get; set; }
+        public  DbSet<Listing> Listings { get; set; }
+        public  DbSet<GeneralListing> GeneralListings { get; set; }
+        public  DbSet<ListingImage> ListingImages { get; set; }
+        public  DbSet<Cellphone> Cellphones { get; set; }
+        public  DbSet<Computer> Computers { get; set; }
+        public  DbSet<Job> Jobs { get; set; }
+        public  DbSet<Property> Properties { get; set; }
+        public  DbSet<Dating> Dates { get; set; }
+        public  DbSet<EmailSubscriptions> EmailSubscriptions { get; set; }
+        public  DbSet<Deal> Deals { get; set; }
+        public  DbSet<Bug> Bugs { get; set; }
+        public  DbSet<FeatureRequest> FeatureRequests { get; set; }
+        public  DbSet<Message> Messages { get; set; }
     }
 }
