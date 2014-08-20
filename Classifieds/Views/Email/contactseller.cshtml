@@ -1,0 +1,62 @@
+﻿@model Classifieds.Models.CreateViewModels.CreateMessageViewModel
+@{
+    ViewBag.Title = "Contact seller";
+    Layout = "~/Views/Shared/Layouts/_Layout_Pages.cshtml";
+}
+
+<h2>Contact seller about #@ViewBag.Listing.Title</h2>
+@if(!String.IsNullOrEmpty(ViewBag.Message)){
+    <p class="alert alert-success">
+        @ViewBag.Message
+    </p>
+}
+<div class="form-horizontal">
+    
+  @using (Html.BeginForm())
+  {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m=>m.ListingId)
+    <div class="form-group">
+       @* @Html.LabelFor(model => model.SenderName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SenderName, new { htmlAttributes = new { @class = "form-control", placeholder = "Your name" } })
+            @Html.ValidationMessageFor(model => model.SenderName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @* @Html.LabelFor(model => model.SenderName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "Your phone" } })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @* @Html.LabelFor(model => model.SenderName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SenderEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Your email" } })
+            @Html.ValidationMessageFor(model => model.SenderEmail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @* @Html.LabelFor(model => model.SenderName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control",disabled=true } })
+            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @* @Html.LabelFor(model => model.SenderName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Detail,5,50, new { @class = "form-control", placeholder = "Your short message here." })
+            @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Send" class="btn btn-default" />
+        </div>
+    </div>
+
+  }
+</div>
