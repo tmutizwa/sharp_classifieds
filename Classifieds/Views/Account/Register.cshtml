@@ -21,8 +21,15 @@
         <div class="form-group">
             @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "e.g yakoemail@zimpapers.co.zw" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "" })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Alias, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Alias, new { @class = "form-control",rel = "tooltip", title = "Everyone will see this name against your listings." })
+                @Html.ValidationMessageFor(model => model.Alias, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
@@ -32,24 +39,18 @@
                 @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
             </div>
         </div>
+        
         <div class="form-group">
-            @Html.LabelFor(m => m.Alias, new { @class = "col-md-2 control-label", rel = "tooltip", title = "Keep it short, we display this on your listings." })
+            @Html.LabelFor(m => m.ClassifiedsPhone, new { @class = "col-md-2 control-label",rel="tooltip" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Alias, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Alias, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.ClassifiedsPhone, new { @class = "col-md-2 control-label",rel="tooltip", title="The phone number we will display on your listings." })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.ClassifiedsPhone, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.ClassifiedsPhone, new { @class = "form-control", rel = "tooltip", title = "Everyone will see this number against your listings." })
                 @Html.ValidationMessageFor(model => model.ClassifiedsPhone, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label",rel="tooltip", title="We will display this on your listings else leave blank." })
+            @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label",rel="tooltip"})
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", rel = "tooltip", title = "This will be displayed to everyone against your listings." })
                 @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
             </div>
         </div>

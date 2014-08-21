@@ -3,7 +3,7 @@
     ViewBag.Title = "Contact Us";
     Layout = "~/Views/Shared/Layouts/_Layout_pages.cshtml";
 }
-<h2>Zimpapers Head Office</h2>
+<h2>Zimpapers Classifieds Information Desk</h2>
 @if (!String.IsNullOrEmpty(ViewBag.Message))
 {
     <p class="alert alert-success">
@@ -25,7 +25,15 @@
         <div class="col-md-4">
             @using (Html.BeginForm())
             {
+                @Html.AntiForgeryToken()
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @* @Html.LabelFor(model => model.EmailFrom, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Your name" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
                 <div class="form-group">
                     @* @Html.LabelFor(model => model.EmailFrom, htmlAttributes: new { @class = "control-label col-md-2" })*@
                     <div class="col-md-10">

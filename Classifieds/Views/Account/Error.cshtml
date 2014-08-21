@@ -1,0 +1,15 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/Layouts/_Layout_pages.cshtml";
+}
+
+<h1>Error</h1>
+@{
+    if (!String.IsNullOrEmpty(ViewBag.errorMessage))
+    {
+        
+        <p class="alert alert-danger">@ViewBag.errorMessage</p>
+    }
+}

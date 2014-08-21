@@ -23,17 +23,17 @@
                     switch (p.AuthenticationType)
                     {
                         case "Facebook":
-                            <button type="submit" class="social_login" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" rel="tooltip" title="Log in using your @p.Caption account">
+                            <button type="submit" class="social_login" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType">
                                 <img src="~/IMages/fb_login.png" />
                             </button>
                             break;
                         case "Google":
-                        <button type="submit" class=" social_login" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" rel="tooltip" title="Log in using your @p.Caption account">
+                        <button type="submit" class=" social_login" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType">
                             <img src="~/IMages/google_button.png" />
                         </button>
                             break;
                         default:
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" rel="tooltip" title="Log in using your @p.Caption account">
+                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType">
                             @p.AuthenticationType
                         </button>
                             break;

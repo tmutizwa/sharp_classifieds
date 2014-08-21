@@ -86,7 +86,7 @@ namespace Classifieds.Areas.Admin.Controllers
         }
 
         //[Authorize(Roles = "Admin")]
-        public ActionResult Index(string fullName,string email,string role)
+        public ActionResult Index(string fullName,string alias,string email,string role)
         {
             var Db = new ApplicationDbContext();
             var allRoles = Db.Roles;
@@ -99,6 +99,11 @@ namespace Classifieds.Areas.Admin.Controllers
             {
                 fullName = fullName.Trim();
                 users = users.Where(u => u.FullName.ToUpper().Contains(fullName.ToUpper()));
+            }
+            if (!String.IsNullOrEmpty(alias))
+            {
+                alias = alias.Trim();
+                users = users.Where(u => u.Alias.ToUpper().Contains(alias.ToUpper()));
             }
             if (!String.IsNullOrEmpty(email))
             {

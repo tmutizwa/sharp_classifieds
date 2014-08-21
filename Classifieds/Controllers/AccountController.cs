@@ -21,27 +21,27 @@ namespace Classifieds.Controllers
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
-        private AppUserManager _appUser;
         private ApplicationDbContext db = new ApplicationDbContext();
-        private string Layout = "~/Views/Shared/Layouts/_MyAccount";
-
-        public AccountController(): this(new AppUserManager())
+        public AccountController()
         {
         }
-        public AccountController(AppUserManager userManager)
+
+        public AccountController(ApplicationUserManager userManager)
         {
             UserManager = userManager;
+            var provider = new Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider("Sample");
+            UserManager.UserTokenProvider = new Microsoft.AspNet.Identity.Owin.DataProtectorTokenProvider<ApplicationUser>(provider.Create("EmailConfirmation"));
         }
 
-        public AppUserManager UserManager
+        public ApplicationUserManager UserManager
         {
             get
             {
-                return _appUser ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {
-                _appUser = value;
+                _userManager = value;
             }
         }
         //public AccountController(ApplicationUserManager userManager)
@@ -91,6 +91,11 @@ namespace Classifieds.Controllers
                 var user = await UserManager.FindAsync(model.Email, model.Password);
                 if (user != null)
                 {
+                    if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                    {
+                        ViewBag.errorMessage = "Account not confirmed yet. Please check your email for instructions on how to activate your account.";
+                        return View("Error");
+                    }
                     await SignInAsync(user, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 }
@@ -98,8 +103,8 @@ namespace Classifieds.Controllers
                 {
                     ModelState.AddModelError("", "Invalid username or password.");
                 }
+                
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -171,16 +176,17 @@ namespace Classifieds.Controllers
                     var idManager = new IdentityManager();
                    // idManager.ClearUserRoles(user.Id);
                     idManager.AddUserToRole(user.Id, "Registered");
-                 //   db.SaveChanges();
-                    await SignInAsync(user, isPersistent: false);
+                   // await SignInAsync(user, isPersistent: true);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    var body = "Please confirm your Zimpapers Classifieds account by clicking  <a href=\"" + callbackUrl + "\">here</a><br/><br/> or copy the following address and paste into your browser if click does not work.<br/>" + callbackUrl;
+                    TMSendEmail.send("no-reply@zimpapersclassifieds.co.zw", "Zimpapers Classifieds", user.Email, "New Zimpapers Classifieds account confirmation", body, null);
+                    //await UserManager.SendEmailAsync(user.Id, "Confirm your Zimpapers Classifieds new account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("tokensent", "account");
                 }
                 else
                 {
@@ -191,7 +197,11 @@ namespace Classifieds.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        [AllowAnonymous]
+        public ActionResult tokensent()
+        {
+            return View();
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
@@ -202,7 +212,6 @@ namespace Classifieds.Controllers
             {
                 return View("Error");
             }
-
             IdentityResult result = await UserManager.ConfirmEmailAsync(userId, code);
             if (result.Succeeded)
             {
@@ -238,16 +247,18 @@ namespace Classifieds.Controllers
                 var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    ModelState.AddModelError("", "The userId either does not exist or is not confirmed.");
+                    ModelState.AddModelError("", "The email either does not exist or is not confirmed.");
                     return View();
                 }
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                var body = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a> <br/> or copy the following web address and paste into your browser<br/>" + callbackUrl;
+                TMSendEmail.send("no-reply@zimpapersclassifieds.co.zw", "Zimpapers Classifieds", user.Email, "Zimpapers Classifieds password recovery", body, null);
+               // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -406,7 +417,7 @@ namespace Classifieds.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View("manage", this.Layout,model);
+            return View(model);
         }
 
         //
@@ -508,13 +519,14 @@ namespace Classifieds.Controllers
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
-                        await SignInAsync(user, isPersistent: false);
+                        await SignInAsync(user, isPersistent: true);
                         
                         // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                         // Send an email with this link
-                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        // SendEmail(user.Email, callbackUrl, "Confirm your account", "Please confirm your account by clicking this link");
+                        string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        var body = "Please confirm your Zimpapers Classifieds account by clicking  <a href=\"" + callbackUrl + "\">here</a><br/><br/> or copy the following address and paste into your browser if click does not work.<br/>" + callbackUrl;
+                        TMSendEmail.send("no-reply@zimpapersclassifieds.co.zw", "Zimpapers Classifieds", user.Email, "New Zimpapers Classifieds account confirmation", body, null);
                         
                         return RedirectToLocal(returnUrl);
                     }

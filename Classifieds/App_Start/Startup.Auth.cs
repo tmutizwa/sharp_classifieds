@@ -47,13 +47,13 @@ namespace Classifieds
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "266707396857998",
-               appSecret: "ae434ca460830fe05af8bd333deb991b");
+               appId: "1519169541650699",
+               appSecret: "8ea945f1e120dcd020a6a4664842fc68");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "844225950845-u3f6krulpn7ghue3g21jk0l74fkr18sd.apps.googleusercontent.com",
-                ClientSecret = "F6o8GSclBk5zJmpsF35sYl3p"
+                ClientId = "242021745207-t2c7m1r8ni9soubh1ssatudkqhicfhct.apps.googleusercontent.com",
+                ClientSecret = "tHteDjrEqq7ySAX-RGvAtIQb"
             });
         }
     }

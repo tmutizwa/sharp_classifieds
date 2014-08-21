@@ -9,7 +9,7 @@ using Classifieds.Models;
 using Classifieds.Library;
 using Classifieds.Models.CreateViewModels;
 using System.Net;
-
+using System.Net.Mail;
 namespace Classifieds.Controllers
 {
     public class EmailController : Controller
@@ -166,9 +166,13 @@ namespace Classifieds.Controllers
             return View(model);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult contactseller(CreateMessageViewModel model)
         {
-            var listing = db.Listings.Find(model.ListingId);
+            var listingQ = from l in db.Listings.Include("Owner")
+                           where l.ListingId == model.ListingId
+                           select l;
+            var listing = listingQ.FirstOrDefault();
                 if (listing == null)
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             if (ModelState.IsValid)
@@ -199,8 +203,12 @@ namespace Classifieds.Controllers
                     model.SenderEmail = user.Email;
                     model.SenderName = user.Alias ?? user.FullName;
                 }
-               
                 model.Subject = "About listing #" + listing.ListingId + " - " + listing.Title;
+               //now send the email.
+                //TMSendEmail.send(model.SenderEmail, model.SenderName, listing.Owner.Email, model.Subject, model.Detail, null);
+                TMSendEmail.send(model.SenderEmail, "Zimpapers Classifieds", "billing@infinisys.co.zw", model.Subject,
+                    "<strong>Phone : "+model.Phone+"<strong><br/><strong>Name: "+model.SenderName+"</strong><br/>"+model.Detail, null);
+                
             }
             ViewBag.Listing = listing;
             return View(model);

@@ -86,20 +86,26 @@ namespace Classifieds.Controllers
         public ActionResult Contact()
         {
             var model = new GeneralEmailViewModel();
-            var user = User.Identity.GetUserId();
-            if (user != null)
+            var userId = User.Identity.GetUserId();
+            if (userId != null)
             {
-
+                var user = db.Users.Find(userId);
+                if(user != null){
+                    model.EmailFrom = user.Email;
+                    model.Name = user.Alias;
+                }
+                
             }
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Contact(GeneralEmailViewModel model)
         {
             if (ModelState.IsValid)
             {
                 model.EmailTo = "terencemutizwa@gmail.com";
-                TMSendEmail.send(model.EmailFrom, model.EmailTo, model.Subject, model.Body, model.CopyEmail);
+                TMSendEmail.send(model.EmailFrom,model.Name, model.EmailTo, model.Subject, "<strong>Sender : "+model.Name+" ("+model.EmailFrom+")</strong> <br/><br/>"+model.Body,model.CopyEmail);
                 ViewBag.Message = "Message sent successfully. Thank you for your message.";
             }
             return View(model);

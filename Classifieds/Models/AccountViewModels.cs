@@ -11,7 +11,7 @@ namespace Classifieds.Models
     public class ExternalLoginConfirmationViewModel:IValidatableObject
     {
         ApplicationDbContext db = new ApplicationDbContext();
-
+        public ExternalLoginConfirmationViewModel() { }
         [Required]
         [EmailAddress]
         [Display(Name = "Username / Email")]
@@ -107,15 +107,15 @@ namespace Classifieds.Models
         public string Alias { get; set; }
 
         [Required]
-        [Display(Name = "Fullname")]
+        [Display(Name = "Formal name")]
         [MaxLength(50)]
         public string FullName { get; set; }
         public string Sex { get; set; }
         [MaxLength(100),MinLength(5)]
         [Required]
-        [Display(Name = "Phone")]
+        [Display(Name = "Public phone")]
         public string ClassifiedsPhone { get; set; }
-        [Display(Name="Home / Buss address")]
+        [Display(Name="Public business address")]
         public string Address { get; set; }
         [Required(ErrorMessage = "You need to accept the terms and conditions.")]
         public Boolean Terms { get; set; }
@@ -128,6 +128,7 @@ namespace Classifieds.Models
                 //Sex = this.Sex,
                 //DOB = this.DOB,
                 Email = this.Email,
+                Alias = this.Alias,
                 UserName = this.Email
             };
             return user;
@@ -137,14 +138,26 @@ namespace Classifieds.Models
             var userId = HttpContext.Current.User.Identity.GetUserId();
             var now = DateTime.Now;
             var usrQ = from u in db.Users
-                       where u.Alias == Alias && u.Id != userId
+                       where u.Alias == Alias && u.Id != userId || u.Email == Email || u.ClassifiedsPhone == ClassifiedsPhone
                        select u;
 
             var user = usrQ.FirstOrDefault();
             if (user != null)
             {
-                yield return new ValidationResult("Alias " + Alias + " already taken,please try another one.", new string[] { "Alias" });
+                if (user.Alias == Alias)
+                {
+                    yield return new ValidationResult("Alias " + Alias + " already taken,please try another one.", new string[] { "Alias" });
+                }
+                if (user.Email == Email)
+                {
+                    yield return new ValidationResult("Email " + Email + " already taken,please try another one.", new string[] { "Email" });
+                }
+                if (user.ClassifiedsPhone == ClassifiedsPhone)
+                {
+                    yield return new ValidationResult("Phone " + ClassifiedsPhone + " already taken,please try another one.", new string[] { "ClassifiedsPhone" });
+                }
             }
+            
         }
     }
 

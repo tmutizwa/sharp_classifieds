@@ -64,6 +64,8 @@ namespace Classifieds.Areas.Admin.Models
             Email    = user.Email;
             Suspended = user.Suspended;
             UserName = user.UserName;
+            Alias = user.Alias;
+            Confirmed = user.EmailConfirmed;
 
             
             AllRoles = new List<AdminRoleEditorViewModel>();
@@ -83,6 +85,8 @@ namespace Classifieds.Areas.Admin.Models
         [Required]
         [Display(Name = "Fullname")]
         public string FullName { get; set; }
+        public Boolean Confirmed { get; set; }
+        public string Alias { get; set; }
         public Boolean Suspended { get; set; }
         [EmailAddress, Required]
         public string Email { get; set; }

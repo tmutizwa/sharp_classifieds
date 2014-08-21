@@ -8,6 +8,8 @@ namespace Classifieds.Models.EmailViewModel
 {
     public class GeneralEmailViewModel
     {
+        [Required]
+        public string Name { get; set; }
         [MaxLength(100)]
         public string Subject { get; set; }
         [EmailAddress]
@@ -16,7 +18,7 @@ namespace Classifieds.Models.EmailViewModel
         [EmailAddress]
         [Display(Name = "Your email")]
         public string EmailFrom { get; set; }
-        [MaxLength(300),MinLength(20)]
+        [MaxLength(300),Required]
         [Display(Name="Your message")]
         public string Body { get; set; }
         public Boolean Copy { get; set; }

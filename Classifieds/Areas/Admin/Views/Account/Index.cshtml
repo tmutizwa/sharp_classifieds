@@ -16,19 +16,23 @@
         <th>
             @Html.DisplayNameFor(model => model.FullName)
         </th>
+        <th>@Html.DisplayNameFor(model=>model.Alias)</th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
+        <th>Confirmed</th>
         <th>Role</th>
-        <th>@Html.DisplayNameFor(model => model.Suspended)</th>
+        <th>Off</th>
         <th></th>
     </tr>
 @using (Html.BeginForm("Index", "Account",new {area="Admin"}, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <tr>
         <td></td>
-        <td>@Html.TextBox("fullName", null, new { @class = "form-control",placeholder="e.g Terrance" })</td>
-        <td>@Html.TextBox("email", null, new { @class = "form-control",placeholder="e.g email@zimpapers.co.zw" })</td>
+        <td>@Html.TextBox("fullName", null, new { @class = "form-control", placeholder = "" })</td>
+        <td>@Html.TextBox("alias", null, new { @class = "form-control",placeholder="" })</td>
+        <td>@Html.TextBox("email", null, new { @class = "form-control",placeholder="" })</td>
+        <td></td>
         <td>@Html.TextBox("role", null, new { @class="form-control",placeholder="e.g Admin"})</td>
         <td></td>
         <td>
@@ -51,8 +55,17 @@
             }
         </td>
         <td>
+            @{
+                if (!String.IsNullOrEmpty(item.Alias))
+                {
+                    @Html.ActionLink(item.Alias, "Edit", new { user = item.Alias })
+                }
+            }
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Email)
         </td>
+        <td>@item.Confirmed</td>
         <td>
             @{
                 if (item.UserRoles.Count() > 0) { 
@@ -71,7 +84,7 @@
             }
         </td>
         <td>
-            @Html.DisplayFor(model =>item.Suspended)
+            @item.Suspended
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { user = item.UserName }, new { @class="btn btn-success btn-xs"}) |
