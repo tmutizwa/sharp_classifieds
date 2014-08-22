@@ -42,48 +42,6 @@ namespace Classifieds.Areas.Admin.Controllers
             }
         }
 
-        //[Authorize(Roles = "Admin")]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        //[Authorize(Roles = "Admin")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(AdminRegisterViewModel model)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    //users are live by default
-                    model.Suspended = false;
-                    var user = model.GetUser();
-                    var result = await UserManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Index", "Account", new { area = "Admin" });
-                    }
-                    else
-                    {
-                        foreach (var error in result.Errors.ToList())
-                        {
-                            ModelState.AddModelError("",""+error.ToString());
-                        }
-                        
-                    }
-                }
-            }
-            catch (DataException)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                ModelState.AddModelError("", "Unable to save userId. Try again, and if the problem persists submit bug report.");
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
 
         //[Authorize(Roles = "Admin")]
         public ActionResult Index(string fullName,string alias,string email,string role)
@@ -161,7 +119,7 @@ namespace Classifieds.Areas.Admin.Controllers
                 {
                     var Db = new ApplicationDbContext();
                     var id = User.Identity.GetUserId();
-                    var user = Db.Users.First(u => u.UserName == model.UserName);
+                    var user = Db.Users.First(u => u.Email == model.Email);
 
                     if (!String.IsNullOrEmpty(model.NewPassword))
                     {
@@ -171,6 +129,7 @@ namespace Classifieds.Areas.Admin.Controllers
                     // Update the user data:
                     user.FullName = model.FullName;
                     user.Email = model.Email;
+                    user.Alias = model.Alias;
                     user.Suspended = model.Suspended;
                     
                     Db.Entry(user).State = System.Data.Entity.EntityState.Modified;
@@ -359,7 +318,7 @@ namespace Classifieds.Areas.Admin.Controllers
         //
         // POST: /Account/ResetPassword
         [HttpPost]
-        [AllowAnonymous]
+       // [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
@@ -389,7 +348,7 @@ namespace Classifieds.Areas.Admin.Controllers
 
         //
         // GET: /Account/ResetPasswordConfirmation
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
             return View();

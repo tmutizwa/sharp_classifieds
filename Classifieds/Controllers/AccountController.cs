@@ -147,6 +147,9 @@ namespace Classifieds.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            var userId = User.Identity.GetUserId();
+            if (!String.IsNullOrEmpty(userId))
+                return RedirectToAction("index", "listing");
             return View();
         }
 
@@ -455,7 +458,7 @@ namespace Classifieds.Controllers
                 // If the user does not have an account, then prompt the user to create an account
                 ViewBag.ReturnUrl = returnUrl;
                 ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email,Alias = loginInfo.ExternalIdentity.Label });
             }
         }
 
@@ -508,7 +511,7 @@ namespace Classifieds.Controllers
                     return View("ExternalLoginFailure");
                 }
                 
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email,PhoneNumber=model.ClassifiedsPhone,Address=model.Address,FullName = model.Fullname,Alias = model.Alias };
+                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email,PhoneNumber=model.ClassifiedsPhone,Address=model.Address,FullName = model.FullName,Alias = model.Alias };
                 IdentityResult result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

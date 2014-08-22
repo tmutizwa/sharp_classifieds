@@ -14,31 +14,65 @@ namespace Classifieds.Models
         public ExternalLoginConfirmationViewModel() { }
         [Required]
         [EmailAddress]
-        [Display(Name = "Username / Email")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
-        [Display(Name = "Alias / Nickname")]
-        public string Alias { get; set; }
+        [Display(Name = "Alias / Nickname"), MaxLength(10)]
         [Required]
-        [Display(Name="Phone")]
+        public string Alias { get; set; }
+
+        [Required]
+        [Display(Name = "Formal name")]
+        [MaxLength(50)]
+        public string FullName { get; set; }
+        public string Sex { get; set; }
+        [MaxLength(100), MinLength(5)]
+        [Required]
+        [Display(Name = "Public phone")]
         public string ClassifiedsPhone { get; set; }
-        [Display(Name="Home / Buss address")]
+        [Display(Name = "Public business address")]
         public string Address { get; set; }
-        public string Fullname { get; set; }
-        [Required(ErrorMessage="You need to accept the terms and conditions.")]
+        [Required(ErrorMessage = "You need to accept the terms and conditions.")]
         public Boolean Terms { get; set; }
+        // Return a pre-poulated instance of AppliationUser:
+        public ApplicationUser GetUser()
+        {
+            var user = new ApplicationUser()
+            {
+                //FullName = this.FullName,
+                //Sex = this.Sex,
+                //DOB = this.DOB,
+                Email = this.Email,
+                Alias = this.Alias,
+                UserName = this.Email
+            };
+            return user;
+        }
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
             var userId = HttpContext.Current.User.Identity.GetUserId();
             var now = DateTime.Now;
             var usrQ = from u in db.Users
-                       where u.Alias == Alias && u.Id != userId
+                       where u.Alias == Alias && u.Id != userId || u.Email == Email || u.ClassifiedsPhone == ClassifiedsPhone
                        select u;
-                     
+
             var user = usrQ.FirstOrDefault();
             if (user != null)
             {
-                yield return new ValidationResult("Alias " + Alias + " already taken,please try another one.", new string[] { "Alias" });
+                if (user.Alias == Alias)
+                {
+                    yield return new ValidationResult("Alias " + Alias + " already taken,please try another one.", new string[] { "Alias" });
+                }
+                if (user.Email == Email)
+                {
+                    yield return new ValidationResult("Email " + Email + " already taken,please try another one.", new string[] { "Email" });
+                }
+                if (!Terms)
+                {
+                    yield return new ValidationResult("You need to accept the 'Terms and Conditions'", new string[] { "Terms" });
+                }
             }
+
         }
 
     }
@@ -152,9 +186,9 @@ namespace Classifieds.Models
                 {
                     yield return new ValidationResult("Email " + Email + " already taken,please try another one.", new string[] { "Email" });
                 }
-                if (user.ClassifiedsPhone == ClassifiedsPhone)
+                if (Terms != true)
                 {
-                    yield return new ValidationResult("Phone " + ClassifiedsPhone + " already taken,please try another one.", new string[] { "ClassifiedsPhone" });
+                    yield return new ValidationResult("You need to accept the 'Terms and Conditions'", new string[] { "Terms" });
                 }
             }
             
@@ -211,6 +245,10 @@ namespace Classifieds.Models
             {
                 yield return new ValidationResult("Alias " + Alias + " already taken,please try another one.", new string[] { "Alias" });
             }
+            if (user.Email == Email)
+            {
+                yield return new ValidationResult("Email " + Email + " already taken,please try another one.", new string[] { "Email" });
+            }
         }
         
     }
@@ -250,7 +288,7 @@ namespace Classifieds.Models
         // Allow Initialization with an instance of ApplicationUser:
         public EditUserViewModel(ApplicationUser user)
         {
-            this.UserName = user.UserName;
+            this.Email = user.Email;
            // this.FullName = user.FullName;
             //this.Sex = user.Sex;
            // this.DOB = user.DOB;
@@ -268,8 +306,8 @@ namespace Classifieds.Models
         public string ClassifiedsPhone { get; set; }
         [Display(Name = "DOB")]
         public DateTime DOB { get; set; }
-        [EmailAddress,Required,Display(Name="Email")]
-        public string UserName { get; set; }
+        [EmailAddress,Required]
+        public string Email { get; set; }
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var userId = HttpContext.Current.User.Identity.GetUserId();
@@ -282,6 +320,10 @@ namespace Classifieds.Models
             if (user != null)
             {
                 yield return new ValidationResult("Alias " + Alias + " already taken,please try another one.", new string[] { "Alias" });
+            }
+            if (user.Email == Email)
+            {
+                yield return new ValidationResult("Email " + Email + " already taken,please try another one.", new string[] { "Email" });
             }
         }
 
