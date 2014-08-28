@@ -121,10 +121,14 @@ namespace Classifieds.Models.SearchViewModels
             this.foundListings = listingsQ.ToPagedList(page, this.pagesize);
         }
         public PagedList.IPagedList<Job> foundListings { get; set; }
+        [Display(Name = "Min. Age")]
         public int MinAge { get; set; }
+        [Display(Name = "Max. Age")]
         public int MaxAge { get; set; }
         public string Tags { get; set; }
+        [Display(Name = "Min. Salary")]
         public int MinSalary { get; set; }
+        [Display(Name = "Max. Salary")]
         public int MaxSalary { get; set; }
         public string Type { get; set; }
         public override string controller { get { return _controller; } set { this._controller = value; } }

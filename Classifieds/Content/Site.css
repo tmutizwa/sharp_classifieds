@@ -474,6 +474,10 @@ ul.seller-details {
 .deal-row {
     border-bottom:solid #eee 1px;
     padding:10px;
+    border-radius:5px;
+    border:solid 1px #92b9d3;
+    margin-bottom:15px;
+    background:#e9f1f2;
 }
 .deal-row .deal-title {
     font-size:1.3em;

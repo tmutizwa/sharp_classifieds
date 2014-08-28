@@ -12,7 +12,6 @@
     <link rel="shortcut icon" href="~/Images/favicon.png" type="image/vnd.microsoft.icon" />
     <![endif]-->
     @RenderSection("styles",false)
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top topbar">
@@ -55,9 +54,13 @@ else
         </div>
     </div>
     @Html.Partial("_Footer")
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript">
+    $(document).ready(function myfunction() {
+        $("[rel='tooltip']").tooltip();
+    });
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

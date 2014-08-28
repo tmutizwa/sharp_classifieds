@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Classifieds.Models.CreateViewModels
 {
@@ -43,10 +44,14 @@ namespace Classifieds.Models.CreateViewModels
         string _view = "jobs.cshtml";
         public List<SelectListItem> types = new List<SelectListItem> { new SelectListItem { Text = "Choose", Value = "" }, new SelectListItem { Text = "Full-time", Value = "full-time" }, new SelectListItem { Text = "Contract", Value = "contract" }, new SelectListItem { Text = "Part-time", Value = "part-time" }, new SelectListItem { Text = "Temporary", Value = "temporary" }, new SelectListItem { Text = "Graduate", Value = "graduate" }, new SelectListItem { Text = "Internship", Value = "internship" }, new SelectListItem { Text = "Casual", Value = "casual" }, new SelectListItem { Text = "Voluntary", Value = "voluntary" } };
         public override string view { get { return this._view; } set { this._view = value; } }
+        [Display(Name="Min. Age")]
         public int MinAge { get; set; }
+        [Display(Name="Max. Age")]
         public int MaxAge { get; set; }
         public string Tags { get; set; }
+        [Display(Name="Min. Salary")]
         public int MinSalary { get; set; }
+        [Display(Name="Max. Salary")]
         public int MaxSalary { get; set; }
         public string Type { get; set; }
         

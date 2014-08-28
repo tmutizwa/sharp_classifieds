@@ -10,7 +10,6 @@ namespace Classifieds.Models
     public class Deal
     {
         public int DealId { get; set; }
-        [Required]
         public int ListingId { get; set; }
         public Listing Listing { get; set; }
         [Required]

@@ -21,12 +21,16 @@ namespace Classifieds.Library
             mail.IsBodyHtml = true;
 
             SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
+            //smtp.Host = "smtp.gmail.com";
+            smtp.Host = "SVRMAIL.zimpapers.co.zw";
+            //smtp.Port = 587;
+            smtp.Port = 25;
             smtp.UseDefaultCredentials = false;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.Credentials = new System.Net.NetworkCredential("info@infinisys.co.zw", "oneTwo3!");
-            smtp.EnableSsl = true;
+            //smtp.Credentials = new System.Net.NetworkCredential("info@infinisys.co.zw", "oneTwo3!");
+            smtp.Credentials = new System.Net.NetworkCredential("achinyangare", "Pass20word14#");
+            //smtp.EnableSsl = true;
+            smtp.EnableSsl = false;
             try
             {
                 smtp.Send(mail);

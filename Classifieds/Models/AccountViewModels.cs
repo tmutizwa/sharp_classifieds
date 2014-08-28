@@ -59,11 +59,11 @@ namespace Classifieds.Models
             var user = usrQ.FirstOrDefault();
             if (user != null)
             {
-                if (user.Alias == Alias)
+                if (user.Alias.ToLower() == Alias.ToLower().Trim())
                 {
                     yield return new ValidationResult("Alias " + Alias + " already taken,please try another one.", new string[] { "Alias" });
                 }
-                if (user.Email == Email)
+                if (user.Email.ToLower() == Email.ToLower())
                 {
                     yield return new ValidationResult("Email " + Email + " already taken,please try another one.", new string[] { "Email" });
                 }
@@ -178,7 +178,7 @@ namespace Classifieds.Models
             var user = usrQ.FirstOrDefault();
             if (user != null)
             {
-                if (user.Alias == Alias)
+                if (user.Alias.ToLower() == Alias.ToLower().Trim())
                 {
                     yield return new ValidationResult("Alias " + Alias + " already taken,please try another one.", new string[] { "Alias" });
                 }
@@ -237,15 +237,15 @@ namespace Classifieds.Models
             var userId = HttpContext.Current.User.Identity.GetUserId();
             var now = DateTime.Now;
             var usrQ = from u in db.Users
-                       where u.Alias == Alias && u.Id != userId
+                       where (u.Alias.ToLower() == Alias.ToLower().Trim() || u.Email.ToLower() == Email.ToLower()) && u.Id != userId 
                        select u;
 
             var user = usrQ.FirstOrDefault();
-            if (user != null)
+            if (user != null && user.Alias.ToLower() == Alias.ToLower().Trim())
             {
                 yield return new ValidationResult("Alias " + Alias + " already taken,please try another one.", new string[] { "Alias" });
             }
-            if (user.Email == Email)
+            if (user != null && user.Email == Email)
             {
                 yield return new ValidationResult("Email " + Email + " already taken,please try another one.", new string[] { "Email" });
             }
@@ -313,7 +313,7 @@ namespace Classifieds.Models
             var userId = HttpContext.Current.User.Identity.GetUserId();
             var now = DateTime.Now;
             var usrQ = from u in db.Users
-                       where u.Alias == Alias && u.Id != userId
+                       where u.Alias.ToLower() == Alias.ToLower().Trim() && u.Id != userId
                        select u;
 
             var user = usrQ.FirstOrDefault();

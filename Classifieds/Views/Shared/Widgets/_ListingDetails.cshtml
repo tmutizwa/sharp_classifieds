@@ -8,7 +8,7 @@
     <div class="col-md-12 details">
         <div class="panel panel-default">
             <div class="panel-body">
-                <h3 class="details-title">@Html.DisplayFor(c => Model.Title)</h3>
+                <h3 class="details-title">@Html.DisplayFor(c => Model.Title)@if(Model.Deal != null){<span style="float:right">Hot deal</span>}</h3>
                 <ul class="descripto">
                     @if (!String.IsNullOrEmpty(Model.Description))
                     {
@@ -25,11 +25,12 @@
 
                 </ul>
                 <br/>
-            @Html.ActionLink("Email seller", "contactseller", "email", new { id = @Model.ListingId }, new { @class = "btn btn-info" })
-                @Html.ActionLink("Report abuse", "reportabuse", "email", new { id = @Model.ListingId }, new { @class = "btn btn-info" })
+            <span style="float:left;">@Html.ActionLink("Email seller", "contactseller", "email", new { id = @Model.ListingId }, new { @class = "btn btn-info" })</span> 
+                <small style="float:right">@Html.ActionLink("Report abuse", "reportabuse", "feedback", new { id = @Model.ListingId }, new { @class = "btn-link" })</small>
             </div>
+             
         </div>
-
+        
     </div>
 
 </div>
