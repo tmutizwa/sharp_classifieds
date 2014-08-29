@@ -92,7 +92,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Starts, htmlAttributes: new { @class = " col-md-2" })
             <div class="col-md-10">
-                @Html.JQueryUI().DatepickerFor(m=>Model.Starts, new {@class="" }).Inline(true)
+                @Html.JQueryUI().DatepickerFor(m=>Model.Starts, new {@class="" })
                 @Html.ValidationMessageFor(model => model.Starts, "", new { @class = "text-danger" })
             </div>
         </div>

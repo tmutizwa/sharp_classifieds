@@ -110,5 +110,37 @@ namespace Classifieds.Controllers
             }
             return View(model);
         }
+        public ActionResult reportabuse(int id)
+        {
+            var listing = db.Listings.Find(id);
+            if (listing == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            BadListing model = new BadListing();
+            model.Listing = listing;
+            model.ListingId = listing.ListingId;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult reportabuse([Bind(Include = "ListingId,Reason")]BadListing model)
+        {
+            var listing = db.Listings.Find(model.ListingId);
+            model.Listing = listing;
+            if (ModelState.IsValid)
+            {
+                var userId = User.Identity.GetUserId();
+                if (String.IsNullOrEmpty(userId))
+                {
+                    ModelState.AddModelError("", "You need to log in to report abuse.");
+                    return View(model);
+                }
+                model.Created = DateTime.Now;
+                model.UserId = userId;
+                db.BadListings.Add(model);
+                db.SaveChanges();
+                ViewBag.Message = "Report sent successfully. We will review it and take appropriate action.";
+                
+            }
+            return View(model);
+        }
     }
 }

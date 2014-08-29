@@ -51,10 +51,14 @@ namespace Classifieds.Models.EditViewModels
             
         }
         public override string view { get { return this._view; } set { this._view = value; } }
+        [Display(Name = "Min. Age")]
         public int MinAge { get; set; }
+        [Display(Name = "Max. Age")]
         public int MaxAge { get; set; }
         public string Tags { get; set; }
+        [Display(Name = "Min. Salary")]
         public int MinSalary { get; set; }
+        [Display(Name = "Max. Salary")]
         public int MaxSalary { get; set; }
         public string Type { get; set; }
 

@@ -27,6 +27,7 @@ namespace Classifieds.Models.ViewModels
             Created = listing.Created;
             Images = listing.images;
             Owner = listing.Owner;
+
         }
         readonly string _viewFolder = "~/Views/Listing/View/";
         readonly string _deleteFolder = "~/Views/Listing/Delete/";
@@ -36,6 +37,8 @@ namespace Classifieds.Models.ViewModels
         [Required]
         public int ListingId { get; set; }
         public Listing Listing { get; set; }
+        public Deal Deal { get; set; }
+        public int DealId { get; set; }
         public ApplicationUser Owner { get; set; }
         [Required]
         [Display(Name = "Category ID")]

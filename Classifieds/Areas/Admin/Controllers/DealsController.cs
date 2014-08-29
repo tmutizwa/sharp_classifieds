@@ -104,6 +104,7 @@ namespace Classifieds.Areas.Admin.Controllers
                         md.Ends = now.AddDays(model.Duration);
                     }
                     md.Listing = db.Listings.Find(model.ListingId);
+                    md.ListingId = model.ListingId;
                     md.OutreachScore = model.OutreachScore;
                     md.PriceScore = model.PriceScore;
                     md.QualityScore = model.QualityScore;
@@ -154,6 +155,7 @@ namespace Classifieds.Areas.Admin.Controllers
                     deal.Ends = model.Starts.Value.AddDays(model.Duration);
                 }
                 deal.OutreachScore = model.OutreachScore;
+                deal.ListingId = model.ListingId;
                 deal.PriceScore = model.PriceScore;
                 deal.QualityScore = model.QualityScore;
                 deal.Updated = DateTime.Now;

@@ -1,0 +1,42 @@
+﻿@model Classifieds.Models.BadListing
+
+@{
+    ViewBag.Title = "Report Abuse";
+    Layout = "~/Views/Shared/Layouts/_Layout_Pages.cshtml";
+}
+
+<h2>Report listing #@Model.Listing.Title</h2>
+@if (!String.IsNullOrEmpty(ViewBag.Message))
+{
+    <p class="alert alert-success">
+        @ViewBag.Message
+    </p>
+}
+<p>&nbsp;</p>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => Model.ListingId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Reason, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Reason, 5, 50, new {@class="form-control",placeholder="Brief reason why this is a bad listing." })
+                @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Report" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

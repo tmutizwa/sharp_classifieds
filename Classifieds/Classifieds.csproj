@@ -220,7 +220,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Library\AppUserManager.cs" />
+    <Compile Include="Library\UserIdentity.cs" />
     <Compile Include="Library\CategoryHelper.cs" />
     <Compile Include="Library\TMTimeHelper.cs" />
     <Compile Include="Library\TMSendEmail.cs" />
@@ -501,10 +501,23 @@
     <Compile Include="Migrations\201408201307402_message_date.Designer.cs">
       <DependentUpon>201408201307402_message_date.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408241534133_listing_deal.cs" />
+    <Compile Include="Migrations\201408241534133_listing_deal.Designer.cs">
+      <DependentUpon>201408241534133_listing_deal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408241733038_refresh.cs" />
+    <Compile Include="Migrations\201408241733038_refresh.Designer.cs">
+      <DependentUpon>201408241733038_refresh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408270947231_bad_listings.cs" />
+    <Compile Include="Migrations\201408270947231_bad_listings.Designer.cs">
+      <DependentUpon>201408270947231_bad_listings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AListingSearchModel.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\BadListing.cs" />
     <Compile Include="Models\Bug.cs" />
     <Compile Include="Models\Cellphone.cs" />
     <Compile Include="Models\Computer.cs" />
@@ -813,10 +826,10 @@
     <Content Include="Views\Email\contactseller.cshtml" />
     <Content Include="Views\Account\tokensent.cshtml" />
     <Content Include="Views\Account\Error.cshtml" />
+    <Content Include="Views\Feedback\reportabuse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Auth\" />
     <Folder Include="Views\Validation\" />
     <Folder Include="Views\Widget\" />
   </ItemGroup>
@@ -1034,6 +1047,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408201307402_message_date.resx">
       <DependentUpon>201408201307402_message_date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408241534133_listing_deal.resx">
+      <DependentUpon>201408241534133_listing_deal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408241733038_refresh.resx">
+      <DependentUpon>201408241733038_refresh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408270947231_bad_listings.resx">
+      <DependentUpon>201408270947231_bad_listings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

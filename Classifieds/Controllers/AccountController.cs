@@ -22,9 +22,7 @@ namespace Classifieds.Controllers
     {
         private ApplicationUserManager _userManager;
         private ApplicationDbContext db = new ApplicationDbContext();
-        public AccountController()
-        {
-        }
+        public AccountController(){}
 
         public AccountController(ApplicationUserManager userManager)
         {
@@ -32,7 +30,6 @@ namespace Classifieds.Controllers
             var provider = new Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider("Sample");
             UserManager.UserTokenProvider = new Microsoft.AspNet.Identity.Owin.DataProtectorTokenProvider<ApplicationUser>(provider.Create("EmailConfirmation"));
         }
-
         public ApplicationUserManager UserManager
         {
             get
@@ -69,8 +66,6 @@ namespace Classifieds.Controllers
             List<Listing> listings = listingsQ.ToList();
             return View(listings);
         }
-
-        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -78,8 +73,6 @@ namespace Classifieds.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-
-        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -142,7 +135,6 @@ namespace Classifieds.Controllers
             }
           return View(model);
         }
-        //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
@@ -152,8 +144,6 @@ namespace Classifieds.Controllers
                 return RedirectToAction("index", "listing");
             return View();
         }
-
-        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -205,7 +195,6 @@ namespace Classifieds.Controllers
         {
             return View();
         }
-        //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
@@ -227,8 +216,6 @@ namespace Classifieds.Controllers
                 return View();
             }
         }
-
-        //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -236,8 +223,6 @@ namespace Classifieds.Controllers
             ViewBag.searchViewModel = new ListingSearchViewModel();
             return View();
         }
-
-        //
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
@@ -267,8 +252,6 @@ namespace Classifieds.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        //
         // GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
@@ -276,8 +259,6 @@ namespace Classifieds.Controllers
             ViewBag.searchViewModel = new ListingSearchViewModel();
             return View();
         }
-	
-        //
         // GET: /Account/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
@@ -289,8 +270,6 @@ namespace Classifieds.Controllers
             }
             return View();
         }
-
-        //
         // POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
@@ -321,8 +300,6 @@ namespace Classifieds.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        //
         // GET: /Account/ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
@@ -330,8 +307,6 @@ namespace Classifieds.Controllers
             ViewBag.searchViewModel = new ListingSearchViewModel();
             return View();
         }
-
-        //
         // POST: /Account/Disassociate
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -352,8 +327,6 @@ namespace Classifieds.Controllers
             }
             return RedirectToAction("Manage", new { Message = message });
         }
-
-        //
         // GET: /Account/Manage
         public ActionResult Manage(ManageMessageId? message)
         {
@@ -368,8 +341,6 @@ namespace Classifieds.Controllers
             ViewBag.ReturnUrl = Url.Action("Manage");
             return View();
         }
-
-        //
         // POST: /Account/Manage
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -422,8 +393,6 @@ namespace Classifieds.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        //
         // POST: /Account/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
@@ -433,8 +402,6 @@ namespace Classifieds.Controllers
             // Request a redirect to the external login provider
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
-
-        //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
@@ -461,8 +428,6 @@ namespace Classifieds.Controllers
                 return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email,Alias = loginInfo.ExternalIdentity.Label });
             }
         }
-
-        //
         // POST: /Account/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -471,8 +436,6 @@ namespace Classifieds.Controllers
             // Request a redirect to the external login provider to link a login for the current user
             return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), User.Identity.GetUserId());
         }
-
-        //
         // GET: /Account/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
@@ -488,8 +451,6 @@ namespace Classifieds.Controllers
             }
             return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
         }
-
-        //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
         [AllowAnonymous]
@@ -539,8 +500,6 @@ namespace Classifieds.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
-
-        //
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -549,8 +508,6 @@ namespace Classifieds.Controllers
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
-
-        //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
@@ -558,7 +515,6 @@ namespace Classifieds.Controllers
             ViewBag.searchViewModel = new ListingSearchViewModel();
             return View();
         }
-
         [ChildActionOnly]
         public ActionResult RemoveAccountList()
         {
@@ -566,7 +522,6 @@ namespace Classifieds.Controllers
             ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
             return (ActionResult)PartialView("_RemoveAccountPartial", linkedAccounts);
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing && UserManager != null)
@@ -576,11 +531,9 @@ namespace Classifieds.Controllers
             }
             base.Dispose(disposing);
         }
-
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
-
         private IAuthenticationManager AuthenticationManager
         {
             get
@@ -588,13 +541,17 @@ namespace Classifieds.Controllers
                 return HttpContext.GetOwinContext().Authentication;
             }
         }
-
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
+            var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+         //   var identity = await user.GenerateUserIdentityAsync(UserManager);
+            identity.AddClaim(new Claim("FullName", user.FullName));
+            identity.AddClaim(new Claim("Email", user.Email));
+            identity.AddClaim(new Claim("Alias", user.Alias));
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
         }
-
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -602,7 +559,6 @@ namespace Classifieds.Controllers
                 ModelState.AddModelError("", error);
             }
         }
-
         private bool HasPassword()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -612,12 +568,10 @@ namespace Classifieds.Controllers
             }
             return false;
         }
-
         private void SendEmail(string email, string callbackUrl, string subject, string message)
         {
             // For information on sending mail, please visit http://go.microsoft.com/fwlink/?LinkID=320771
         }
-
         public enum ManageMessageId
         {
             ChangePasswordSuccess,
@@ -625,7 +579,6 @@ namespace Classifieds.Controllers
             RemoveLoginSuccess,
             Error
         }
-
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
@@ -637,7 +590,6 @@ namespace Classifieds.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
         private class ChallengeResult : HttpUnauthorizedResult
         {
             public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
