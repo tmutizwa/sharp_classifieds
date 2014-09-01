@@ -39,7 +39,7 @@ h1,h2,h3 {
 }
 
 .topbar {
-    background: #808080;
+    background: none repeat scroll 0% 0% rgba(213, 53, 53, 1);
     color: #fff;
 }
 
