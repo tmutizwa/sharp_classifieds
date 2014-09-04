@@ -97,7 +97,7 @@ namespace Classifieds.Models.SearchViewModels
            int page = 1;
            if (this.page > 0)
                page = this.page;
-           this.foundListings = listingsQ.ToPagedList(page, this.pagesize);
+           this.foundListings = listingsQ.Take(200).ToPagedList(page, this.pagesize);
            
         }
         public PagedList.IPagedList<Listing> foundListings { get; set; }

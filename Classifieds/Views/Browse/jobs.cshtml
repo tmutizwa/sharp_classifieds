@@ -27,12 +27,6 @@
         }
     </ul>
 }
-<div class="results_count">
-    <span>Found @Model.foundListings.Count() listings </span> @if (!String.IsNullOrEmpty(Model.text))
-    { <span>for</span> <em>"@Model.text" .</em>}
-    else
-    { <span>in this category.</span>}
-</div>
 <table class="table">
     @using (Html.BeginForm(Model.action, Model.controller, FormMethod.Get, new { }))
     {
@@ -68,10 +62,10 @@
                 </button>
 
             </th>
-            <th>
+            <th width="70">
                 @Html.DisplayNameFor(model =>model.Type)
             </th>
-            <th>Salary range</th>
+            <th width="150">Salary range</th>
         </tr>
     }
     @if(Model.foundListings != null && Model.foundListings.Count > 0){
@@ -93,26 +87,24 @@
                 }
 
             </td>*@
-            <td>
-                <div class="index-desc">
+            <td colspan="3">
+                <div class="">
                     <strong>
                         @Html.ActionLink(item.Listing.Title, "details", "listing", new { id = item.ListingId }, null)
                     </strong>
                     <br />
                     @item.Listing.getIntro()
                 </div>
-                </td>
-            <td>
-                <div class="">
-                    <small>Seller:</small>@if (!String.IsNullOrEmpty(item.Listing.Owner.Alias))
-                    {<small>@Html.DisplayFor(m => item.Listing.Owner.Alias)</small>}
-                    else
-                    {<small>@Html.DisplayFor(m => item.Listing.Owner.FullName)</small> }
+                <div class="index-meta">
+                    <div class="left">
+                        <small></small>@if (!String.IsNullOrEmpty(item.Listing.Owner.Alias))
+                        {<small>@Html.DisplayFor(m => item.Listing.Owner.Alias)</small>}
+                        else
+                        {<small>@Html.DisplayFor(m => item.Listing.Owner.FullName)</small>}
+                        <small>- @Html.ToWords(item.Listing.Created)</small>
+                        <small>- @Html.DisplayFor(m => item.Listing.Town)</small>
+                    </div>
                 </div>
-                <small>@Html.ActionLink(item.Listing.Category.Title, "index", "browse", new { cat = item.Listing.CategoryId }, new { @class = "btn btn-xs btn-meta" })</small>
-            </td>
-            <td>
-                @Html.DisplayFor(mod => item.Listing.Town)
             </td>
             <td>
                 @Html.DisplayFor(model => item.Type)

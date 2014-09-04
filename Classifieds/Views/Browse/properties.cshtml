@@ -27,12 +27,7 @@
         }
     </ul>
 }
-<div class="results_count">
-    <span>Found @Model.foundListings.Count() listings </span> @if (!String.IsNullOrEmpty(Model.text))
-    { <span>for</span> <em>"@Model.text" .</em>}
-    else
-    { <span>in this category.</span>}
-</div>
+
 <table class="table">
     @using (Html.BeginForm(Model.action, Model.controller, FormMethod.Get, new { }))
     {
@@ -68,9 +63,6 @@
                 </button>
 
             </th>
-            <th>
-                @Html.DisplayNameFor(model =>model.Suburb)
-            </th>
             <th width="130">
                 <button rel="tooltip" title="Order by price" type="submit" class="btn-link" name="order" value="@Model.porder">
                     <span>Price</span>
@@ -103,9 +95,13 @@
                 {
                     <a href="@Url.Action("details", "listing", new { id=item.ListingId})"><img width="150" class="img-thumbnail img-responsive" src="@src" /></a>
                 }
+                else
+                {
+                    <a href="@Url.Action("details", "listing", new { id=item.ListingId})"><img class="img-thumbnail img-responsive" src="~/Images/no_image.jpg" /></a>
+                }
 
             </td>
-            <td>
+            <td colspan="3">
                 <div class="index-desc">
                     <strong>
                         @Html.ActionLink(item.Listing.Title, "details", "listing", new { id = item.ListingId }, null)
@@ -114,27 +110,18 @@
                     @item.Listing.getIntro()
                 </div>
                 <div class="index-meta">
+                       @if (!String.IsNullOrEmpty(item.Listing.Owner.Alias))
+                        {<small>@Html.DisplayFor(m => item.Listing.Owner.Alias)</small>}
+                        else
+                        {<small>@Html.DisplayFor(m => item.Listing.Owner.FullName)</small> }
                    
-                   
+                    <small>@Html.DisplayFor(mod => item.Listing.Town)</small>
+                    <small>@Html.DisplayFor(mod => item.Suburb)</small>
                 </div>
             </td>
-            <td>
-                <div class="">
-                    <small>Seller:</small>@if (!String.IsNullOrEmpty(item.Listing.Owner.Alias))
-                    {<small>@Html.DisplayFor(m => item.Listing.Owner.Alias)</small>}
-                    else
-                    {<small>@Html.DisplayFor(m => item.Listing.Owner.FullName)</small> }
-                </div>
+            <td style="text-align:right;">
+                <strong class="row-price">@Html.DisplayFor(modelItem => item.Listing.Price)</strong>
                 <small>@Html.ActionLink(item.Listing.Category.Title, "index", "browse", new { cat = item.Listing.CategoryId }, new { @class = "btn btn-xs btn-meta" })</small>
-            </td>
-            <td>
-                @Html.DisplayFor(mod => item.Listing.Town)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Suburb)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Listing.Price)
             </td>
         </tr>
     }

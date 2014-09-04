@@ -20,6 +20,9 @@ namespace Classifieds.Models
         public string Alias { get; set; }
         public string Pic { get; set; }
         public string Address { get; set; }
+        // the 4c+ user id from bulk upload
+        public string BulkUploaderId { get; set; }
+        public string BulkUploaderName { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

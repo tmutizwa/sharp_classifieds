@@ -27,12 +27,7 @@
         }
     </ul>
 }
-<div class="results_count">
-    <span>Found @Model.foundListings.Count() listings </span> @if (!String.IsNullOrEmpty(Model.text))
-    { <span>for</span> <em>"@Model.text" .</em>}
-    else
-    { <span>in this category.</span>}
-</div>
+
 <table class="table">
     @using (Html.BeginForm(Model.action, Model.controller, FormMethod.Get, new { }))
     {
@@ -53,7 +48,7 @@
             <th>
                 Title
             </th>
-            <th width="130">
+            <th style="text-align:right;">
                 <button rel="tooltip" title="Order by location" type="submit" class="btn-link" name="order" value="@Model.lorder">
                     <span>Location</span>
                     @if (Model.lorder == "town")
@@ -73,7 +68,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.CModel)
             </th>
-            <th width="130">
+            
+            <th width="110" style="text-align:right;">
                 <button rel="tooltip" title="Order by price" type="submit" class="btn-link" name="order" value="@Model.porder">
                     <span>Price</span>
                     @if (Model.porder == "price")
@@ -88,16 +84,18 @@
             </th>
         </tr>
     }
-    @if(Model.foundListings != null && Model.foundListings.Count > 0){
-     foreach (var item in Model.foundListings)
+    @if (Model.foundListings != null && Model.foundListings.Count > 0)
     {
-        string controller = item.Listing.Category.Controller;
-        string src = "";
-        if (item.Listing.images != null && item.Listing.images.Count() > 0)
+        foreach (var item in Model.foundListings)
         {
+            string controller = item.Listing.Category.Controller;
+            string src = "";
+            if (item.Listing.images != null && item.Listing.images.Count() > 0)
+            {
 
-            src = Url.Content("~/Images/Listings/small/" + item.Listing.images.OrderByDescending(c => c.Created).First().Name);
-        }
+                src = Url.Content("~/Images/Listings/small/" + item.Listing.images.OrderByDescending(c => c.Created).First().Name);
+            }
+           
 
         <tr>
             <td width="170">
@@ -105,9 +103,13 @@
                 {
                     <a href="@Url.Action("details", "listing", new { id=item.ListingId})"><img width="150" class="img-thumbnail img-responsive" src="@src" /></a>
                 }
+                else
+                {
+                    <a href="@Url.Action("details", "listing", new { id=item.ListingId})"><img class="img-thumbnail img-responsive" src="~/Images/no_image.jpg" /></a>
+                }
 
             </td>
-            <td>
+            <td colspan="2">
                 <div class="index-desc">
                     <strong>
                         @Html.ActionLink(item.Listing.Title, "details", "listing", new { id = item.ListingId }, null)
@@ -117,16 +119,14 @@
                 </div>
                 <div class="index-meta">
                     <div class="left">
-                        <small>Seller:</small>@if (!String.IsNullOrEmpty(item.Listing.Owner.Alias))
+                        @if (!String.IsNullOrEmpty(item.Listing.Owner.Alias))
                         {<small>@Html.DisplayFor(m => item.Listing.Owner.Alias)</small> }
                         else
                         { <small>@Html.DisplayFor(m => item.Listing.Owner.FullName)</small> }
+                        <small> - @Html.ToWords(item.Listing.Created)</small>,
+                        <small> - @Html.DisplayFor(m => item.Listing.Town)</small>
                     </div>
-                    <div class="right"><small>@Html.ActionLink(item.Listing.Category.Title, "index", "browse", new { cat = item.Listing.CategoryId }, new { })</small></div>
                 </div>
-            </td>
-            <td>
-                @Html.DisplayFor(mod => item.Listing.Town)
             </td>
             <td>
                 @Html.DisplayFor(model => item.Brand)
@@ -134,8 +134,9 @@
             <td>
                 @Html.DisplayFor(model=>item.CModel)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Listing.Price)
+            <td style="text-align:right;" colspan="2">
+                <strong class="row-price">@Html.DisplayFor(modelItem => item.Listing.Price)</strong>
+                <small>@Html.ActionLink(item.Listing.Category.Title, "index", "browse", new { cat = item.Listing.CategoryId }, new { @class = "btn btn-xs btn-meta" })</small>
             </td>
         </tr>
     }

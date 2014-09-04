@@ -27,12 +27,7 @@
         }
     </ul>
 }
-<div class="results_count">
-    <span>Found @Model.foundListings.Count() listings </span> @if (!String.IsNullOrEmpty(Model.text))
-    { <span>for</span> <em>"@Model.text" .</em>}
-    else
-    { <span>in this category.</span>}
-</div>
+
 <table class="table">
     @using (Html.BeginForm(Model.action, Model.controller, FormMethod.Get, new { }))
     {
@@ -52,7 +47,7 @@
             <th>
                 Title
             </th>
-            <th width="130">
+            <th style="text-align:right;">
                 <button rel="tooltip" title="Order by location" type="submit" class="btn-link" name="order" value="@Model.lorder">
                     <span>Location</span>
                     @if (Model.lorder == "town")
@@ -100,6 +95,10 @@
                 @if (src != "")
                 {
                     <a href="@Url.Action("details", "listing", new { id=item.ListingId})"><img width="150" class="img-thumbnail img-responsive" src="@src" /></a>
+                }
+                else
+                {
+                    <a href="@Url.Action("details", "listing", new { id=item.ListingId})"><img class="img-thumbnail img-responsive" src="~/Images/no_image.jpg" /></a>
                 }
 
             </td>

@@ -1,5 +1,5 @@
 ﻿@model Classifieds.Models.SearchViewModels.ListingSearchViewModel
-
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Browse listings";
     //Layout = "~/Views/Shared/Layouts/_BrowseCategory.cshtml";
@@ -87,6 +87,10 @@
                 {
                     <a href="@Url.Action("details", "listing", new { id=item.ListingId})"><img class="img-thumbnail img-responsive" src="@src" /></a>
                 }
+                else
+                {
+                    <a href="@Url.Action("details", "listing", new { id=item.ListingId})"><img class="img-thumbnail img-responsive" src="~/Images/no_image.jpg" /></a>
+                }
 
             </td>
             <td colspan="2">
@@ -113,4 +117,12 @@
         </tr>
     }
 </table>
+<hr />
+@if (Model.foundListings.PageCount > 1)
+{
+    <div class="pagination">
+        @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+        @Html.PagedListPager(Model.foundListings, page => Url.Action("index", new { page, cat = Model.cat, text = Model.text }))
+    </div>
+}
 

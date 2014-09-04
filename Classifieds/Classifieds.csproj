@@ -201,6 +201,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BulkController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\DealsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Areas\Admin\Controllers\ValidationController.cs" />
     <Compile Include="Areas\Admin\Models\AdminAccountViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Category.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\BulkUploadC4Plus.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BrowseController.cs" />
@@ -513,6 +515,10 @@
     <Compile Include="Migrations\201408270947231_bad_listings.Designer.cs">
       <DependentUpon>201408270947231_bad_listings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408281950226_bulk_uploaders.cs" />
+    <Compile Include="Migrations\201408281950226_bulk_uploaders.Designer.cs">
+      <DependentUpon>201408281950226_bulk_uploaders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AListingSearchModel.cs" />
@@ -689,6 +695,7 @@
     <Content Include="Areas\Admin\Views\Deals\confirmListing.cshtml" />
     <Content Include="Areas\Admin\Views\Deals\edit.cshtml" />
     <Content Include="Areas\Admin\Views\Deals\delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Bulk\upload.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1056,6 +1063,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408270947231_bad_listings.resx">
       <DependentUpon>201408270947231_bad_listings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408281950226_bulk_uploaders.resx">
+      <DependentUpon>201408281950226_bulk_uploaders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -654,3 +654,4 @@ D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.cs
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.listing_deal.resources
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.refresh.resources
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.bad_listings.resources
+D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.bulk_uploaders.resources
