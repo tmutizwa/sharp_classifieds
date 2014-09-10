@@ -1,5 +1,9 @@
 ﻿@model Classifieds.Models.ViewModels.AListingViewModel
-
+<script type="text/javascript">
+    $(document).ready(function myfunction() {
+        $("[rel='tooltip']").tooltip();
+    });
+</script>
 <div class="listing-times"><small>started: @Html.ToWords(Model.Created)
       @if(Model.Updated > Model.Created){
           <span>, updated : @Html.ToWords(Model.Updated)</span>
@@ -25,8 +29,8 @@
 
                 </ul>
                 <br/>
-            <span style="float:left;">@Html.ActionLink("Email seller", "contactseller", "email", new { id = @Model.ListingId }, new { @class = "btn btn-info" })</span> 
-                <small style="float:right">@Html.ActionLink("Report abuse", "reportabuse", "feedback", new { id = @Model.ListingId }, new { @class = "btn-link" })</small>
+            <span style="float:left;">@Html.ActionLink("email advertiser", "contactseller", "email", new { id = @Model.ListingId }, new { @class = "btn btn-info" })</span> 
+                <span class="abuser"><a title="Report abuse" rel="tooltip" href="@Url.Action("reportabuse", "feedback", new { id = @Model.ListingId })"><i class="glyphicon glyphicon-warning-sign "></i></a></span>
             </div>
              
         </div>

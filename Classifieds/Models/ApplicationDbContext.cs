@@ -48,6 +48,7 @@ namespace Classifieds.Models
         public  DbSet<Bug> Bugs { get; set; }
         public  DbSet<FeatureRequest> FeatureRequests { get; set; }
         public  DbSet<Message> Messages { get; set; }
-        public DbSet<BadListing> BadListings { get; set; }
+        public  DbSet<BadListing> BadListings { get; set; }
+        public  DbSet<Storefront> Storefronts { get; set; }
     }
 }

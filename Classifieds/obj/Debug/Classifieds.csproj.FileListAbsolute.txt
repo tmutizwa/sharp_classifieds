@@ -655,3 +655,5 @@ D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Mi
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.refresh.resources
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.bad_listings.resources
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.bulk_uploaders.resources
+D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.storefronts.resources
+D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.storefront_trace.resources

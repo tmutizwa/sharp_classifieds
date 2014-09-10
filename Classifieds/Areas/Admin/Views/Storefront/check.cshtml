@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Confirm User";
+}
+
+<h2>Confirm User</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>User id confirmation</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-3">
+                @Html.TextBox("id",null,new { @class = "form-control",placeholder="User id" } )
+            </div>
+            <div class="col-md-4">
+                <input type="submit" value="Check" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

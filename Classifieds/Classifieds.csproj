@@ -206,10 +206,12 @@
     <Compile Include="Areas\Admin\Controllers\DealsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StorefrontController.cs" />
     <Compile Include="Areas\Admin\Controllers\ValidationController.cs" />
     <Compile Include="Areas\Admin\Models\AdminAccountViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Category.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\BulkUploadC4Plus.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\CreateStorefrontViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BrowseController.cs" />
@@ -519,6 +521,14 @@
     <Compile Include="Migrations\201408281950226_bulk_uploaders.Designer.cs">
       <DependentUpon>201408281950226_bulk_uploaders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409080941364_storefronts.cs" />
+    <Compile Include="Migrations\201409080941364_storefronts.Designer.cs">
+      <DependentUpon>201409080941364_storefronts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409081420526_storefront_trace.cs" />
+    <Compile Include="Migrations\201409081420526_storefront_trace.Designer.cs">
+      <DependentUpon>201409081420526_storefront_trace.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AListingSearchModel.cs" />
@@ -568,6 +578,7 @@
     <Compile Include="Models\SearchViewModels\ComputersSearchViewModel.cs" />
     <Compile Include="Models\SearchViewModels\CellphonesSearchViewModel.cs" />
     <Compile Include="Models\SearchViewModels\JobsSearchViewModel.cs" />
+    <Compile Include="Models\Storefront.cs" />
     <Compile Include="Models\ViewModels\AListingViewModel.cs" />
     <Compile Include="Models\ClassifiedsSearchModelBinder.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -696,6 +707,9 @@
     <Content Include="Areas\Admin\Views\Deals\edit.cshtml" />
     <Content Include="Areas\Admin\Views\Deals\delete.cshtml" />
     <Content Include="Areas\Admin\Views\Bulk\upload.cshtml" />
+    <Content Include="Areas\Admin\Views\Storefront\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Storefront\create.cshtml" />
+    <Content Include="Areas\Admin\Views\Storefront\check.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1066,6 +1080,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408281950226_bulk_uploaders.resx">
       <DependentUpon>201408281950226_bulk_uploaders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409080941364_storefronts.resx">
+      <DependentUpon>201409080941364_storefronts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409081420526_storefront_trace.resx">
+      <DependentUpon>201409081420526_storefront_trace.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
