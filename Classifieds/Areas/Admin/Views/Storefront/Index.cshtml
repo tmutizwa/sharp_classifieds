@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Classifieds.Models.Storefront>
 
 @{
-    ViewBag.Title = "Storefronts";
+   ViewBag.Title = "Storefronts";
 }
 @section scripts{
     <script type="text/javascript">
@@ -9,12 +9,10 @@
             $("[rel='tooltip']").tooltip();
         });
     </script>
-
 }
 <h2>All storefronts</h2>
-
 <p>
-    @Html.ActionLink("Create New", "create", new { }, new { @class = "btn btn-info" })
+    @Html.ActionLink("Create New", "check", new { }, new { @class = "btn btn-info" })
 </p>
 <table class="table">
     <tr>
@@ -54,9 +52,10 @@
             @Html.DisplayFor(modelItem => item.Logo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StorefrontId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StorefrontId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StorefrontId })
+            @Html.ActionLink("Edit", "Edit", new { id = item.StorefrontId }, new { @class="btn btn-xs btn-success"})
+             @*|
+                @Html.ActionLink("Details", "Details", new { id=item.StorefrontId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.StorefrontId })*@
         </td>
     </tr>
 }

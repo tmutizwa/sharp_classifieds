@@ -21,6 +21,7 @@
     <thead>
         <tr>
             <th>#</th>
+            <th></th>
             <th>Deal ID</th>
             <th>Owner</th>
             <th>Listing Title</th>
@@ -33,6 +34,8 @@
         <tr>
             @using (Html.BeginForm())
             {
+                
+                <th></th>
                 <th></th>
                 <th width="100">@Html.TextBox("dealId", null, new { @class = "form-control", placeholder = "Deal ID" })</th>
                 <th>@Html.TextBox("username", null, new { @class = "form-control", placeholder = "Username" })</th>
@@ -54,10 +57,18 @@
         }
         @foreach (var deal in Model)
         {
-            
+            string src = "";
+        if (deal.Listing.images.Count() > 0)
+        {
+
+            src = Url.Content("~/Images/Listings/small/" + deal.Listing.images.OrderByDescending(c => c.Created).First().Name);
+        }
             
             <tr>
                 <td>@i</td>
+                <td>
+                   <img class="img-thumbnail" src="@src" />
+                </td>
                 <td>@deal.DealId</td>
                 <td>
                     <strong>Username :</strong>@deal.Listing.Owner.UserName <br/>

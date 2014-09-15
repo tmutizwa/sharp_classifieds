@@ -31,6 +31,7 @@ namespace Classifieds.Models
         public Category Category { get; set; }
         [Display(Name="Owner ID")]
         public string OwnerId { get; set; }
+        public int BulkUploaded { get; set; }
         [MaxLength(30)]
         public string Town { get; set; }
         public ApplicationUser Owner { get; set; }

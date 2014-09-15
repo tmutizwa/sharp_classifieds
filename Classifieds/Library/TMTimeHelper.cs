@@ -12,15 +12,15 @@ namespace Classifieds.Library
         public static MvcHtmlString ToWords(this HtmlHelper htmlHelper, DateTime? sdateTime)
         {
             //convert our nullable sdatetime to no-nullable
-            var dateTime = sdateTime ?? DateTime.Now;
-            var ts = new TimeSpan(DateTime.UtcNow.Ticks - dateTime.Ticks);
+            var dateTime = sdateTime.GetValueOrDefault();
+            //var ts = new TimeSpan(DateTime.UtcNow.Ticks - dateTime.Ticks);
+            var ts = DateTime.Now.Subtract(dateTime);
             double delta = Math.Abs(ts.TotalSeconds);
-
-            if (ts.Seconds > 0)
+            if (dateTime < DateTime.Now)
             {
                 if (delta < 60)
                 {
-                    return ts.Seconds == 1 ? MvcHtmlString.Create("one second ago") : MvcHtmlString.Create(ts.Seconds + " seconds ago");
+                    return ts.Seconds < 30 ? MvcHtmlString.Create("just now") : MvcHtmlString.Create(ts.Seconds + " seconds ago");
                 }
                 if (delta < 120)
                 {

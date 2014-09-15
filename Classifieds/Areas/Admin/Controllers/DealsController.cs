@@ -21,7 +21,7 @@ namespace Classifieds.Areas.Admin.Controllers
         int pagesize = 15;
         public ActionResult Index(string ltitle,string username,int dealId = 0, int listingId=0,int page=1)
         {
-            var deal = from d in db.Deals.Include("Listing").Include("Listing.Owner")
+            var deal = from d in db.Deals.Include("Listing").Include("Listing.Owner").Include("Listing.images")
                        select d;
             if (listingId > 0)
                 deal = deal.Where(d=>d.ListingId == listingId);

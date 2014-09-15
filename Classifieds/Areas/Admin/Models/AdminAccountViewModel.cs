@@ -82,6 +82,7 @@ namespace Classifieds.Areas.Admin.Models
                 this.UserRoles.Add(userRole);
             }
         }
+        
         [Required]
         [Display(Name = "Fullname")]
         public string FullName { get; set; }

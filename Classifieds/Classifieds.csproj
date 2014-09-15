@@ -72,6 +72,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Services" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -209,6 +210,8 @@
     <Compile Include="Areas\Admin\Controllers\StorefrontController.cs" />
     <Compile Include="Areas\Admin\Controllers\ValidationController.cs" />
     <Compile Include="Areas\Admin\Models\AdminAccountViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\BulkPrintClassifieds.cs" />
+    <Compile Include="Areas\Admin\Models\BulkPrintClassifiedsMapper.cs" />
     <Compile Include="Areas\Admin\Models\Category.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\BulkUploadC4Plus.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\CreateStorefrontViewModel.cs" />
@@ -224,6 +227,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Library\BulkUploader.cs" />
     <Compile Include="Library\UserIdentity.cs" />
     <Compile Include="Library\CategoryHelper.cs" />
     <Compile Include="Library\TMTimeHelper.cs" />
@@ -532,6 +536,10 @@
     <Compile Include="Migrations\201409150813117_deal_listing_rshp.cs" />
     <Compile Include="Migrations\201409150813117_deal_listing_rshp.Designer.cs">
       <DependentUpon>201409150813117_deal_listing_rshp.cs</DependentUpon>
+	  </Compile>
+    <Compile Include="Migrations\201409142037402_bulk_tag.cs" />
+    <Compile Include="Migrations\201409142037402_bulk_tag.Designer.cs">
+      <DependentUpon>201409142037402_bulk_tag.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -714,6 +722,7 @@
     <Content Include="Areas\Admin\Views\Storefront\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Storefront\create.cshtml" />
     <Content Include="Areas\Admin\Views\Storefront\check.cshtml" />
+    <Content Include="Areas\Admin\Views\Storefront\edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1093,6 +1102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409150813117_deal_listing_rshp.resx">
       <DependentUpon>201409150813117_deal_listing_rshp.cs</DependentUpon>
+	  </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409142037402_bulk_tag.resx">
+      <DependentUpon>201409142037402_bulk_tag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

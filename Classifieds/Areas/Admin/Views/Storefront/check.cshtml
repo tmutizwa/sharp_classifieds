@@ -1,6 +1,7 @@
-﻿
+﻿@using Classifieds.Models
 @{
     ViewBag.Title = "Confirm User";
+    var user = (ApplicationUser)ViewBag.user;
 }
 
 <h2>Confirm User</h2>
@@ -10,15 +11,39 @@
     <div class="form-horizontal">
         <h4>User id confirmation</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <div class="col-md-3">
-                @Html.TextBox("id",null,new { @class = "form-control",placeholder="User id" } )
+        @if (!String.IsNullOrEmpty(ViewBag.error))
+        {
+            <p class="alert alert-danger">
+                @ViewBag.error
+            </p>
+        }
+        @if (user != null)
+        {
+            <div class="form-group">
+                <ul>
+                    <li>@user.Alias</li>
+                    <li>@user.Email</li>
+                    <li>@user.FullName</li>
+                    <li>@user.ClassifiedsPhone</li>
+                    <li>@user.Address</li>
+                </ul>
             </div>
             <div class="col-md-4">
-                <input type="submit" value="Check" class="btn btn-default" />
+                @Html.ActionLink("Confirm", "create", new { email = user.Email }, new { @class="btn btn-default"})
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.TextBox("text", null, new { @class = "form-control", placeholder = "User email or alias" })
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" value="Check" class="btn btn-default" />
+                </div>
+            </div>
+        }
+        
     </div>
 }
 

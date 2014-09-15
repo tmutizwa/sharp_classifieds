@@ -10,6 +10,8 @@ namespace Classifieds.Areas.Admin.Models.ViewModels
     {
         public BulkUploadC4Plus() { }
         [Required]
-        public string Text { get; set; }
+        public string ContentJson { get; set; }
+        [Required]
+        public string MapperJson { get; set; }
     }
 }
