@@ -13,7 +13,6 @@ namespace Classifieds.Models.EditViewModels
         public EditDealViewModel(){}
         public EditDealViewModel(Deal deal)
         {
-            this.DealId = deal.DealId;
             this.Listing = deal.Listing;
             this.ListingId = deal.ListingId;
             this.PriceScore = deal.PriceScore;

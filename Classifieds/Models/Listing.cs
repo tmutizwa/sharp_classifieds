@@ -18,6 +18,7 @@ namespace Classifieds.Models
         public List<SelectListItem> Statuses = new List<SelectListItem> { new SelectListItem { Text = "Live", Value = "live" }, new SelectListItem { Text = "Suspended", Value = "suspended" } };
         [Display(Name = "Listing ID")]
         public int ListingId { get; set; }
+        public virtual Deal Deal { get; set; }
         [Required]
         [MaxLength(100),MinLength(3)]
         public string Title { get; set; }

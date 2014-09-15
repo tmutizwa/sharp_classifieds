@@ -9,9 +9,9 @@ namespace Classifieds.Models
 {
     public class Deal
     {
-        public int DealId { get; set; }
+        [Key,ForeignKey("Listing")]
         public int ListingId { get; set; }
-        public Listing Listing { get; set; }
+        public virtual Listing Listing { get; set; }
         [Required]
         public int PriceScore { get; set; }
         [Required]

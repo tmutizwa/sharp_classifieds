@@ -19,14 +19,12 @@ namespace Classifieds.Areas.Admin.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         int pagesize = 15;
-        public ActionResult Index(string ltitle,string username,int dealId = 0, int listingId=0,int page=1)
+        public ActionResult Index(string ltitle,string username, int listingId=0,int page=1)
         {
             var deal = from d in db.Deals.Include("Listing").Include("Listing.Owner").Include("Listing.images")
                        select d;
             if (listingId > 0)
                 deal = deal.Where(d=>d.ListingId == listingId);
-            if (dealId > 0)
-                deal = deal.Where(d=>d.DealId == dealId);
             if (!String.IsNullOrEmpty(ltitle))
             {
                 deal = deal.Where(d => d.Listing.Title.ToLower().Contains(ltitle.ToLower()));
@@ -77,7 +75,7 @@ namespace Classifieds.Areas.Admin.Controllers
                                select d;
                 var deal = dealQ.FirstOrDefault();
                 if (deal != null)
-                    return RedirectToAction("edit", new { id=deal.DealId});
+                    return RedirectToAction("edit", new { id=id});
                 return View(new CreateDealViewModel(ln));
             }
         }
@@ -123,7 +121,7 @@ namespace Classifieds.Areas.Admin.Controllers
         public ActionResult edit(int id)
         {
             var dealQ = from d in db.Deals.Include("Listing").Include("Listing.Owner")
-                       where d.DealId == id
+                       where d.ListingId == id
                        select d;
             var deal = dealQ.FirstOrDefault();
             if (deal != null)
@@ -173,7 +171,7 @@ namespace Classifieds.Areas.Admin.Controllers
         public ActionResult delete(int id)
         {
             var dealQ = from d in db.Deals.Include("Listing").Include("Listing.Owner")
-                       where d.DealId == id
+                       where d.ListingId == id
                        select d;
             var deal = dealQ.FirstOrDefault();
             if (deal != null)
@@ -189,7 +187,7 @@ namespace Classifieds.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult delete(Deal model)
         {
-            var deal = db.Deals.Find(model.DealId);
+            var deal = db.Deals.Find(model.ListingId);
             if(deal != null){
                 db.Deals.Remove(deal);
                 db.SaveChanges();

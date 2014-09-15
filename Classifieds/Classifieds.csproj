@@ -536,10 +536,18 @@
     <Compile Include="Migrations\201409150813117_deal_listing_rshp.cs" />
     <Compile Include="Migrations\201409150813117_deal_listing_rshp.Designer.cs">
       <DependentUpon>201409150813117_deal_listing_rshp.cs</DependentUpon>
-	  </Compile>
+    </Compile>
     <Compile Include="Migrations\201409142037402_bulk_tag.cs" />
     <Compile Include="Migrations\201409142037402_bulk_tag.Designer.cs">
       <DependentUpon>201409142037402_bulk_tag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409150956486_deal_fix.cs" />
+    <Compile Include="Migrations\201409150956486_deal_fix.Designer.cs">
+      <DependentUpon>201409150956486_deal_fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409151006182_new_deal_rshp.cs" />
+    <Compile Include="Migrations\201409151006182_new_deal_rshp.Designer.cs">
+      <DependentUpon>201409151006182_new_deal_rshp.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1102,9 +1110,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409150813117_deal_listing_rshp.resx">
       <DependentUpon>201409150813117_deal_listing_rshp.cs</DependentUpon>
-	  </EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409142037402_bulk_tag.resx">
       <DependentUpon>201409142037402_bulk_tag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409150956486_deal_fix.resx">
+      <DependentUpon>201409150956486_deal_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409151006182_new_deal_rshp.resx">
+      <DependentUpon>201409151006182_new_deal_rshp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
