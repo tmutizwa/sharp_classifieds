@@ -9,23 +9,28 @@ namespace Classifieds.Models.ViewModels
     public class DatingViewModel: AListingViewModel
     {
         public DatingViewModel():base() { }
-        public DatingViewModel(Listing ls) : base(ls) {
+        public DatingViewModel(Listing ls)
+            : base(ls)
+        {
             var compQ = from l in db.Dates.Include("Listing.Category")
                         where l.ListingId == ls.ListingId
                         select l;
             Dating ln = compQ.FirstOrDefault();
-            Type = ln.Type;
-            Age = ln.Age;
-            Sex = ln.Sex;
-            Interests = ln.Interests;
-            Religion = ln.Religion;
-            Occupation = ln.Occupation;
-            Nationality = ln.Nationality;
-            Weight = ln.Weight;
-            Height = ln.Height;
-            Ethnicity = ln.Ethnicity;
-            Smoke = ln.Smoke;
-            Drink = ln.Drink;
+            if (ln != null && ls.BulkUploaded != 1) { }
+            {
+                Type = ln.Type;
+                Age = ln.Age;
+                Sex = ln.Sex;
+                Interests = ln.Interests;
+                Religion = ln.Religion;
+                Occupation = ln.Occupation;
+                Nationality = ln.Nationality;
+                Weight = ln.Weight;
+                Height = ln.Height;
+                Ethnicity = ln.Ethnicity;
+                Smoke = ln.Smoke;
+                Drink = ln.Drink;
+            }
         }
         private string _view = "dating.cshtml";
         public override string view { get { return this._view; } set{} }

@@ -549,6 +549,10 @@
     <Compile Include="Migrations\201409151006182_new_deal_rshp.Designer.cs">
       <DependentUpon>201409151006182_new_deal_rshp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409151010265_isbulk_tag.cs" />
+    <Compile Include="Migrations\201409151010265_isbulk_tag.Designer.cs">
+      <DependentUpon>201409151010265_isbulk_tag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AListingSearchModel.cs" />
@@ -1119,6 +1123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409151006182_new_deal_rshp.resx">
       <DependentUpon>201409151006182_new_deal_rshp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409151010265_isbulk_tag.resx">
+      <DependentUpon>201409151010265_isbulk_tag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

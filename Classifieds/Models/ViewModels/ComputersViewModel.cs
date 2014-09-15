@@ -14,14 +14,17 @@ namespace Classifieds.Models.ViewModels
                         where l.ListingId == ln.ListingId
                         select l;
             Computer comp = compQ.FirstOrDefault();
-            OS = comp.OS;
-            Brand = comp.Brand;
-            HddSize = comp.HddSize;
-            ScreenSize = comp.ScreenSize;
-            Condition = comp.Condition;
-            Ram = comp.Ram;
-            ScreenSize = comp.ScreenSize;
-            Processor = comp.Processor;
+            if (comp != null && ln.BulkUploaded != 1)
+            {
+                OS = comp.OS;
+                Brand = comp.Brand;
+                HddSize = comp.HddSize;
+                ScreenSize = comp.ScreenSize;
+                Condition = comp.Condition;
+                Ram = comp.Ram;
+                ScreenSize = comp.ScreenSize;
+                Processor = comp.Processor;
+            }
         }
         private string _view = "computers.cshtml";
         public override string view { get { return this._view; } set{} }

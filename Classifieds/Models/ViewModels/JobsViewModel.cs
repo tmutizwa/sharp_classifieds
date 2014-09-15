@@ -14,20 +14,24 @@ namespace Classifieds.Models.ViewModels
                         where l.ListingId == ln.ListingId
                         select l;
             Job job = jobQ.FirstOrDefault();
-            MinAge = job.MinAge;
-            MaxAge = job.MaxAge;
-            MinSalary = job.MinSalary;
-            MaxSalary = job.MaxSalary;
-            Tags = job.Tags;
-            Type = job.Type;
+            if (job != null && ln.BulkUploaded != 1)
+            {
+                MinAge = job.MinAge;
+                MaxAge = job.MaxAge;
+                MinSalary = job.MinSalary;
+                MaxSalary = job.MaxSalary;
+                Tags = job.Tags ?? "";
+                Type = job.Type ?? "";
+            }
+            
         }
         private string _view = "jobs.cshtml";
         public override string view { get { return this._view; } set{} }
-        public int MinAge { get; set; }
-        public int MaxAge { get; set; }
+        public int? MinAge { get; set; }
+        public int? MaxAge { get; set; }
         public string Tags { get; set; }
-        public int MinSalary { get; set; }
-        public int MaxSalary { get; set; }
+        public int? MinSalary { get; set; }
+        public int? MaxSalary { get; set; }
         public string Type { get; set; }
 
     }

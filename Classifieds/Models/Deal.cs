@@ -12,6 +12,7 @@ namespace Classifieds.Models
         [Key,ForeignKey("Listing")]
         public int ListingId { get; set; }
         public virtual Listing Listing { get; set; }
+        public int BulkUploaded { get; set; }
         [Required]
         public int PriceScore { get; set; }
         [Required]

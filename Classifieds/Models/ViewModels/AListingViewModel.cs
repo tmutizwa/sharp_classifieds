@@ -27,6 +27,8 @@ namespace Classifieds.Models.ViewModels
             Created = listing.Created;
             Images = listing.images;
             Owner = listing.Owner;
+            BulkUploaded = listing.BulkUploaded;
+            Deal = listing.Deal;
 
         }
         readonly string _viewFolder = "~/Views/Listing/View/";
@@ -38,7 +40,7 @@ namespace Classifieds.Models.ViewModels
         public int ListingId { get; set; }
         public Listing Listing { get; set; }
         public Deal Deal { get; set; }
-        public int DealId { get; set; }
+        public int BulkUploaded { get; set; }
         public ApplicationUser Owner { get; set; }
         [Required]
         [Display(Name = "Category ID")]

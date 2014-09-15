@@ -661,3 +661,5 @@ D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.pd
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.bulk_tag.resources
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.deal_fix.resources
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.new_deal_rshp.resources
+D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.isbulk_tag.resources
+D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.csprojResolveAssemblyReference.cache

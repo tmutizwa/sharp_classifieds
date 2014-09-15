@@ -54,6 +54,7 @@ namespace Classifieds.Areas.Admin.Controllers
                 {
                     if(mapper.ContainsKey(ad.title) && mapper[ad.title] > 0){
                         var ls = new Listing();
+                        var gl = new GeneralListing();
                         ls.Created = DateTime.Now;
                         ls.CategoryId = mapper[ad.title];
                         ls.Description = ad.Details;
@@ -63,12 +64,15 @@ namespace Classifieds.Areas.Admin.Controllers
                         ls.Title = ad.title;
                         ls.Updated = DateTime.Now;
                         ls.BulkUploaded = 1;
-                        db.Listings.Add(ls);
+                        gl.Listing = ls;
+                        db.GeneralListings.Add(gl);
                     }
                     
                 }
                 db.SaveChanges();
                 ViewBag.Message = "Successfully uploaded print listings";
+                model.ContentJson = "";
+                model.MapperJson = "";
             }
             return View(model);
         }

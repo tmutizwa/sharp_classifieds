@@ -14,12 +14,15 @@ namespace Classifieds.Models.ViewModels
                         where l.ListingId == ln.ListingId
                         select l;
             Cellphone cell = cellQ.FirstOrDefault();
-            OS = cell.OS;
-            Brand = cell.Brand;
-            CModel = cell.CModel;
-            ScreenSize = cell.ScreenSize;
-            NetworkType = cell.NetworkType;
-            Condition = cell.Condition;
+            if (cell != null && ln.BulkUploaded != 1)
+            {
+                OS = cell.OS;
+                Brand = cell.Brand;
+                CModel = cell.CModel;
+                ScreenSize = cell.ScreenSize;
+                NetworkType = cell.NetworkType;
+                Condition = cell.Condition;
+            }
         }
         private string _view = "cellphones.cshtml";
         public override string view { get { return this._view; } set{} }

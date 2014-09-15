@@ -14,15 +14,18 @@ namespace Classifieds.Models.ViewModels
                         where l.ListingId == ln.ListingId
                         select l;
             Mota car = motaQ.FirstOrDefault();
-            Make = car.Make;
-            CarModel = car.CarModel;
-            Year = car.Year;
-            Mileage = car.Mileage;
-            FuelType = car.FuelType;
-            Transmission = car.Transmission;
-            Condition = car.Condition;
-            BodyType = car.BodyType;
-            EngineSize = car.EngineSize;
+            if (car != null && ln.BulkUploaded != 1)
+            {
+                Make = car.Make;
+                CarModel = car.CarModel;
+                Year = car.Year;
+                Mileage = car.Mileage;
+                FuelType = car.FuelType;
+                Transmission = car.Transmission;
+                Condition = car.Condition;
+                BodyType = car.BodyType;
+                EngineSize = car.EngineSize;
+            }
         }
         private string _view = "autos.cshtml";
         public override string view { get { return this._view; } set{} }

@@ -303,7 +303,7 @@ namespace Classifieds.Controllers
             }
             catch (Exception)
             {
-                throw new Exception("'View model' for this category not found.Check db config and that file exists.");
+                throw new Exception("Either category models not set up correctly or invalid/incomplete listing.");
             }
             return View();
         }

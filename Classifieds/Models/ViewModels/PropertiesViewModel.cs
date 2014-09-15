@@ -14,15 +14,18 @@ namespace Classifieds.Models.ViewModels
                         where l.ListingId == ln.ListingId
                         select l;
             Property prop = compQ.FirstOrDefault();
-            Bedrooms  = prop.Bedrooms;
-            Bathrooms = prop.Bathrooms;
-            Garages = prop.Garages;
-            Power = prop.Power;
-            LandArea = prop.LandArea;
-            BuildingArea = prop.BuildingArea;
-            Toilets = prop.Toilets;
-            Suburb = prop.Suburb;
-            Boreholes = prop.Boreholes;
+            if (prop != null && ln.BulkUploaded != 1)
+            {
+                Bedrooms = prop.Bedrooms;
+                Bathrooms = prop.Bathrooms;
+                Garages = prop.Garages;
+                Power = prop.Power;
+                LandArea = prop.LandArea;
+                BuildingArea = prop.BuildingArea;
+                Toilets = prop.Toilets;
+                Suburb = prop.Suburb;
+                Boreholes = prop.Boreholes;
+            }
 
         }
         private string _view = "properties.cshtml";

@@ -29,7 +29,10 @@
 
                 </ul>
                 <br/>
-            <span style="float:left;">@Html.ActionLink("email advertiser", "contactseller", "email", new { id = @Model.ListingId }, new { @class = "btn btn-info" })</span> 
+                @if (Model.BulkUploaded != 1)
+                {
+                    <span style="float:left;">@Html.ActionLink("email advertiser", "contactseller", "email", new { id = @Model.ListingId }, new { @class = "btn btn-info" })</span>
+                }
                 <span class="abuser"><a title="Report abuse" rel="tooltip" href="@Url.Action("reportabuse", "feedback", new { id = @Model.ListingId })"><i class="glyphicon glyphicon-warning-sign "></i></a></span>
             </div>
              

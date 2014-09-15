@@ -19,8 +19,11 @@ namespace Classifieds.Models.ViewModels
                      where l.ListingId == ln.ListingId
                      select l;
             GeneralListing listing = gQ.FirstOrDefault();
-            Brand = listing.Brand;
-            Condition = listing.Condition;
+            if (listing != null && ln.BulkUploaded != 1)
+            {
+                Brand = listing.Brand;
+                Condition = listing.Condition;
+            }
 
         }
         public List<SelectListItem> conditions = new List<SelectListItem> { new SelectListItem { Text = "Choose", Value = "" }, new SelectListItem { Text = "Brand new", Value = "brand new" }, new SelectListItem { Text = "New", Value = "new" }, new SelectListItem { Text = "Very good", Value = "very good" }, new SelectListItem { Text = "Good", Value = "good" }, new SelectListItem { Text = "Neat", Value = "neat" }, new SelectListItem { Text = "Used", Value = "used" }, new SelectListItem { Text = "So so", Value = "so so" }, new SelectListItem { Text = "Old", Value = "old" } };
