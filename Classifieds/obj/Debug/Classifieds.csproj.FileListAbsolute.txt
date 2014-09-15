@@ -503,6 +503,7 @@ D:\MVC_APPS\GitClassifieds\Classifieds\obj\Debug\Classifieds.csproj.GenerateReso
 D:\MVC_APPS\GitClassifieds\Classifieds\obj\Debug\Classifieds.dll
 D:\MVC_APPS\GitClassifieds\Classifieds\obj\Debug\Classifieds.pdb
 D:\MVC_APPS\GitClassifieds\Classifieds\obj\Debug\Classifieds.Migrations.user_alias.resources
+=======
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\bin\Classifieds.dll.config
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\bin\Classifieds.dll
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\bin\Classifieds.pdb
@@ -647,13 +648,13 @@ D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Mi
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.check.resources
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.messages.resources
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.message_date.resources
-D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.csproj.GenerateResource.Cache
-D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.dll
-D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.pdb
-D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.csprojResolveAssemblyReference.cache
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.listing_deal.resources
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.refresh.resources
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.bad_listings.resources
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.bulk_uploaders.resources
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.storefronts.resources
 D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.storefront_trace.resources
+D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.Migrations.deal_listing_rshp.resources
+D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.csproj.GenerateResource.Cache
+D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.dll
+D:\MVC_APPS\GitClassifieds\Zim-Taxononomies\Classifieds\obj\Debug\Classifieds.pdb

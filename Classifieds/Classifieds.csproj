@@ -529,6 +529,10 @@
     <Compile Include="Migrations\201409081420526_storefront_trace.Designer.cs">
       <DependentUpon>201409081420526_storefront_trace.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409150813117_deal_listing_rshp.cs" />
+    <Compile Include="Migrations\201409150813117_deal_listing_rshp.Designer.cs">
+      <DependentUpon>201409150813117_deal_listing_rshp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AListingSearchModel.cs" />
@@ -1086,6 +1090,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409081420526_storefront_trace.resx">
       <DependentUpon>201409081420526_storefront_trace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409150813117_deal_listing_rshp.resx">
+      <DependentUpon>201409150813117_deal_listing_rshp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

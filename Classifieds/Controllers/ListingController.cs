@@ -277,7 +277,7 @@ namespace Classifieds.Controllers
             if (id <= 0 )
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var listingQ = from l in db.Listings.Include("Category").Include("images").Include("Owner")
+            var listingQ = from l in db.Listings.Include("Category").Include("images").Include("Owner").Include("Deal")
                            where l.ListingId == id 
                            select l;
             var listing = listingQ.FirstOrDefault();
